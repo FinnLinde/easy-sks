@@ -1,1 +1,1 @@
-"""FSRS module packages."""
+"""FSRS domain module with layered architecture."""

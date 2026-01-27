@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
 import math
+from uuid import UUID
 
-from .enums import ReviewRating
+from .enums import CardState, ReviewRating
+from .models import CardLearningProgress
 
 # Default parameters and target retention match fsrs 6.3.0 Scheduler defaults.
 DEFAULT_PARAMETERS: tuple[float, ...] = (
@@ -34,7 +37,6 @@ DEFAULT_TARGET_RETENTION = 0.9
 MIN_DIFFICULTY = 1.0
 MAX_DIFFICULTY = 10.0
 
-# Use GOOD as the baseline rating for initializing new cards.
 DEFAULT_INITIAL_RATING = ReviewRating.GOOD
 
 
@@ -73,4 +75,20 @@ def default_memory_state() -> FsrsMemoryState:
     return FsrsMemoryState(
         stability=DEFAULT_INITIAL_STABILITY,
         difficulty=DEFAULT_INITIAL_DIFFICULTY,
+    )
+
+
+def default_progress(
+    user_id: UUID,
+    card_id: UUID,
+    now: datetime,
+) -> CardLearningProgress:
+    return CardLearningProgress(
+        user_id=user_id,
+        card_id=card_id,
+        stability=DEFAULT_INITIAL_STABILITY,
+        difficulty=DEFAULT_INITIAL_DIFFICULTY,
+        due_at=now,
+        last_reviewed_at=None,
+        state=CardState.NEW,
     )
