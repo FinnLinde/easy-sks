@@ -1,4 +1,4 @@
-"""FSRS domain models and defaults."""
+"""FSRS models and defaults."""
 
 from .defaults import (
     DEFAULT_INITIAL_DIFFICULTY,

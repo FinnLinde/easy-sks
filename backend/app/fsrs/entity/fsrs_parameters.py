@@ -6,7 +6,7 @@ from sqlalchemy import Float, ForeignKey, JSON, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.domain.fsrs.defaults import DEFAULT_PARAMETERS, DEFAULT_TARGET_RETENTION
+from app.fsrs.model.defaults import DEFAULT_PARAMETERS, DEFAULT_TARGET_RETENTION
 
 from .base import Base
 

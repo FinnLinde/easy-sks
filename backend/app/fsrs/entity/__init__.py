@@ -1,4 +1,4 @@
-"""Database entities and metadata."""
+"""FSRS database entities."""
 
 from .base import Base
 from .card_learning_progress import CardLearningProgress

@@ -7,11 +7,11 @@ from sqlalchemy import DateTime, Enum, Float, ForeignKey, Index, UniqueConstrain
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.domain.fsrs.defaults import (
+from app.fsrs.model.defaults import (
     DEFAULT_INITIAL_DIFFICULTY,
     DEFAULT_INITIAL_STABILITY,
 )
-from app.domain.fsrs.enums import CardState
+from app.fsrs.model.enums import CardState
 
 from .base import Base
 
