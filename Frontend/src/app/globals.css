@@ -1,11 +1,7 @@
+@import "tailwindcss";
+
 :root {
   color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 html,
@@ -13,11 +9,4 @@ body {
   height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
-  background: #000;
-  color: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
