@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Easy SKS API
+  version: 1.0.0
+  description: API for Easy SKS application
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /:
+    get:
+      summary: Root endpoint
+      description: Welcome message
+      operationId: root
+      tags:
+        - General
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Welcome to Easy SKS API"
+
+  /health:
+    get:
+      summary: Health check
+      description: Check if the API is healthy
+      operationId: health_check
+      tags:
+        - General
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
