@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: easy_sks
+      POSTGRES_USER: easy_sks
+      POSTGRES_PASSWORD: easy_sks
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

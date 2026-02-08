@@ -6,3 +6,7 @@ pytest==8.4.2
 requests==2.32.3
 beautifulsoup4==4.13.3
 openai==1.66.3
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+alembic==1.14.1
+pydantic-settings==2.7.1
