@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
@@ -20,7 +22,7 @@ router = APIRouter(tags=["Study"])
 class CardImageOut(BaseModel):
     image_id: str
     storage_key: str
-    alt_text: str | None = None
+    alt_text: Optional[str] = None
 
 
 class CardContentOut(BaseModel):
@@ -43,7 +45,7 @@ class SchedulingInfoOut(BaseModel):
     reps: int
     lapses: int
     due: str
-    last_review: str | None = None
+    last_review: Optional[str] = None
 
 
 class StudyCardOut(BaseModel):
@@ -143,7 +145,7 @@ async def list_topics() -> list[TopicOut]:
 
 @router.get("/study/due", response_model=list[StudyCardOut])
 async def get_due_cards(
-    topic: str | None = None,
+    topic: Optional[str] = None,
     study_service: StudyService = Depends(get_study_service),
 ) -> list[StudyCardOut]:
     sks_topic: SksTopic | None = None

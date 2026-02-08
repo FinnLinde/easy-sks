@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Optional
 
 from sqlalchemy import DateTime, Integer, SmallInteger, String
 from sqlalchemy.orm import Mapped, mapped_column
@@ -21,4 +22,4 @@ class ReviewLogRow(Base):
     reviewed_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False
     )
-    review_duration_ms: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    review_duration_ms: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Optional
 
 from sqlalchemy import DateTime, Float, Integer, SmallInteger, String
 from sqlalchemy.orm import Mapped, mapped_column
@@ -26,6 +27,6 @@ class CardSchedulingInfoRow(Base):
     reps: Mapped[int] = mapped_column(Integer, default=0)
     lapses: Mapped[int] = mapped_column(Integer, default=0)
     due: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
-    last_review: Mapped[datetime | None] = mapped_column(
+    last_review: Mapped[Optional[datetime]] = mapped_column(
         DateTime(timezone=True), nullable=True, default=None
     )

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
@@ -17,7 +19,7 @@ router = APIRouter(tags=["Cards"])
 class CardImageOut(BaseModel):
     image_id: str
     storage_key: str
-    alt_text: str | None = None
+    alt_text: Optional[str] = None
 
 
 class CardContentOut(BaseModel):
