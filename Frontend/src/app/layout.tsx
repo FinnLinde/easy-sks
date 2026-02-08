@@ -7,8 +7,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "SKS",
-  description: "Glowing SKS on a black background.",
+  title: "Easy SKS",
+  description: "Flashcard study app for the Sportküstenschifferschein",
 };
 
 export default function RootLayout({
@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.className} bg-black text-white antialiased`}>
+    <html lang="de" className="dark">
+      <body className={`${geistSans.className} antialiased`}>
         {children}
       </body>
     </html>
