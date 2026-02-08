@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Easy SKS API
   version: 1.0.0
-  description: API for Easy SKS application
+  description: API for the Easy SKS flashcard study application
 
 servers:
   - url: http://localhost:8000
@@ -12,13 +12,11 @@ paths:
   /:
     get:
       summary: Root endpoint
-      description: Welcome message
       operationId: root
-      tags:
-        - General
+      tags: [General]
       responses:
-        '200':
-          description: Successful response
+        "200":
+          description: Welcome message
           content:
             application/json:
               schema:
@@ -26,17 +24,14 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: "Welcome to Easy SKS API"
 
   /health:
     get:
       summary: Health check
-      description: Check if the API is healthy
       operationId: health_check
-      tags:
-        - General
+      tags: [General]
       responses:
-        '200':
+        "200":
           description: API is healthy
           content:
             application/json:
@@ -45,4 +40,183 @@ paths:
                 properties:
                   status:
                     type: string
-                    example: "healthy"
+
+  /topics:
+    get:
+      summary: List available SKS topics
+      operationId: list_topics
+      tags: [Study]
+      responses:
+        "200":
+          description: List of topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Topic"
+
+  /study/due:
+    get:
+      summary: Get cards due for review
+      operationId: get_due_cards
+      tags: [Study]
+      parameters:
+        - name: topic
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - navigation
+              - schifffahrtsrecht
+              - wetterkunde
+              - seemannschaft_i
+              - seemannschaft_ii
+      responses:
+        "200":
+          description: List of due study cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StudyCardResponse"
+
+  /study/review:
+    post:
+      summary: Review a card with a rating
+      operationId: review_card
+      tags: [Study]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewRequest"
+      responses:
+        "200":
+          description: Updated study card after review
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudyCardResponse"
+        "404":
+          description: Card or scheduling info not found
+
+  /cards/{card_id}:
+    get:
+      summary: Get a card by ID
+      operationId: get_card
+      tags: [Cards]
+      parameters:
+        - name: card_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The card
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardResponse"
+        "404":
+          description: Card not found
+
+components:
+  schemas:
+    Topic:
+      type: object
+      properties:
+        value:
+          type: string
+        label:
+          type: string
+      required: [value, label]
+
+    CardContentResponse:
+      type: object
+      properties:
+        text:
+          type: string
+        images:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardImageResponse"
+      required: [text, images]
+
+    CardImageResponse:
+      type: object
+      properties:
+        image_id:
+          type: string
+        storage_key:
+          type: string
+        alt_text:
+          type: string
+          nullable: true
+      required: [image_id, storage_key]
+
+    CardResponse:
+      type: object
+      properties:
+        card_id:
+          type: string
+        front:
+          $ref: "#/components/schemas/CardContentResponse"
+        answer:
+          $ref: "#/components/schemas/CardContentResponse"
+        short_answer:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required: [card_id, front, answer, short_answer, tags]
+
+    SchedulingInfoResponse:
+      type: object
+      properties:
+        state:
+          type: string
+          enum: [NEW, LEARNING, REVIEW, RELEARNING]
+        stability:
+          type: number
+        difficulty:
+          type: number
+        reps:
+          type: integer
+        lapses:
+          type: integer
+        due:
+          type: string
+          format: date-time
+        last_review:
+          type: string
+          format: date-time
+          nullable: true
+      required: [state, stability, difficulty, reps, lapses, due]
+
+    StudyCardResponse:
+      type: object
+      properties:
+        card:
+          $ref: "#/components/schemas/CardResponse"
+        scheduling_info:
+          $ref: "#/components/schemas/SchedulingInfoResponse"
+      required: [card, scheduling_info]
+
+    ReviewRequest:
+      type: object
+      properties:
+        card_id:
+          type: string
+        rating:
+          type: integer
+          enum: [1, 2, 3, 4]
+          description: "1=Again, 2=Hard, 3=Good, 4=Easy"
+      required: [card_id, rating]
