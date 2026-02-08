@@ -30,16 +30,16 @@ class StudyService:
         self._scheduling_repo = scheduling_repo
         self._scheduling_service = scheduling_service
 
-    def get_due_cards(
+    async def get_due_cards(
         self, topic: SksTopic | None = None
     ) -> list[StudyCard]:
         """Return cards that are due for review, optionally filtered by SKS topic."""
         now = datetime.now(timezone.utc)
-        due_infos = self._scheduling_repo.get_due(before=now)
+        due_infos = await self._scheduling_repo.get_due(before=now)
 
         study_cards: list[StudyCard] = []
         for info in due_infos:
-            card = self._card_repo.get_by_id(info.card_id)
+            card = await self._card_repo.get_by_id(info.card_id)
             if card is None:
                 continue
             if topic is not None and topic.value not in card.tags:
@@ -48,18 +48,18 @@ class StudyService:
 
         return study_cards
 
-    def review_card(self, card_id: str, rating: Rating) -> StudyCard:
+    async def review_card(self, card_id: str, rating: Rating) -> StudyCard:
         """Review a card and persist the updated scheduling state."""
-        scheduling_info = self._scheduling_repo.get_by_card_id(card_id)
+        scheduling_info = await self._scheduling_repo.get_by_card_id(card_id)
         if scheduling_info is None:
             raise ValueError(f"No scheduling info found for card {card_id!r}")
 
         updated_info, _review_log = self._scheduling_service.review_card(
             scheduling_info, rating
         )
-        self._scheduling_repo.save(updated_info)
+        await self._scheduling_repo.save(updated_info)
 
-        card = self._card_repo.get_by_id(card_id)
+        card = await self._card_repo.get_by_id(card_id)
         if card is None:
             raise ValueError(f"Card {card_id!r} not found")
 

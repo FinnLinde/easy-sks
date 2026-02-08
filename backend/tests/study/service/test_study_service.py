@@ -21,10 +21,10 @@ class FakeCardRepository:
     def __init__(self, cards: list[Card] | None = None) -> None:
         self._cards = {c.card_id: c for c in (cards or [])}
 
-    def get_by_id(self, card_id: str) -> Card | None:
+    async def get_by_id(self, card_id: str) -> Card | None:
         return self._cards.get(card_id)
 
-    def get_by_tags(self, tags: list[str]) -> list[Card]:
+    async def get_by_tags(self, tags: list[str]) -> list[Card]:
         return [
             c for c in self._cards.values()
             if any(t in c.tags for t in tags)
@@ -35,13 +35,13 @@ class FakeSchedulingRepository:
     def __init__(self, infos: list[CardSchedulingInfo] | None = None) -> None:
         self._infos = {i.card_id: i for i in (infos or [])}
 
-    def get_by_card_id(self, card_id: str) -> CardSchedulingInfo | None:
+    async def get_by_card_id(self, card_id: str) -> CardSchedulingInfo | None:
         return self._infos.get(card_id)
 
-    def get_due(self, before: datetime) -> list[CardSchedulingInfo]:
+    async def get_due(self, before: datetime) -> list[CardSchedulingInfo]:
         return [i for i in self._infos.values() if i.due <= before]
 
-    def save(self, info: CardSchedulingInfo) -> None:
+    async def save(self, info: CardSchedulingInfo) -> None:
         self._infos[info.card_id] = info
 
 
@@ -78,7 +78,8 @@ def _make_future_info(card_id: str) -> CardSchedulingInfo:
 
 
 class TestGetDueCards:
-    def test_returns_due_cards(self):
+    @pytest.mark.asyncio
+    async def test_returns_due_cards(self):
         card = _make_card("c1", ["navigation"])
         info = _make_due_info("c1")
 
@@ -88,12 +89,13 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = service.get_due_cards()
+        result = await service.get_due_cards()
 
         assert len(result) == 1
         assert result[0].card.card_id == "c1"
 
-    def test_excludes_future_cards(self):
+    @pytest.mark.asyncio
+    async def test_excludes_future_cards(self):
         card = _make_card("c1", ["navigation"])
         info = _make_future_info("c1")
 
@@ -103,11 +105,12 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = service.get_due_cards()
+        result = await service.get_due_cards()
 
         assert result == []
 
-    def test_filters_by_topic(self):
+    @pytest.mark.asyncio
+    async def test_filters_by_topic(self):
         nav_card = _make_card("c1", ["navigation"])
         weather_card = _make_card("c2", ["wetterkunde"])
 
@@ -120,12 +123,13 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = service.get_due_cards(topic=SksTopic.NAVIGATION)
+        result = await service.get_due_cards(topic=SksTopic.NAVIGATION)
 
         assert len(result) == 1
         assert result[0].card.card_id == "c1"
 
-    def test_returns_all_topics_when_no_filter(self):
+    @pytest.mark.asyncio
+    async def test_returns_all_topics_when_no_filter(self):
         cards = [
             _make_card("c1", ["navigation"]),
             _make_card("c2", ["wetterkunde"]),
@@ -139,11 +143,12 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = service.get_due_cards()
+        result = await service.get_due_cards()
 
         assert len(result) == 3
 
-    def test_skips_scheduling_info_without_matching_card(self):
+    @pytest.mark.asyncio
+    async def test_skips_scheduling_info_without_matching_card(self):
         info = _make_due_info("orphan-id")
 
         service = StudyService(
@@ -152,13 +157,14 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = service.get_due_cards()
+        result = await service.get_due_cards()
 
         assert result == []
 
 
 class TestReviewCard:
-    def test_returns_updated_study_card(self):
+    @pytest.mark.asyncio
+    async def test_returns_updated_study_card(self):
         card = _make_card("c1", ["navigation"])
         info = CardSchedulingInfo(card_id="c1")
 
@@ -168,12 +174,13 @@ class TestReviewCard:
             scheduling_service=SchedulingService(),
         )
 
-        result = service.review_card("c1", Rating.GOOD)
+        result = await service.review_card("c1", Rating.GOOD)
 
         assert result.card.card_id == "c1"
         assert result.scheduling_info.reps == 1
 
-    def test_persists_updated_scheduling_info(self):
+    @pytest.mark.asyncio
+    async def test_persists_updated_scheduling_info(self):
         card = _make_card("c1", ["navigation"])
         info = CardSchedulingInfo(card_id="c1")
         sched_repo = FakeSchedulingRepository([info])
@@ -184,14 +191,15 @@ class TestReviewCard:
             scheduling_service=SchedulingService(),
         )
 
-        service.review_card("c1", Rating.GOOD)
+        await service.review_card("c1", Rating.GOOD)
 
-        saved = sched_repo.get_by_card_id("c1")
+        saved = await sched_repo.get_by_card_id("c1")
         assert saved is not None
         assert saved.reps == 1
         assert saved.stability > 0.0
 
-    def test_raises_for_missing_scheduling_info(self):
+    @pytest.mark.asyncio
+    async def test_raises_for_missing_scheduling_info(self):
         card = _make_card("c1", ["navigation"])
 
         service = StudyService(
@@ -201,9 +209,10 @@ class TestReviewCard:
         )
 
         with pytest.raises(ValueError, match="No scheduling info"):
-            service.review_card("c1", Rating.GOOD)
+            await service.review_card("c1", Rating.GOOD)
 
-    def test_raises_for_missing_card(self):
+    @pytest.mark.asyncio
+    async def test_raises_for_missing_card(self):
         info = CardSchedulingInfo(card_id="c1")
 
         service = StudyService(
@@ -213,4 +222,4 @@ class TestReviewCard:
         )
 
         with pytest.raises(ValueError, match="not found"):
-            service.review_card("c1", Rating.GOOD)
+            await service.review_card("c1", Rating.GOOD)
