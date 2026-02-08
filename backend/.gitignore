@@ -44,6 +44,5 @@ ENV/
 generated/
 
 # Generated code from OpenAPI spec (optional - you may want to commit these)
-# Uncomment if you don't want to commit generated models/routers:
-# models.py
-# routers.py
+models.py
+routers.py

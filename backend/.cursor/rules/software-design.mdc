@@ -1,0 +1,21 @@
+---
+description: Software design decisions for the backend structure
+alwaysApply: false
+---
+
+- APIs must be defined using the OpenAPI Specification as the single source of truth.
+- APIs should be clustered by domain to keep related endpoints together.
+- Apply Domain-Driven Design (DDD):
+  - Each domain gets its own package with a layered architecture:
+    - `<domain>/model`: Domain entities and business objects.
+    - `<domain>/service`: Application/business logic services.
+    - `<domain>/controller`: API route handlers/controllers.
+    - `<domain>/db`: Persistence and database adapters.
+    - `<domain>/mapper`: Mapping between models, DTOs, and persistence objects.
+- Test structure should mirror the main domain-driven structure for clarity and coverage.
+- Use Ports and Adapters (Hexagonal architecture) for all dependencies crossing domain boundaries:
+  - Service layer defines interfaces (ports), e.g., `GatewayInterface`, implemented in adapters such as the `db` package.
+- Method names should be descriptive, concise, and self-explanatory.
+- Business logic belongs in the business object (`model`) layer, close to the domain.
+- Services should follow the 'Tell, Don't Ask' principle: prefer instructing objects over querying state and making decisions externally.
+- Always maintain clear Separation of Concerns between layers and responsibilities.
