@@ -13,5 +13,5 @@ class Card:
     card_id: str = field(default_factory=lambda: str(uuid4()))
     front: CardContent = field(default_factory=CardContent)
     answer: CardContent = field(default_factory=CardContent)
-    short_answer: CardContent = field(default_factory=CardContent)
+    short_answer: list[str] = field(default_factory=list)
     tags: list[str] = field(default_factory=list)

@@ -22,14 +22,14 @@ class CardService:
         self,
         front: CardContent,
         answer: CardContent,
-        short_answer: CardContent,
+        short_answer: list[str] | None = None,
         tags: list[str] | None = None,
     ) -> Card:
         """Create a new card with the given content and tags."""
         return Card(
             front=front,
             answer=answer,
-            short_answer=short_answer,
+            short_answer=short_answer or [],
             tags=tags or [],
         )
 

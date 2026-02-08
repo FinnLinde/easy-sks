@@ -20,10 +20,9 @@ class TestCardDefaults:
         assert card.answer.text == ""
         assert card.answer.images == []
 
-    def test_default_short_answer_is_empty_content(self):
+    def test_default_short_answer_is_empty_list(self):
         card = Card()
-        assert card.short_answer.text == ""
-        assert card.short_answer.images == []
+        assert card.short_answer == []
 
     def test_default_tags_is_empty_list(self):
         card = Card()
@@ -41,7 +40,7 @@ class TestCardCustomValues:
         front_img = CardImage(storage_key="front.png")
         front = CardContent(text="What is this?", images=[front_img])
         answer = CardContent(text="It is a cat.")
-        short_answer = CardContent(text="Cat")
+        short_answer = ["Cat", "Feline animal"]
 
         card = Card(
             card_id="custom-id",
@@ -55,5 +54,5 @@ class TestCardCustomValues:
         assert card.front.text == "What is this?"
         assert len(card.front.images) == 1
         assert card.answer.text == "It is a cat."
-        assert card.short_answer.text == "Cat"
+        assert card.short_answer == ["Cat", "Feline animal"]
         assert card.tags == ["animals", "biology"]

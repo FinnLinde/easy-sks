@@ -28,30 +28,32 @@ class TestCreateCard:
         service = CardService(image_storage=FakeImageStorage())
         front = CardContent(text="Q?")
         answer = CardContent(text="A.")
-        short_answer = CardContent(text="A")
+        short_answer = ["A", "Short"]
 
         card = service.create_card(front, answer, short_answer, tags=["test"])
 
         assert card.front.text == "Q?"
         assert card.answer.text == "A."
-        assert card.short_answer.text == "A"
+        assert card.short_answer == ["A", "Short"]
         assert card.tags == ["test"]
 
     def test_generates_card_id(self):
         service = CardService(image_storage=FakeImageStorage())
-        card = service.create_card(
-            CardContent(), CardContent(), CardContent()
-        )
+        card = service.create_card(CardContent(), CardContent())
 
         assert card.card_id  # non-empty
 
     def test_tags_default_to_empty_list(self):
         service = CardService(image_storage=FakeImageStorage())
-        card = service.create_card(
-            CardContent(), CardContent(), CardContent()
-        )
+        card = service.create_card(CardContent(), CardContent())
 
         assert card.tags == []
+
+    def test_short_answer_defaults_to_empty_list(self):
+        service = CardService(image_storage=FakeImageStorage())
+        card = service.create_card(CardContent(), CardContent())
+
+        assert card.short_answer == []
 
 
 class TestAddImageToContent:

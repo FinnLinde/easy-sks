@@ -53,7 +53,7 @@ def _make_card(card_id: str, tags: list[str]) -> Card:
         card_id=card_id,
         front=CardContent(text=f"Question for {card_id}"),
         answer=CardContent(text="Answer"),
-        short_answer=CardContent(text="Short"),
+        short_answer=["Short"],
         tags=tags,
     )
 
