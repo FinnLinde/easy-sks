@@ -1,9 +1,3 @@
-import { StudySession } from "@/components/study/study-session";
-
 export default function Home() {
-  return (
-    <main className="min-h-screen flex flex-col items-center py-8">
-      <StudySession />
-    </main>
-  );
+  return <main />;
 }

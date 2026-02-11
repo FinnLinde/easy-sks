@@ -28,7 +28,7 @@ export function TopicFilter({ value, onChange }: TopicFilterProps) {
       value={value ?? "all"}
       onValueChange={(v) => onChange(v === "all" ? undefined : (v as TopicValue))}
     >
-      <SelectTrigger className="w-[240px]">
+      <SelectTrigger className="w-full min-w-0 sm:w-[240px]">
         <SelectValue placeholder="Alle Themen" />
       </SelectTrigger>
       <SelectContent>

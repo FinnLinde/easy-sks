@@ -76,8 +76,8 @@ export function StudySession() {
   return (
     <div className="flex flex-col items-center gap-6 w-full px-4">
       {/* Header */}
-      <div className="flex items-center justify-between w-full max-w-2xl">
-        <h1 className="text-2xl font-bold">Easy SKS</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3 w-full max-w-2xl">
+        <h1 className="hidden text-2xl font-bold sm:block">Easy SKS</h1>
         <TopicFilter value={topic} onChange={handleTopicChange} />
       </div>
 
