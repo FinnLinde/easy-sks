@@ -7,10 +7,12 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
+from auth.model.role import Role
+from auth.service.auth_dependencies import require_role
 from card.model.card import Card
 from study.service.card_repository_port import CardRepositoryPort
 
-router = APIRouter(tags=["Cards"])
+router = APIRouter(tags=["Cards"], dependencies=[require_role(Role.FREEMIUM)])
 
 
 # -- Response schemas ------------------------------------------------------

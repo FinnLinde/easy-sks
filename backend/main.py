@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from fastapi import Depends, FastAPI
+from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from auth.service.auth_dependencies import get_current_user
 from card.controller.card_controller import (
     get_card_repository as _card_repo_placeholder,
     router as card_router,
@@ -57,18 +58,25 @@ app.dependency_overrides[_card_repo_placeholder] = _wired_card_repository
 
 # -- Routers ---------------------------------------------------------------
 
-app.include_router(study_router)
-app.include_router(card_router)
+# Authenticated router: every route mounted here requires a valid JWT.
+authenticated_router = APIRouter(dependencies=[Depends(get_current_user)])
+authenticated_router.include_router(study_router)
+authenticated_router.include_router(card_router)
+
+app.include_router(authenticated_router)
+
+# Public router: no authentication required.
+public_router = APIRouter(tags=["General"])
 
 
-# -- Root / health ---------------------------------------------------------
-
-
-@app.get("/", tags=["General"])
+@public_router.get("/")
 async def root():
     return {"message": "Welcome to Easy SKS API"}
 
 
-@app.get("/health", tags=["General"])
+@public_router.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
+
+app.include_router(public_router)
