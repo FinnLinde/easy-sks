@@ -2,22 +2,35 @@
 
 from __future__ import annotations
 
+import functools
+import logging
 from typing import Annotated
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from jwt.exceptions import InvalidTokenError
+from jwt.exceptions import InvalidTokenError, PyJWKClientError
 
 from auth.model.authenticated_user import AuthenticatedUser
 from auth.model.role import Role
-from auth.service.jwt_config import JwtConfig
-from auth.service.jwt_service import JwtService
+from auth.service.token_verifier_port import TokenVerifierPort
 
-# -- Shared instances -------------------------------------------------------
+logger = logging.getLogger(__name__)
 
-_jwt_config = JwtConfig()
-_jwt_service = JwtService(_jwt_config)
 _bearer_scheme = HTTPBearer()
+
+
+@functools.lru_cache
+def _get_verifier() -> TokenVerifierPort:
+    """Lazily build the Cognito token verifier on first use.
+
+    Lazy initialisation avoids hitting the JWKS endpoint (and requiring
+    environment variables) at import time, which keeps test collection
+    fast and side-effect-free.
+    """
+    from auth.service.auth_config import AuthConfig
+    from auth.service.cognito_token_verifier import CognitoTokenVerifier
+
+    return CognitoTokenVerifier(AuthConfig())
 
 
 # -- Authentication dependency (global) ------------------------------------
@@ -34,8 +47,8 @@ async def get_current_user(
     request on protected routers is authenticated automatically.
     """
     try:
-        return _jwt_service.decode_token(credentials.credentials)
-    except InvalidTokenError:
+        return _get_verifier().verify_token(credentials.credentials)
+    except (InvalidTokenError, PyJWKClientError):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or expired token",
@@ -68,8 +81,6 @@ def require_role(*roles: Role) -> Depends:
             )
         return user
 
-    # Marker attribute used by the enforcement test to verify that every
-    # protected route declares a required role.
     _check_role._required_roles = roles  # type: ignore[attr-defined]
 
     return Depends(_check_role)

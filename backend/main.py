@@ -58,7 +58,7 @@ app.dependency_overrides[_card_repo_placeholder] = _wired_card_repository
 
 # -- Routers ---------------------------------------------------------------
 
-# Authenticated router: every route mounted here requires a valid JWT.
+# Authenticated router: every route mounted here requires a valid token.
 authenticated_router = APIRouter(dependencies=[Depends(get_current_user)])
 authenticated_router.include_router(study_router)
 authenticated_router.include_router(card_router)

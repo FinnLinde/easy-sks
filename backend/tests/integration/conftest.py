@@ -2,7 +2,8 @@
 
 Spins up a PostgreSQL testcontainer and provides:
 - An async SQLAlchemy session (function-scoped, rolled back per test)
-- A FastAPI test client wired to that session
+- A FastAPI test client wired to that session (with auth bypassed)
+- Dummy auth headers for backward compatibility
 """
 
 from __future__ import annotations
@@ -20,6 +21,8 @@ from sqlalchemy.ext.asyncio import (
 )
 from testcontainers.postgres import PostgresContainer
 
+from auth.model.authenticated_user import AuthenticatedUser
+from auth.model.role import Role
 from database import Base
 
 
@@ -81,11 +84,20 @@ async def db_session(
     await eng.dispose()
 
 
+_TEST_USER = AuthenticatedUser(user_id="test-user", roles=[Role.FREEMIUM])
+
+
 @pytest_asyncio.fixture
 async def client(
     postgres_url: str, db_session: AsyncSession
 ) -> AsyncGenerator[AsyncClient, None]:
-    """Provide an httpx AsyncClient wired to the FastAPI app with the test DB."""
+    """Provide an httpx AsyncClient wired to the FastAPI app with the test DB.
+
+    ``get_current_user`` is overridden so that integration tests don't
+    need real Cognito credentials.  Every request is treated as
+    authenticated by ``_TEST_USER``.
+    """
+    from auth.service.auth_dependencies import get_current_user
     from dependencies import get_db_session
     from main import app
 
@@ -93,9 +105,22 @@ async def client(
         yield db_session
 
     app.dependency_overrides[get_db_session] = _override_session
+    app.dependency_overrides[get_current_user] = lambda: _TEST_USER
 
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         yield ac
 
     app.dependency_overrides.pop(get_db_session, None)
+    app.dependency_overrides.pop(get_current_user, None)
+
+
+@pytest.fixture
+def auth_headers() -> dict[str, str]:
+    """Dummy auth headers kept for backward compatibility.
+
+    The ``client`` fixture overrides ``get_current_user``, so these
+    headers are never verified.  They exist so that tests which pass
+    them do not need to be modified.
+    """
+    return {"Authorization": "Bearer test-token"}
