@@ -1,6 +1,6 @@
 # ESKS-002 - Frontend Cognito Login und Token-Injektion
 
-- Status: `todo`
+- Status: `in_progress`
 - Prioritaet: `P0`
 - Bereich: `frontend`
 - Owner: `unassigned`
@@ -64,6 +64,20 @@ Nutzer koennen sich anmelden und die bereits geschuetzten Study-Endpunkte im Fro
 - Session Guard fuer geschuetzte Bereiche
 - Fehler- und Ladezustands-UX fuer Auth
 
+## Implementierungsstand (2026-02-25)
+
+- Umgesetzt (MVP):
+  - Cognito Hosted UI Login via Authorization Code + PKCE (clientseitig)
+  - Callback-Route `/auth/callback` mit Token-Austausch
+  - `AuthProvider` + `useAuth()` + LocalStorage Session (MVP Tradeoff)
+  - API-Client injiziert Bearer-Token automatisch
+  - 401 fuehrt zu lokalem Logout + Re-Login-Zustand
+  - Login/Logout UI in Sidebar + Mobile Header
+  - `/study` ist auth-guarded mit Login-Aufforderung
+- Noch offen / bewusst verschoben:
+  - Refresh-Token-Renewal (aktuell Ablauf => Re-Login)
+  - Serverseitige Session/httpOnly Cookie (haertere Security-Variante)
+
 ## Infra-Aenderungen
 
 - Sicherstellen, dass Cognito Callback-/Logout-URLs fuer lokale und produktive Frontend-URLs korrekt gesetzt sind.
@@ -71,10 +85,10 @@ Nutzer koennen sich anmelden und die bereits geschuetzten Study-Endpunkte im Fro
 
 ## Akzeptanzkriterien
 
-- [ ] Nicht eingeloggte Nutzer erhalten auf `/study` eine klare Login-Aufforderung.
-- [ ] Nach erfolgreichem Login kann der Nutzer Due-Cards laden.
-- [ ] API-Requests an geschuetzte Endpunkte enthalten Bearer-Token.
-- [ ] Ungueltige/abgelaufene Session fuehrt zu sauberem Re-Login-Flow.
+- [x] Nicht eingeloggte Nutzer erhalten auf `/study` eine klare Login-Aufforderung.
+- [ ] Nach erfolgreichem Login kann der Nutzer Due-Cards laden. (manueller E2E-Check mit Cognito-Config noch offen)
+- [x] API-Requests an geschuetzte Endpunkte enthalten Bearer-Token.
+- [x] Ungueltige/abgelaufene Session fuehrt zu sauberem Re-Login-Flow.
 
 ## Testplan
 
@@ -93,17 +107,17 @@ Nutzer koennen sich anmelden und die bereits geschuetzten Study-Endpunkte im Fro
 
 ## Progress-Checklist
 
-- [ ] Auth-Flow-Variante festlegen (Hosted UI + PKCE empfohlen)
-- [ ] Frontend Auth-Konfiguration anlegen
-- [ ] Session-Provider / Hook implementieren
-- [ ] API-Client um Bearer-Token erweitern
-- [ ] `/study` Auth-Guard integrieren
-- [ ] Login/Logout UI ergaenzen
-- [ ] 401-Handling implementieren
+- [x] Auth-Flow-Variante festlegen (Hosted UI + PKCE empfohlen)
+- [x] Frontend Auth-Konfiguration anlegen
+- [x] Session-Provider / Hook implementieren
+- [x] API-Client um Bearer-Token erweitern
+- [x] `/study` Auth-Guard integrieren
+- [x] Login/Logout UI ergaenzen
+- [x] 401-Handling implementieren
 - [ ] Manuelle E2E-Pruefung lokal dokumentieren
 
 ## Offene Fragen
 
 - Hosted UI vs. SDK-basierter Login?
 - Sollen Tokens clientseitig gespeichert werden oder via serverseitiger Session abstrahiert werden?
-
+- MVP-Entscheidung getroffen: clientseitige Speicherung in `localStorage` fuer schnelle Integration; spaeter auf serverseitige Session umstellen.

@@ -4,6 +4,7 @@ import { Sailboat } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { AuthStatusActions } from "@/components/auth/auth-status-actions";
 import { navItems } from "./nav-config";
 
 export function Sidenav() {
@@ -39,6 +40,9 @@ export function Sidenav() {
             );
           })}
         </nav>
+        <div className="mt-auto pt-4">
+          <AuthStatusActions />
+        </div>
       </div>
     </aside>
   );

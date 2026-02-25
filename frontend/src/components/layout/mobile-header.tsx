@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { AuthStatusActions } from "@/components/auth/auth-status-actions";
 import { navItems } from "./nav-config";
 
 export function MobileHeader() {
@@ -37,7 +38,7 @@ export function MobileHeader() {
             Easy SKS
           </h1>
         </div>
-        <div className="w-10" aria-hidden />
+        <AuthStatusActions compact />
       </header>
 
       {/* Overlay */}
@@ -99,6 +100,9 @@ export function MobileHeader() {
             );
           })}
         </nav>
+        <div className="border-t border-sidebar-border p-4">
+          <AuthStatusActions />
+        </div>
       </aside>
     </>
   );
