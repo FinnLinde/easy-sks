@@ -13,4 +13,5 @@ class ReviewLog:
     card_id: str
     rating: Rating
     reviewed_at: datetime
+    user_id: str = ""
     review_duration_ms: int | None = None

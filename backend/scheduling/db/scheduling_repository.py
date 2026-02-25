@@ -18,16 +18,26 @@ class SchedulingRepository:
     def __init__(self, session: AsyncSession) -> None:
         self._session = session
 
-    async def get_by_card_id(self, card_id: str) -> CardSchedulingInfo | None:
-        """Return the scheduling info for the given card, or None."""
-        row = await self._session.get(CardSchedulingInfoRow, card_id)
+    async def get_by_user_and_card_id(
+        self, user_id: str, card_id: str
+    ) -> CardSchedulingInfo | None:
+        """Return scheduling info for the given user/card pair, or None."""
+        stmt = select(CardSchedulingInfoRow).where(
+            CardSchedulingInfoRow.user_id == user_id,
+            CardSchedulingInfoRow.card_id == card_id,
+        )
+        result = await self._session.execute(stmt)
+        row = result.scalar_one_or_none()
         if row is None:
             return None
         return SchedulingDbMapper.info_to_domain(row)
 
-    async def get_due(self, before: datetime) -> list[CardSchedulingInfo]:
-        """Return all scheduling entries that are due before the given time."""
+    async def get_due_for_user(
+        self, user_id: str, before: datetime
+    ) -> list[CardSchedulingInfo]:
+        """Return all scheduling entries due for a user before the given time."""
         stmt = select(CardSchedulingInfoRow).where(
+            CardSchedulingInfoRow.user_id == user_id,
             CardSchedulingInfoRow.due <= before
         )
         result = await self._session.execute(stmt)

@@ -86,6 +86,7 @@ async def seed(catalog_path: Path) -> None:
             from datetime import datetime, timezone
 
             sched_row = CardSchedulingInfoRow(
+                user_id="seed-user",
                 card_id=card_id,
                 state=0,  # NEW
                 stability=0.0,

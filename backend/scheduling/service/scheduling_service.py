@@ -35,10 +35,14 @@ class SchedulingService:
         )
 
         updated_info = FsrsMapper.to_card_scheduling_info(
-            updated_fsrs_card, card_id=card_info.card_id
+            updated_fsrs_card,
+            card_id=card_info.card_id,
+            user_id=card_info.user_id,
         )
         review_log = FsrsMapper.to_review_log(
-            fsrs_review_log, card_id=card_info.card_id
+            fsrs_review_log,
+            card_id=card_info.card_id,
+            user_id=card_info.user_id,
         )
 
         return updated_info, review_log

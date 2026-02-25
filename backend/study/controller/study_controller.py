@@ -14,6 +14,7 @@ from scheduling.model.rating import Rating
 from study.model.sks_topic import SksTopic
 from study.model.study_card import StudyCard
 from study.service.study_service import StudyService
+from user.model.app_user import AppUser
 
 router = APIRouter(tags=["Study"], dependencies=[require_role(Role.FREEMIUM)])
 
@@ -134,6 +135,10 @@ def get_study_service() -> StudyService:
     raise NotImplementedError("Must be overridden via app.dependency_overrides")
 
 
+def get_current_app_user() -> AppUser:
+    raise NotImplementedError("Must be overridden via app.dependency_overrides")
+
+
 # -- Endpoints -------------------------------------------------------------
 
 
@@ -149,6 +154,7 @@ async def list_topics() -> list[TopicOut]:
 async def get_due_cards(
     topic: Optional[str] = None,
     study_service: StudyService = Depends(get_study_service),
+    user: AppUser = Depends(get_current_app_user),
 ) -> list[StudyCardOut]:
     sks_topic: SksTopic | None = None
     if topic is not None:
@@ -157,7 +163,7 @@ async def get_due_cards(
         except ValueError:
             raise HTTPException(status_code=400, detail=f"Unknown topic: {topic}")
 
-    due = await study_service.get_due_cards(topic=sks_topic)
+    due = await study_service.get_due_cards(user_id=user.id, topic=sks_topic)
     return [_study_card_to_out(sc) for sc in due]
 
 
@@ -165,6 +171,7 @@ async def get_due_cards(
 async def review_card(
     body: ReviewIn,
     study_service: StudyService = Depends(get_study_service),
+    user: AppUser = Depends(get_current_app_user),
 ) -> StudyCardOut:
     try:
         rating = Rating(body.rating)
@@ -172,7 +179,11 @@ async def review_card(
         raise HTTPException(status_code=400, detail=f"Invalid rating: {body.rating}")
 
     try:
-        result = await study_service.review_card(body.card_id, rating)
+        result = await study_service.review_card(
+            user_id=user.id,
+            card_id=body.card_id,
+            rating=rating,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
 

@@ -9,12 +9,16 @@ from scheduling.model.card_scheduling_info import CardSchedulingInfo
 class SchedulingRepositoryPort(Protocol):
     """Port for retrieving and persisting card scheduling state."""
 
-    async def get_by_card_id(self, card_id: str) -> CardSchedulingInfo | None:
-        """Return the scheduling info for the given card, or None if not found."""
+    async def get_by_user_and_card_id(
+        self, user_id: str, card_id: str
+    ) -> CardSchedulingInfo | None:
+        """Return scheduling info for a given user/card pair, or None if not found."""
         ...
 
-    async def get_due(self, before: datetime) -> list[CardSchedulingInfo]:
-        """Return all scheduling entries that are due before the given time."""
+    async def get_due_for_user(
+        self, user_id: str, before: datetime
+    ) -> list[CardSchedulingInfo]:
+        """Return due scheduling entries for a user before the given time."""
         ...
 
     async def save(self, info: CardSchedulingInfo) -> None:

@@ -11,6 +11,8 @@ from scheduling.model.card_state import CardState
 class CardSchedulingInfo:
     """Holds the FSRS scheduling state for a card."""
 
+    # Set by the application layer when scheduling is persisted per user.
+    user_id: str = ""
     card_id: str = field(default_factory=lambda: str(uuid4()))
     state: CardState = CardState.NEW
     stability: float = 0.0

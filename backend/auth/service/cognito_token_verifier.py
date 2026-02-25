@@ -62,4 +62,12 @@ class CognitoTokenVerifier(TokenVerifierPort):
                 except ValueError:
                     pass
 
-        return AuthenticatedUser(user_id=user_id, roles=roles)
+        return AuthenticatedUser(
+            user_id=user_id,
+            roles=roles,
+            email=(
+                str(payload["email"])
+                if isinstance(payload.get("email"), str)
+                else None
+            ),
+        )

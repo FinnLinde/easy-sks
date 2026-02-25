@@ -55,6 +55,7 @@ class FsrsMapper:
     def to_card_scheduling_info(
         fsrs_card: FsrsCard,
         card_id: str,
+        user_id: str = "",
     ) -> CardSchedulingInfo:
         """Convert an fsrs Card back to a CardSchedulingInfo.
 
@@ -62,6 +63,7 @@ class FsrsMapper:
         does not carry our domain identifier.
         """
         return CardSchedulingInfo(
+            user_id=user_id,
             card_id=card_id,
             state=_FSRS_STATE_TO_CARD_STATE[fsrs_card.state],
             stability=fsrs_card.stability,
@@ -85,13 +87,16 @@ class FsrsMapper:
         return _FSRS_RATING_TO_RATING[fsrs_rating]
 
     @staticmethod
-    def to_review_log(fsrs_log: FsrsReviewLog, card_id: str) -> ReviewLog:
+    def to_review_log(
+        fsrs_log: FsrsReviewLog, card_id: str, user_id: str = ""
+    ) -> ReviewLog:
         """Convert an fsrs ReviewLog to a domain ReviewLog.
 
         The original card_id must be provided because the fsrs ReviewLog
         does not carry our domain identifier.
         """
         return ReviewLog(
+            user_id=user_id,
             card_id=card_id,
             rating=_FSRS_RATING_TO_RATING[fsrs_log.rating],
             reviewed_at=fsrs_log.review,

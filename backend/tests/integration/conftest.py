@@ -56,6 +56,7 @@ def _create_tables(postgres_url: str):
         import card.db.card_table  # noqa: F401
         import scheduling.db.review_log_table  # noqa: F401
         import scheduling.db.scheduling_table  # noqa: F401
+        import user.db.user_table  # noqa: F401
 
         async with eng.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)

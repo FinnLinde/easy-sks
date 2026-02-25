@@ -17,6 +17,7 @@ class SchedulingDbMapper:
     def info_to_domain(row: CardSchedulingInfoRow) -> CardSchedulingInfo:
         """Convert a CardSchedulingInfoRow to a domain object."""
         return CardSchedulingInfo(
+            user_id=row.user_id,
             card_id=row.card_id,
             state=CardState(row.state),
             stability=row.stability,
@@ -33,6 +34,7 @@ class SchedulingDbMapper:
     def info_to_row(info: CardSchedulingInfo) -> CardSchedulingInfoRow:
         """Convert a domain CardSchedulingInfo to an ORM row."""
         return CardSchedulingInfoRow(
+            user_id=info.user_id,
             card_id=info.card_id,
             state=int(info.state),
             stability=info.stability,
@@ -52,6 +54,7 @@ class SchedulingDbMapper:
             card_id=row.card_id,
             rating=Rating(row.rating),
             reviewed_at=row.reviewed_at,
+            user_id=row.user_id,
             review_duration_ms=row.review_duration_ms,
         )
 
@@ -59,6 +62,7 @@ class SchedulingDbMapper:
     def log_to_row(log: ReviewLog) -> ReviewLogRow:
         """Convert a domain ReviewLog to an ORM row."""
         return ReviewLogRow(
+            user_id=log.user_id,
             card_id=log.card_id,
             rating=int(log.rating),
             reviewed_at=log.reviewed_at,

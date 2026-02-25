@@ -9,11 +9,15 @@ from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from auth.model.authenticated_user import AuthenticatedUser
 from card.db.card_repository import CardRepository
 from database import async_session_factory
 from scheduling.db.scheduling_repository import SchedulingRepository
 from scheduling.service.scheduling_service import SchedulingService
 from study.service.study_service import StudyService
+from user.db.user_repository import UserRepository
+from user.model.app_user import AppUser
+from user.service.user_provisioning_service import UserProvisioningService
 
 
 async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
@@ -45,3 +49,19 @@ async def get_card_repository(
 ) -> CardRepository:
     """Build a CardRepository wired to a real DB session."""
     return CardRepository(session)
+
+
+async def get_user_repository(
+    session: AsyncSession = None,  # type: ignore[assignment]
+) -> UserRepository:
+    """Build a UserRepository wired to a real DB session."""
+    return UserRepository(session)
+
+
+async def get_current_app_user(
+    auth_user: AuthenticatedUser,
+    session: AsyncSession,
+) -> AppUser:
+    """Create/load the local app user for the authenticated principal."""
+    provisioning = UserProvisioningService(UserRepository(session))
+    return await provisioning.get_or_create_for_authenticated_user(auth_user)

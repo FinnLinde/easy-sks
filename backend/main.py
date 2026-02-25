@@ -11,8 +11,14 @@ from card.controller.card_controller import (
     get_card_repository as _card_repo_placeholder,
     router as card_router,
 )
-from dependencies import get_card_repository, get_db_session, get_study_service
+from dependencies import (
+    get_card_repository,
+    get_current_app_user,
+    get_db_session,
+    get_study_service,
+)
 from study.controller.study_controller import (
+    get_current_app_user as _app_user_placeholder,
     get_study_service as _study_svc_placeholder,
     router as study_router,
 )
@@ -53,8 +59,16 @@ async def _wired_card_repository(
     return await get_card_repository(session)
 
 
+async def _wired_current_app_user(
+    session: AsyncSession = Depends(get_db_session),
+    auth_user=Depends(get_current_user),
+):
+    return await get_current_app_user(auth_user=auth_user, session=session)
+
+
 app.dependency_overrides[_study_svc_placeholder] = _wired_study_service
 app.dependency_overrides[_card_repo_placeholder] = _wired_card_repository
+app.dependency_overrides[_app_user_placeholder] = _wired_current_app_user
 
 # -- Routers ---------------------------------------------------------------
 

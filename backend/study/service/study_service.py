@@ -31,11 +31,13 @@ class StudyService:
         self._scheduling_service = scheduling_service
 
     async def get_due_cards(
-        self, topic: SksTopic | None = None
+        self, user_id: str, topic: SksTopic | None = None
     ) -> list[StudyCard]:
         """Return cards that are due for review, optionally filtered by SKS topic."""
         now = datetime.now(timezone.utc)
-        due_infos = await self._scheduling_repo.get_due(before=now)
+        due_infos = await self._scheduling_repo.get_due_for_user(
+            user_id=user_id, before=now
+        )
 
         study_cards: list[StudyCard] = []
         for info in due_infos:
@@ -48,9 +50,13 @@ class StudyService:
 
         return study_cards
 
-    async def review_card(self, card_id: str, rating: Rating) -> StudyCard:
+    async def review_card(
+        self, user_id: str, card_id: str, rating: Rating
+    ) -> StudyCard:
         """Review a card and persist the updated scheduling state."""
-        scheduling_info = await self._scheduling_repo.get_by_card_id(card_id)
+        scheduling_info = await self._scheduling_repo.get_by_user_and_card_id(
+            user_id=user_id, card_id=card_id
+        )
         if scheduling_info is None:
             raise ValueError(f"No scheduling info found for card {card_id!r}")
 

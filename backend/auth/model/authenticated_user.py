@@ -13,6 +13,7 @@ class AuthenticatedUser:
 
     user_id: str
     roles: list[Role]
+    email: str | None = None
 
     def has_role(self, role: Role) -> bool:
         """Check whether the user has a specific role."""

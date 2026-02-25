@@ -33,16 +33,24 @@ class FakeCardRepository:
 
 class FakeSchedulingRepository:
     def __init__(self, infos: list[CardSchedulingInfo] | None = None) -> None:
-        self._infos = {i.card_id: i for i in (infos or [])}
+        self._infos = {(i.user_id, i.card_id): i for i in (infos or [])}
 
-    async def get_by_card_id(self, card_id: str) -> CardSchedulingInfo | None:
-        return self._infos.get(card_id)
+    async def get_by_user_and_card_id(
+        self, user_id: str, card_id: str
+    ) -> CardSchedulingInfo | None:
+        return self._infos.get((user_id, card_id))
 
-    async def get_due(self, before: datetime) -> list[CardSchedulingInfo]:
-        return [i for i in self._infos.values() if i.due <= before]
+    async def get_due_for_user(
+        self, user_id: str, before: datetime
+    ) -> list[CardSchedulingInfo]:
+        return [
+            i
+            for i in self._infos.values()
+            if i.user_id == user_id and i.due <= before
+        ]
 
     async def save(self, info: CardSchedulingInfo) -> None:
-        self._infos[info.card_id] = info
+        self._infos[(info.user_id, info.card_id)] = info
 
 
 # -- Helpers ---------------------------------------------------------------
@@ -61,6 +69,7 @@ def _make_card(card_id: str, tags: list[str]) -> Card:
 def _make_due_info(card_id: str) -> CardSchedulingInfo:
     """Create a scheduling info that is already due."""
     return CardSchedulingInfo(
+        user_id="test-user",
         card_id=card_id,
         due=datetime.now(timezone.utc) - timedelta(hours=1),
     )
@@ -69,6 +78,7 @@ def _make_due_info(card_id: str) -> CardSchedulingInfo:
 def _make_future_info(card_id: str) -> CardSchedulingInfo:
     """Create a scheduling info that is not yet due."""
     return CardSchedulingInfo(
+        user_id="test-user",
         card_id=card_id,
         due=datetime.now(timezone.utc) + timedelta(days=7),
     )
@@ -89,7 +99,7 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = await service.get_due_cards()
+        result = await service.get_due_cards(user_id="test-user")
 
         assert len(result) == 1
         assert result[0].card.card_id == "c1"
@@ -105,7 +115,7 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = await service.get_due_cards()
+        result = await service.get_due_cards(user_id="test-user")
 
         assert result == []
 
@@ -123,7 +133,9 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = await service.get_due_cards(topic=SksTopic.NAVIGATION)
+        result = await service.get_due_cards(
+            user_id="test-user", topic=SksTopic.NAVIGATION
+        )
 
         assert len(result) == 1
         assert result[0].card.card_id == "c1"
@@ -143,7 +155,7 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = await service.get_due_cards()
+        result = await service.get_due_cards(user_id="test-user")
 
         assert len(result) == 3
 
@@ -157,7 +169,7 @@ class TestGetDueCards:
             scheduling_service=SchedulingService(),
         )
 
-        result = await service.get_due_cards()
+        result = await service.get_due_cards(user_id="test-user")
 
         assert result == []
 
@@ -166,7 +178,7 @@ class TestReviewCard:
     @pytest.mark.asyncio
     async def test_returns_updated_study_card(self):
         card = _make_card("c1", ["navigation"])
-        info = CardSchedulingInfo(card_id="c1")
+        info = CardSchedulingInfo(user_id="test-user", card_id="c1")
 
         service = StudyService(
             card_repo=FakeCardRepository([card]),
@@ -174,7 +186,7 @@ class TestReviewCard:
             scheduling_service=SchedulingService(),
         )
 
-        result = await service.review_card("c1", Rating.GOOD)
+        result = await service.review_card("test-user", "c1", Rating.GOOD)
 
         assert result.card.card_id == "c1"
         assert result.scheduling_info.reps == 1
@@ -182,7 +194,7 @@ class TestReviewCard:
     @pytest.mark.asyncio
     async def test_persists_updated_scheduling_info(self):
         card = _make_card("c1", ["navigation"])
-        info = CardSchedulingInfo(card_id="c1")
+        info = CardSchedulingInfo(user_id="test-user", card_id="c1")
         sched_repo = FakeSchedulingRepository([info])
 
         service = StudyService(
@@ -191,9 +203,9 @@ class TestReviewCard:
             scheduling_service=SchedulingService(),
         )
 
-        await service.review_card("c1", Rating.GOOD)
+        await service.review_card("test-user", "c1", Rating.GOOD)
 
-        saved = await sched_repo.get_by_card_id("c1")
+        saved = await sched_repo.get_by_user_and_card_id("test-user", "c1")
         assert saved is not None
         assert saved.reps == 1
         assert saved.stability > 0.0
@@ -209,11 +221,11 @@ class TestReviewCard:
         )
 
         with pytest.raises(ValueError, match="No scheduling info"):
-            await service.review_card("c1", Rating.GOOD)
+            await service.review_card("test-user", "c1", Rating.GOOD)
 
     @pytest.mark.asyncio
     async def test_raises_for_missing_card(self):
-        info = CardSchedulingInfo(card_id="c1")
+        info = CardSchedulingInfo(user_id="test-user", card_id="c1")
 
         service = StudyService(
             card_repo=FakeCardRepository([]),
@@ -222,4 +234,30 @@ class TestReviewCard:
         )
 
         with pytest.raises(ValueError, match="not found"):
-            await service.review_card("c1", Rating.GOOD)
+            await service.review_card("test-user", "c1", Rating.GOOD)
+
+    @pytest.mark.asyncio
+    async def test_isolates_scheduling_by_user(self):
+        card = _make_card("c1", ["navigation"])
+        user1_info = CardSchedulingInfo(
+            user_id="user-1",
+            card_id="c1",
+            due=datetime.now(timezone.utc) - timedelta(hours=1),
+        )
+        user2_info = CardSchedulingInfo(
+            user_id="user-2",
+            card_id="c1",
+            due=datetime.now(timezone.utc) + timedelta(days=7),
+        )
+
+        service = StudyService(
+            card_repo=FakeCardRepository([card]),
+            scheduling_repo=FakeSchedulingRepository([user1_info, user2_info]),
+            scheduling_service=SchedulingService(),
+        )
+
+        user1_due = await service.get_due_cards(user_id="user-1")
+        user2_due = await service.get_due_cards(user_id="user-2")
+
+        assert [sc.card.card_id for sc in user1_due] == ["c1"]
+        assert user2_due == []

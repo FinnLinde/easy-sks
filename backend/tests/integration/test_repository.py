@@ -12,6 +12,7 @@ from card.model.card_content import CardContent
 from scheduling.db.scheduling_repository import SchedulingRepository
 from scheduling.model.card_scheduling_info import CardSchedulingInfo
 from scheduling.model.card_state import CardState
+from user.db.user_repository import UserRepository
 
 
 @pytest.mark.asyncio
@@ -95,11 +96,12 @@ class TestCardRepository:
 
 @pytest.mark.asyncio
 class TestSchedulingRepository:
-    async def test_save_and_get_by_card_id(self, db_session):
+    async def test_save_and_get_by_user_and_card_id(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
 
         info = CardSchedulingInfo(
+            user_id="user-1",
             card_id="sched-1",
             state=CardState.NEW,
             due=now,
@@ -108,50 +110,96 @@ class TestSchedulingRepository:
         await repo.save(info)
         await db_session.flush()
 
-        loaded = await repo.get_by_card_id("sched-1")
+        loaded = await repo.get_by_user_and_card_id("user-1", "sched-1")
         assert loaded is not None
         assert loaded.card_id == "sched-1"
+        assert loaded.user_id == "user-1"
         assert loaded.state == CardState.NEW
 
-    async def test_get_by_card_id_returns_none_for_missing(self, db_session):
+    async def test_get_by_user_and_card_id_returns_none_for_missing(self, db_session):
         repo = SchedulingRepository(db_session)
-        result = await repo.get_by_card_id("nonexistent")
+        result = await repo.get_by_user_and_card_id("user-1", "nonexistent")
         assert result is None
 
-    async def test_get_due(self, db_session):
+    async def test_get_due_for_user(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
 
         due_info = CardSchedulingInfo(
+            user_id="user-1",
             card_id="due-1",
             due=now - timedelta(hours=1),
         )
         future_info = CardSchedulingInfo(
+            user_id="user-1",
             card_id="future-1",
             due=now + timedelta(days=7),
+        )
+        other_user_due = CardSchedulingInfo(
+            user_id="user-2",
+            card_id="due-2",
+            due=now - timedelta(hours=1),
         )
 
         await repo.save(due_info)
         await repo.save(future_info)
+        await repo.save(other_user_due)
         await db_session.flush()
 
-        due = await repo.get_due(before=now)
+        due = await repo.get_due_for_user(user_id="user-1", before=now)
         card_ids = [i.card_id for i in due]
         assert "due-1" in card_ids
         assert "future-1" not in card_ids
+        assert "due-2" not in card_ids
 
     async def test_save_updates_existing(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
 
-        info = CardSchedulingInfo(card_id="upd-1", due=now, reps=0)
+        info = CardSchedulingInfo(user_id="user-1", card_id="upd-1", due=now, reps=0)
         await repo.save(info)
         await db_session.flush()
 
-        updated = CardSchedulingInfo(card_id="upd-1", due=now, reps=5)
+        updated = CardSchedulingInfo(
+            user_id="user-1", card_id="upd-1", due=now, reps=5
+        )
         await repo.save(updated)
         await db_session.flush()
 
-        loaded = await repo.get_by_card_id("upd-1")
+        loaded = await repo.get_by_user_and_card_id("user-1", "upd-1")
         assert loaded is not None
         assert loaded.reps == 5
+
+
+@pytest.mark.asyncio
+class TestUserRepository:
+    async def test_get_or_create_cognito_user_creates_user(self, db_session):
+        repo = UserRepository(db_session)
+
+        user = await repo.get_or_create_cognito_user(
+            cognito_sub="cognito-sub-1",
+            email="captain@example.com",
+        )
+        await db_session.flush()
+
+        assert user.id == "cognito-sub-1"
+        assert user.auth_provider == "cognito"
+        assert user.auth_provider_user_id == "cognito-sub-1"
+        assert user.email == "captain@example.com"
+
+    async def test_get_or_create_cognito_user_is_idempotent_and_updates_email(
+        self, db_session
+    ):
+        repo = UserRepository(db_session)
+
+        first = await repo.get_or_create_cognito_user(
+            cognito_sub="cognito-sub-2",
+            email=None,
+        )
+        second = await repo.get_or_create_cognito_user(
+            cognito_sub="cognito-sub-2",
+            email="updated@example.com",
+        )
+
+        assert first.id == second.id
+        assert second.email == "updated@example.com"
