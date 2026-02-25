@@ -56,6 +56,7 @@ class UserRepository:
                 if row is not None:
                     row.email = email
                     await self._session.flush()
+                    await self._session.refresh(row)
                     return self._to_domain(row)
             return existing
 
@@ -67,5 +68,5 @@ class UserRepository:
         )
         self._session.add(row)
         await self._session.flush()
+        await self._session.refresh(row)
         return self._to_domain(row)
-
