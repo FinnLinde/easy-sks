@@ -10,6 +10,12 @@ variable "project_name" {
   default     = "easy-sks"
 }
 
+variable "cognito_domain_prefix" {
+  description = "Optional Cognito Hosted UI domain prefix (without .auth.<region>.amazoncognito.com)"
+  type        = string
+  default     = null
+}
+
 variable "prod_callback_urls" {
   description = "Allowed OAuth callback URLs for the production app client"
   type        = list(string)
@@ -23,7 +29,10 @@ variable "prod_logout_urls" {
 variable "dev_callback_urls" {
   description = "Allowed OAuth callback URLs for the local development app client"
   type        = list(string)
-  default     = ["http://localhost:3000"]
+  default = [
+    "http://localhost:3000",
+    "http://localhost:3000/auth/callback",
+  ]
 }
 
 variable "dev_logout_urls" {

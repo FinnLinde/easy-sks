@@ -33,6 +33,13 @@ resource "aws_cognito_user_pool" "main" {
   }
 }
 
+resource "aws_cognito_user_pool_domain" "hosted_ui" {
+  count = var.cognito_domain_prefix == null ? 0 : 1
+
+  domain       = var.cognito_domain_prefix
+  user_pool_id = aws_cognito_user_pool.main.id
+}
+
 # ---------------------------------------------------------------------------
 # App clients
 # ---------------------------------------------------------------------------
@@ -56,9 +63,9 @@ resource "aws_cognito_user_pool_client" "prod" {
   allowed_oauth_scopes                 = ["openid", "email", "profile"]
   supported_identity_providers         = ["COGNITO"]
 
-  access_token_validity  = 1   # hours
-  id_token_validity      = 1   # hours
-  refresh_token_validity = 30  # days
+  access_token_validity  = 1  # hours
+  id_token_validity      = 1  # hours
+  refresh_token_validity = 30 # days
 
   token_validity_units {
     access_token  = "hours"
@@ -89,9 +96,9 @@ resource "aws_cognito_user_pool_client" "local_dev" {
   allowed_oauth_scopes                 = ["openid", "email", "profile"]
   supported_identity_providers         = ["COGNITO"]
 
-  access_token_validity  = 24  # hours
-  id_token_validity      = 24  # hours
-  refresh_token_validity = 30  # days
+  access_token_validity  = 24 # hours
+  id_token_validity      = 24 # hours
+  refresh_token_validity = 30 # days
 
   token_validity_units {
     access_token  = "hours"
