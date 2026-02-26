@@ -31,7 +31,8 @@ def _encode_cognito_token(
     user_id: str = "cognito-user",
     groups: list[str] | None = None,
     issuer: str = "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_TestPool",
-    audience: str = "test-client-id",
+    client_id: str = "test-client-id",
+    token_use: str = "access",
     expired: bool = False,
 ) -> str:
     now = datetime.now(timezone.utc)
@@ -39,7 +40,8 @@ def _encode_cognito_token(
     payload: dict[str, object] = {
         "sub": user_id,
         "iss": issuer,
-        "aud": audience,
+        "client_id": client_id,
+        "token_use": token_use,
         "iat": now,
         "exp": exp,
     }
@@ -135,6 +137,20 @@ class TestCognitoVerifyToken:
         token = _encode_cognito_token(
             rsa_key, issuer="https://evil.example.com"
         )
+        with pytest.raises(InvalidTokenError):
+            verifier.verify_token(token)
+
+    def test_wrong_client_id_raises(
+        self, verifier: CognitoTokenVerifier, rsa_key
+    ) -> None:
+        token = _encode_cognito_token(rsa_key, client_id="wrong-client")
+        with pytest.raises(InvalidTokenError):
+            verifier.verify_token(token)
+
+    def test_id_token_use_raises(
+        self, verifier: CognitoTokenVerifier, rsa_key
+    ) -> None:
+        token = _encode_cognito_token(rsa_key, token_use="id")
         with pytest.raises(InvalidTokenError):
             verifier.verify_token(token)
 

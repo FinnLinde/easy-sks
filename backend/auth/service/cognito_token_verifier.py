@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import jwt
 from jwt import PyJWKClient
+from jwt.exceptions import InvalidTokenError
 
 from auth.model.authenticated_user import AuthenticatedUser
 from auth.model.role import Role
@@ -37,19 +38,24 @@ class CognitoTokenVerifier(TokenVerifierPort):
     def verify_token(self, token: str) -> AuthenticatedUser:
         signing_key = self._jwk_client.get_signing_key_from_jwt(token)
 
-        decode_kwargs: dict[str, object] = {
-            "algorithms": ["RS256"],
-            "issuer": self._issuer,
-            "options": {"require": ["sub", "iss", "exp"]},
-        }
-        if self._app_client_id is not None:
-            decode_kwargs["audience"] = self._app_client_id
-
         payload: dict[str, object] = jwt.decode(
             token,
             signing_key.key,
-            **decode_kwargs,
+            algorithms=["RS256"],
+            issuer=self._issuer,
+            options={"require": ["sub", "iss", "exp"]},
         )
+
+        # Frontend API calls should present a Cognito access token. Cognito
+        # access tokens carry ``token_use=access`` and ``client_id`` (not ``aud``).
+        token_use = payload.get("token_use")
+        if token_use != "access":
+            raise InvalidTokenError("Expected Cognito access token")
+
+        if self._app_client_id is not None:
+            client_id = payload.get("client_id")
+            if client_id != self._app_client_id:
+                raise InvalidTokenError("Token was not issued for this app client")
 
         user_id = str(payload["sub"])
         raw_groups = payload.get("cognito:groups", [])

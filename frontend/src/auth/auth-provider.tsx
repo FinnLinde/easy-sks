@@ -33,18 +33,29 @@ type AuthContextValue = {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [session, setSession] = useState<AuthSession | null>(() => {
+  // Start in a deterministic state for SSR + hydration, then load localStorage
+  // on the client after mount.
+  const [session, setSession] = useState<AuthSession | null>(null);
+  const [status, setStatus] = useState<AuthStatus>("loading");
+
+  useEffect(() => {
     const existing = loadAuthSession();
-    if (!existing) return null;
+    if (!existing) {
+      setSession(null);
+      setStatus("unauthenticated");
+      return;
+    }
+
     if (existing.expiresAt <= Date.now()) {
       clearAuthSession();
-      return null;
+      setSession(null);
+      setStatus("unauthenticated");
+      return;
     }
-    return existing;
-  });
-  const [status, setStatus] = useState<AuthStatus>(() =>
-    session ? "authenticated" : "unauthenticated"
-  );
+
+    setSession(existing);
+    setStatus("authenticated");
+  }, []);
 
   useEffect(() => {
     const onUnauthorized = () => {
