@@ -21,6 +21,9 @@ class FakeCardRepository:
     def __init__(self, cards: list[Card] | None = None) -> None:
         self._cards = {c.card_id: c for c in (cards or [])}
 
+    async def list_all(self) -> list[Card]:
+        return list(self._cards.values())
+
     async def get_by_id(self, card_id: str) -> Card | None:
         return self._cards.get(card_id)
 
@@ -172,6 +175,70 @@ class TestGetDueCards:
         result = await service.get_due_cards(user_id="test-user")
 
         assert result == []
+
+    @pytest.mark.asyncio
+    async def test_bootstraps_initial_due_queue_for_new_user(self):
+        cards = [
+            _make_card("c1", ["navigation"]),
+            _make_card("c2", ["wetterkunde"]),
+            _make_card("c3", ["seemannschaft_i"]),
+        ]
+        sched_repo = FakeSchedulingRepository([])
+
+        service = StudyService(
+            card_repo=FakeCardRepository(cards),
+            scheduling_repo=sched_repo,
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=2,
+        )
+
+        result = await service.get_due_cards(user_id="test-user")
+
+        assert [sc.card.card_id for sc in result] == ["c1", "c2"]
+
+        saved_c1 = await sched_repo.get_by_user_and_card_id("test-user", "c1")
+        saved_c2 = await sched_repo.get_by_user_and_card_id("test-user", "c2")
+        saved_c3 = await sched_repo.get_by_user_and_card_id("test-user", "c3")
+        assert saved_c1 is not None
+        assert saved_c2 is not None
+        assert saved_c3 is None
+
+    @pytest.mark.asyncio
+    async def test_prioritizes_due_cards_before_introducing_new_cards(self):
+        due_card = _make_card("due-1", ["navigation"])
+        new_card = _make_card("new-1", ["navigation"])
+        sched_repo = FakeSchedulingRepository([_make_due_info("due-1")])
+
+        service = StudyService(
+            card_repo=FakeCardRepository([due_card, new_card]),
+            scheduling_repo=sched_repo,
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=2,
+        )
+
+        result = await service.get_due_cards(user_id="test-user")
+
+        assert [sc.card.card_id for sc in result] == ["due-1", "new-1"]
+
+    @pytest.mark.asyncio
+    async def test_topic_filter_only_introduces_matching_new_cards(self):
+        nav_1 = _make_card("nav-1", ["navigation"])
+        nav_2 = _make_card("nav-2", ["navigation"])
+        weather = _make_card("wx-1", ["wetterkunde"])
+
+        service = StudyService(
+            card_repo=FakeCardRepository([nav_1, nav_2, weather]),
+            scheduling_repo=FakeSchedulingRepository([]),
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=5,
+        )
+
+        result = await service.get_due_cards(
+            user_id="test-user",
+            topic=SksTopic.NAVIGATION,
+        )
+
+        assert [sc.card.card_id for sc in result] == ["nav-1", "nav-2"]
 
 
 class TestReviewCard:

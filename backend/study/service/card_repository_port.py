@@ -8,6 +8,10 @@ from card.model.card import Card
 class CardRepositoryPort(Protocol):
     """Port for retrieving cards from persistence."""
 
+    async def list_all(self) -> list[Card]:
+        """Return all cards."""
+        ...
+
     async def get_by_id(self, card_id: str) -> Card | None:
         """Return the card with the given ID, or None if not found."""
         ...
