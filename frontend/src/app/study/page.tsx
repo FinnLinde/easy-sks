@@ -5,8 +5,7 @@ export default function StudyPage() {
   return (
     <div className="min-h-screen flex flex-col items-center py-8">
       <AuthGuard
-        title="Lernbereich nur mit Login"
-        description="Melde dich an, um deine faelligen Karten mit deinem persoenlichen Fortschritt zu lernen."
+        description="Melde dich an, um deine fälligen Karten mit deinem persönlichen Lernstand zu lernen."
       >
         <StudySession />
       </AuthGuard>

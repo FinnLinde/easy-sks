@@ -112,10 +112,10 @@ export async function exchangeCodeForSession(
   const pkce = consumePkceRequest();
 
   if (!pkce) {
-    throw new Error("Login state missing. Bitte Login erneut starten.");
+    throw new Error("Login-Status fehlt. Bitte Login erneut starten.");
   }
   if (!stateFromUrl || pkce.state !== stateFromUrl) {
-    throw new Error("Ungueltiger Login-Status (state mismatch).");
+    throw new Error("Ungültiger Login-Status (State stimmt nicht überein).");
   }
 
   const body = new URLSearchParams();
