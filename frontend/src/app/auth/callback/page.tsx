@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AlertTriangle, Loader2, Sailboat } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/auth/auth-provider";
@@ -10,6 +10,7 @@ export default function AuthCallbackPage() {
   const searchParams = useSearchParams();
   const { completeLogin } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  const hasStarted = useRef(false);
   const code = searchParams.get("code");
   const state = searchParams.get("state");
   const providerError = searchParams.get("error");
@@ -22,6 +23,11 @@ export default function AuthCallbackPage() {
         : null;
 
   useEffect(() => {
+    if (hasStarted.current) {
+      return;
+    }
+    hasStarted.current = true;
+
     if (!code || immediateError) {
       return;
     }
