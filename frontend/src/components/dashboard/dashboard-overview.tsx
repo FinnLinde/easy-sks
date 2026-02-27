@@ -113,7 +113,6 @@ export function DashboardOverview() {
     <div className="w-full max-w-6xl space-y-6 px-4 py-6 md:px-6 md:py-8">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Dashboard</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Dein Lernstatus im dunklen Fokus-Layout.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">

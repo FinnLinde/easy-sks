@@ -13,7 +13,7 @@ export function Sidenav() {
   const { status, hasRole } = useAuth();
 
   return (
-    <aside className="hidden w-60 shrink-0 border-r border-sidebar-border bg-sidebar text-sidebar-foreground md:block">
+    <aside className="hidden w-60 shrink-0 border-r border-sidebar-border bg-sidebar text-sidebar-foreground md:sticky md:top-0 md:block md:h-[100dvh] md:max-h-[100dvh] md:overflow-y-auto">
       <div className="flex h-full flex-col p-4">
         <div className="mb-6 flex items-center gap-2">
           <Sailboat className="size-5 shrink-0" />
