@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Protocol
 
 from scheduling.model.card_scheduling_info import CardSchedulingInfo
+from scheduling.model.review_log import ReviewLog
 
 
 class SchedulingRepositoryPort(Protocol):
@@ -27,4 +28,8 @@ class SchedulingRepositoryPort(Protocol):
 
     async def save(self, info: CardSchedulingInfo) -> None:
         """Persist the given scheduling info."""
+        ...
+
+    async def save_review_log(self, log: ReviewLog) -> None:
+        """Persist a review log entry for a completed review."""
         ...

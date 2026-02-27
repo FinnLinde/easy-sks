@@ -5,8 +5,10 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 
 import pytest
+from sqlalchemy import select
 
 from card.db.card_table import CardRow
+from scheduling.db.review_log_table import ReviewLogRow
 from scheduling.db.scheduling_table import CardSchedulingInfoRow
 from user.db.user_table import UserRow
 
@@ -260,6 +262,17 @@ class TestReviewEndpoint:
         data = resp.json()
         assert data["card"]["card_id"] == "api-review-1"
         assert data["scheduling_info"]["reps"] == 1
+
+        logs = (
+            await db_session.execute(
+                select(ReviewLogRow).where(
+                    ReviewLogRow.user_id == "test-user",
+                    ReviewLogRow.card_id == "api-review-1",
+                )
+            )
+        ).scalars().all()
+        assert len(logs) == 1
+        assert logs[0].rating == 3
 
     async def test_review_missing_card_returns_404(self, client):
         resp = await client.post("/study/review", json={

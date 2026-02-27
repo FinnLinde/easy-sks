@@ -153,20 +153,24 @@ class StudyService:
     async def review_card(
         self, user_id: str, card_id: str, rating: Rating
     ) -> StudyCard:
-        """Review a card and persist the updated scheduling state."""
+        """Review a card and persist scheduling + review log in one unit of work."""
         scheduling_info = await self._scheduling_repo.get_by_user_and_card_id(
             user_id=user_id, card_id=card_id
         )
         if scheduling_info is None:
             raise ValueError(f"No scheduling info found for card {card_id!r}")
 
-        updated_info, _review_log = self._scheduling_service.review_card(
-            scheduling_info, rating
-        )
-        await self._scheduling_repo.save(updated_info)
-
         card = await self._card_repo.get_by_id(card_id)
         if card is None:
             raise ValueError(f"Card {card_id!r} not found")
+
+        updated_info, review_log = self._scheduling_service.review_card(
+            scheduling_info, rating
+        )
+        # Both writes use the same DB session in the adapter layer. FastAPI's
+        # DB dependency commits/rolls back once per request for transactional
+        # consistency between scheduling state and review history.
+        await self._scheduling_repo.save(updated_info)
+        await self._scheduling_repo.save_review_log(review_log)
 
         return StudyCard(card=card, scheduling_info=updated_info)

@@ -10,6 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from scheduling.db.scheduling_db_mapper import SchedulingDbMapper
 from scheduling.db.scheduling_table import CardSchedulingInfoRow
 from scheduling.model.card_scheduling_info import CardSchedulingInfo
+from scheduling.model.review_log import ReviewLog
 
 
 class SchedulingRepository:
@@ -68,3 +69,8 @@ class SchedulingRepository:
         """Insert or update a scheduling info record."""
         row = SchedulingDbMapper.info_to_row(info)
         await self._session.merge(row)
+
+    async def save_review_log(self, log: ReviewLog) -> None:
+        """Insert a review log entry."""
+        row = SchedulingDbMapper.log_to_row(log)
+        self._session.add(row)

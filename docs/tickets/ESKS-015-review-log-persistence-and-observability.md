@@ -1,6 +1,6 @@
 # ESKS-015 - Review-Log Persistenz und Lern-Observability
 
-- Status: `todo`
+- Status: `done`
 - Prioritaet: `P2`
 - Bereich: `backend`
 - Owner: `unassigned`
@@ -51,9 +51,9 @@ Review-Historie wird gespeichert und ist fuer Debugging, Analytics, Fortschritts
 
 ## Akzeptanzkriterien
 
-- [ ] Jede erfolgreiche Review-Aktion erzeugt einen persistierten `review_logs`-Eintrag.
-- [ ] Scheduling-Update und Review-Log werden transaktional konsistent gespeichert.
-- [ ] Tests decken Persistenzpfad und Fehlerfaelle ab.
+- [x] Jede erfolgreiche Review-Aktion erzeugt einen persistierten `review_logs`-Eintrag.
+- [x] Scheduling-Update und Review-Log werden transaktional konsistent gespeichert.
+- [x] Tests decken Persistenzpfad und Fehlerfaelle ab.
 
 ## Testplan
 
@@ -70,12 +70,26 @@ Review-Historie wird gespeichert und ist fuer Debugging, Analytics, Fortschritts
 
 ## Progress-Checklist
 
-- [ ] Review-Log-Repository-API festlegen
-- [ ] Persistenz in `StudyService.review_card` integrieren
-- [ ] Transaktionsverhalten verifizieren
-- [ ] Tests ergaenzen
+- [x] Review-Log-Repository-API festlegen
+- [x] Persistenz in `StudyService.review_card` integrieren
+- [x] Transaktionsverhalten verifizieren
+- [x] Tests ergaenzen
 
 ## Offene Fragen
 
 - Sollen wir zusaetzlich `review_duration_ms` schon jetzt erfassen?
 
+## Implementierungsnotizen
+
+- `SchedulingRepositoryPort` um `save_review_log(...)` erweitert.
+- `SchedulingRepository` persistiert `ReviewLog` via `ReviewLogRow`.
+- `StudyService.review_card(...)` persistiert nun sowohl aktualisiertes Scheduling als auch `ReviewLog`.
+- Vor Persistenz wird die Karte validiert; bei `card not found` gibt es keine DB-Schreiboperation.
+- Transaktionskonsistenz: Beide Writes laufen in derselben Session/Request-Unit; Commit/Rollback passiert zentral in `dependencies.get_db_session`.
+
+## Test Evidence
+
+- `/Users/finnlinde/Developer/projects/easy-sks/backend/.venv/bin/python -m pytest backend/tests/study/service/test_study_service.py`
+  - Ergebnis: `19 passed in 0.03s`
+- `/Users/finnlinde/Developer/projects/easy-sks/backend/.venv/bin/python -m pytest backend/tests/integration/test_repository.py backend/tests/integration/test_study_api.py`
+  - Ergebnis: `26 passed, 2 warnings in 3.22s`

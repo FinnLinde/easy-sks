@@ -8,6 +8,7 @@ from card.model.card import Card
 from card.model.card_content import CardContent
 from scheduling.model.card_scheduling_info import CardSchedulingInfo
 from scheduling.model.rating import Rating
+from scheduling.model.review_log import ReviewLog
 from scheduling.service.scheduling_service import SchedulingService
 
 from study.model.sks_topic import SksTopic
@@ -37,6 +38,7 @@ class FakeCardRepository:
 class FakeSchedulingRepository:
     def __init__(self, infos: list[CardSchedulingInfo] | None = None) -> None:
         self._infos = {(i.user_id, i.card_id): i for i in (infos or [])}
+        self.saved_review_logs: list[ReviewLog] = []
 
     async def list_for_user(self, user_id: str) -> list[CardSchedulingInfo]:
         return [i for i in self._infos.values() if i.user_id == user_id]
@@ -57,6 +59,14 @@ class FakeSchedulingRepository:
 
     async def save(self, info: CardSchedulingInfo) -> None:
         self._infos[(info.user_id, info.card_id)] = info
+
+    async def save_review_log(self, log: ReviewLog) -> None:
+        self.saved_review_logs.append(log)
+
+
+class FailingReviewLogRepository(FakeSchedulingRepository):
+    async def save_review_log(self, log: ReviewLog) -> None:
+        raise RuntimeError("simulated review log failure")
 
 
 # -- Helpers ---------------------------------------------------------------
@@ -301,6 +311,26 @@ class TestReviewCard:
         assert saved.stability > 0.0
 
     @pytest.mark.asyncio
+    async def test_persists_review_log(self):
+        card = _make_card("c1", ["navigation"])
+        info = CardSchedulingInfo(user_id="test-user", card_id="c1")
+        sched_repo = FakeSchedulingRepository([info])
+
+        service = StudyService(
+            card_repo=FakeCardRepository([card]),
+            scheduling_repo=sched_repo,
+            scheduling_service=SchedulingService(),
+        )
+
+        await service.review_card("test-user", "c1", Rating.GOOD)
+
+        assert len(sched_repo.saved_review_logs) == 1
+        saved_log = sched_repo.saved_review_logs[0]
+        assert saved_log.user_id == "test-user"
+        assert saved_log.card_id == "c1"
+        assert saved_log.rating == Rating.GOOD
+
+    @pytest.mark.asyncio
     async def test_raises_for_missing_scheduling_info(self):
         card = _make_card("c1", ["navigation"])
 
@@ -324,6 +354,21 @@ class TestReviewCard:
         )
 
         with pytest.raises(ValueError, match="not found"):
+            await service.review_card("test-user", "c1", Rating.GOOD)
+
+    @pytest.mark.asyncio
+    async def test_raises_when_review_log_persistence_fails(self):
+        card = _make_card("c1", ["navigation"])
+        info = CardSchedulingInfo(user_id="test-user", card_id="c1")
+        sched_repo = FailingReviewLogRepository([info])
+
+        service = StudyService(
+            card_repo=FakeCardRepository([card]),
+            scheduling_repo=sched_repo,
+            scheduling_service=SchedulingService(),
+        )
+
+        with pytest.raises(RuntimeError, match="review log failure"):
             await service.review_card("test-user", "c1", Rating.GOOD)
 
     @pytest.mark.asyncio

@@ -5,13 +5,17 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 
 import pytest
+from sqlalchemy import select
 
 from card.db.card_repository import CardRepository
 from card.model.card import Card
 from card.model.card_content import CardContent
+from scheduling.db.review_log_table import ReviewLogRow
 from scheduling.db.scheduling_repository import SchedulingRepository
 from scheduling.model.card_scheduling_info import CardSchedulingInfo
 from scheduling.model.card_state import CardState
+from scheduling.model.rating import Rating
+from scheduling.model.review_log import ReviewLog
 from user.db.user_repository import UserRepository
 
 
@@ -210,6 +214,30 @@ class TestSchedulingRepository:
         loaded = await repo.get_by_user_and_card_id("user-1", "upd-1")
         assert loaded is not None
         assert loaded.reps == 5
+
+    async def test_save_review_log(self, db_session):
+        repo = SchedulingRepository(db_session)
+        now = datetime.now(timezone.utc)
+        log = ReviewLog(
+            user_id="user-1",
+            card_id="log-1",
+            rating=Rating.GOOD,
+            reviewed_at=now,
+        )
+
+        await repo.save_review_log(log)
+        await db_session.flush()
+
+        row = (
+            await db_session.execute(
+                select(ReviewLogRow).where(
+                    ReviewLogRow.user_id == "user-1",
+                    ReviewLogRow.card_id == "log-1",
+                )
+            )
+        ).scalar_one()
+        assert row.rating == int(Rating.GOOD)
+        assert row.reviewed_at == now
 
 
 @pytest.mark.asyncio
