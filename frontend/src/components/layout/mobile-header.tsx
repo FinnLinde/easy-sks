@@ -4,6 +4,7 @@ import { Menu, Sailboat, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/auth/auth-provider";
 import { cn } from "@/lib/utils";
 import { AuthStatusActions } from "@/components/auth/auth-status-actions";
 import { navItems } from "./nav-config";
@@ -11,6 +12,7 @@ import { navItems } from "./nav-config";
 export function MobileHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { status, hasRole } = useAuth();
 
   const close = () => setOpen(false);
 
@@ -79,24 +81,39 @@ export function MobileHeader() {
           </button>
         </div>
         <nav className="flex flex-col gap-1 p-4">
-          {navItems.map(({ href, label, icon: Icon }) => {
+          {navItems.map(({ href, label, icon: Icon, requiredRole }) => {
             const isActive =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
+            const isAllowed =
+              status === "authenticated" &&
+              (!requiredRole || hasRole(requiredRole));
             return (
-              <Link
-                key={href}
-                href={href}
-                onClick={close}
-                className={cn(
-                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  isActive
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+              <div key={href}>
+                {isAllowed ? (
+                  <Link
+                    href={href}
+                    onClick={close}
+                    className={cn(
+                      "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                      isActive
+                        ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                        : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+                    )}
+                  >
+                    <Icon className="size-4 shrink-0" />
+                    {label}
+                  </Link>
+                ) : (
+                  <span
+                    aria-disabled="true"
+                    className="flex cursor-not-allowed items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-sidebar-foreground opacity-50"
+                    title="Kein Zugriff mit aktueller Rolle"
+                  >
+                    <Icon className="size-4 shrink-0" />
+                    {label}
+                  </span>
                 )}
-              >
-                <Icon className="size-4 shrink-0" />
-                {label}
-              </Link>
+              </div>
             );
           })}
         </nav>

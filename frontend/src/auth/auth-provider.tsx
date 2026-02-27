@@ -4,7 +4,7 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
+  useReducer,
   type ReactNode,
 } from "react";
 import {
@@ -12,6 +12,12 @@ import {
   redirectToCognitoLogin,
   redirectToCognitoLogout,
 } from "@/auth/cognito";
+import {
+  claimsHasRole,
+  getAuthClaimsFromSession,
+  type AuthClaims,
+  type AuthRole,
+} from "@/auth/authorization";
 import {
   clearAuthSession,
   loadAuthSession,
@@ -22,6 +28,8 @@ import type { AuthSession, AuthStatus } from "@/auth/types";
 type AuthContextValue = {
   status: AuthStatus;
   session: AuthSession | null;
+  claims: AuthClaims | null;
+  hasRole: (role: AuthRole) => boolean;
   login: (returnTo?: string) => Promise<void>;
   logout: () => void;
   completeLogin: (
@@ -30,38 +38,64 @@ type AuthContextValue = {
   ) => Promise<{ returnTo: string }>;
 };
 
+type AuthState = {
+  session: AuthSession | null;
+  status: AuthStatus;
+};
+
+type AuthAction =
+  | { type: "hydrated"; session: AuthSession | null }
+  | { type: "unauthorized" }
+  | { type: "login-complete"; session: AuthSession }
+  | { type: "logout" };
+
 const AuthContext = createContext<AuthContextValue | null>(null);
+
+function authReducer(state: AuthState, action: AuthAction): AuthState {
+  switch (action.type) {
+    case "hydrated":
+      return {
+        session: action.session,
+        status: action.session ? "authenticated" : "unauthenticated",
+      };
+    case "unauthorized":
+    case "logout":
+      return { session: null, status: "unauthenticated" };
+    case "login-complete":
+      return { session: action.session, status: "authenticated" };
+    default:
+      return state;
+  }
+}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   // Start in a deterministic state for SSR + hydration, then load localStorage
   // on the client after mount.
-  const [session, setSession] = useState<AuthSession | null>(null);
-  const [status, setStatus] = useState<AuthStatus>("loading");
+  const [authState, dispatch] = useReducer(authReducer, {
+    session: null,
+    status: "loading",
+  });
 
   useEffect(() => {
     const existing = loadAuthSession();
     if (!existing) {
-      setSession(null);
-      setStatus("unauthenticated");
+      dispatch({ type: "hydrated", session: null });
       return;
     }
 
     if (existing.expiresAt <= Date.now()) {
       clearAuthSession();
-      setSession(null);
-      setStatus("unauthenticated");
+      dispatch({ type: "hydrated", session: null });
       return;
     }
 
-    setSession(existing);
-    setStatus("authenticated");
+    dispatch({ type: "hydrated", session: existing });
   }, []);
 
   useEffect(() => {
     const onUnauthorized = () => {
       clearAuthSession();
-      setSession(null);
-      setStatus("unauthenticated");
+      dispatch({ type: "unauthorized" });
     };
 
     window.addEventListener("easy-sks-auth-unauthorized", onUnauthorized);
@@ -76,8 +110,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   function logout() {
     clearAuthSession();
-    setSession(null);
-    setStatus("unauthenticated");
+    dispatch({ type: "logout" });
     try {
       redirectToCognitoLogout();
     } catch {
@@ -88,14 +121,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function completeLogin(code: string, state: string | null) {
     const result = await exchangeCodeForSession(code, state);
     saveAuthSession(result.session);
-    setSession(result.session);
-    setStatus("authenticated");
+    dispatch({ type: "login-complete", session: result.session });
     return { returnTo: result.returnTo };
   }
 
+  const { session, status } = authState;
+  const claims = session ? getAuthClaimsFromSession(session) : null;
+  const hasRole = (role: AuthRole) => claimsHasRole(claims, role);
+
   return (
     <AuthContext.Provider
-      value={{ status, session, login, logout, completeLogin }}
+      value={{
+        status,
+        session,
+        claims,
+        hasRole,
+        login,
+        logout,
+        completeLogin,
+      }}
     >
       {children}
     </AuthContext.Provider>

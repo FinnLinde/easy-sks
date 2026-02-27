@@ -167,6 +167,23 @@ async def get_due_cards(
     return [_study_card_to_out(sc) for sc in due]
 
 
+@router.get("/study/practice", response_model=list[StudyCardOut])
+async def get_practice_cards(
+    topic: Optional[str] = None,
+    study_service: StudyService = Depends(get_study_service),
+    user: AppUser = Depends(get_current_app_user),
+) -> list[StudyCardOut]:
+    sks_topic: SksTopic | None = None
+    if topic is not None:
+        try:
+            sks_topic = SksTopic(topic)
+        except ValueError:
+            raise HTTPException(status_code=400, detail=f"Unknown topic: {topic}")
+
+    cards = await study_service.get_practice_cards(user_id=user.id, topic=sks_topic)
+    return [_study_card_to_out(sc) for sc in cards]
+
+
 @router.post("/study/review", response_model=StudyCardOut)
 async def review_card(
     body: ReviewIn,

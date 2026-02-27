@@ -9,6 +9,10 @@ from scheduling.model.card_scheduling_info import CardSchedulingInfo
 class SchedulingRepositoryPort(Protocol):
     """Port for retrieving and persisting card scheduling state."""
 
+    async def list_for_user(self, user_id: str) -> list[CardSchedulingInfo]:
+        """Return all scheduling info rows for a user."""
+        ...
+
     async def get_by_user_and_card_id(
         self, user_id: str, card_id: str
     ) -> CardSchedulingInfo | None:

@@ -18,6 +18,15 @@ class SchedulingRepository:
     def __init__(self, session: AsyncSession) -> None:
         self._session = session
 
+    async def list_for_user(self, user_id: str) -> list[CardSchedulingInfo]:
+        """Return all scheduling entries for the given user."""
+        stmt = select(CardSchedulingInfoRow).where(
+            CardSchedulingInfoRow.user_id == user_id
+        )
+        result = await self._session.execute(stmt)
+        rows = result.scalars().all()
+        return [SchedulingDbMapper.info_to_domain(row) for row in rows]
+
     async def get_by_user_and_card_id(
         self, user_id: str, card_id: str
     ) -> CardSchedulingInfo | None:

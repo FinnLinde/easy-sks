@@ -66,6 +66,52 @@ class StudyService:
         )
         return study_cards + new_cards
 
+    async def get_practice_cards(
+        self, user_id: str, topic: SksTopic | None = None
+    ) -> list[StudyCard]:
+        """Return a practice queue (due-first, then non-due scheduled cards)."""
+        due_first = await self.get_due_cards(user_id=user_id, topic=topic)
+        if len(due_first) >= self._new_card_limit_per_queue:
+            return due_first
+
+        queue = list(due_first)
+        seen_card_ids = {sc.card.card_id for sc in queue}
+        remaining = self._new_card_limit_per_queue - len(queue)
+
+        all_infos = await self._scheduling_repo.list_for_user(user_id=user_id)
+        all_infos_sorted = sorted(
+            all_infos,
+            key=lambda i: (
+                i.due,
+                i.last_review or datetime.min.replace(tzinfo=timezone.utc),
+                i.card_id,
+            ),
+        )
+
+        for info in all_infos_sorted:
+            if remaining <= 0:
+                break
+            if info.card_id in seen_card_ids:
+                continue
+            card = await self._card_repo.get_by_id(info.card_id)
+            if card is None:
+                continue
+            if topic is not None and topic.value not in card.tags:
+                continue
+            queue.append(StudyCard(card=card, scheduling_info=info))
+            seen_card_ids.add(info.card_id)
+            remaining -= 1
+
+        if remaining <= 0:
+            return queue
+
+        introduced = await self._introduce_new_cards(
+            user_id=user_id,
+            topic=topic,
+            limit=remaining,
+        )
+        return queue + introduced
+
     async def _introduce_new_cards(
         self,
         user_id: str,

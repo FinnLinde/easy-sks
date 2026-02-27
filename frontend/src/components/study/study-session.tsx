@@ -7,14 +7,18 @@ import { TopicFilter } from "@/components/study/topic-filter";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   getDueCards,
+  getPracticeCards,
   reviewCard,
   type Rating,
   type StudyCard,
   type TopicValue,
 } from "@/services/study/study-service";
 
+type StudyMode = "due" | "practice";
+
 export function StudySession() {
   const [topic, setTopic] = useState<TopicValue | undefined>(undefined);
+  const [mode, setMode] = useState<StudyMode>("due");
   const [cards, setCards] = useState<StudyCard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -26,8 +30,11 @@ export function StudySession() {
     setLoading(true);
     setError(null);
     try {
-      const due = await getDueCards(selectedTopic);
-      setCards(due);
+      const nextCards =
+        mode === "practice"
+          ? await getPracticeCards(selectedTopic)
+          : await getDueCards(selectedTopic);
+      setCards(nextCards);
       setCurrentIndex(0);
       setRevealed(false);
     } catch {
@@ -35,7 +42,7 @@ export function StudySession() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [mode]);
 
   useEffect(() => {
     fetchCards(topic);
@@ -81,6 +88,12 @@ export function StudySession() {
         <TopicFilter value={topic} onChange={handleTopicChange} />
       </div>
 
+      {mode === "practice" && (
+        <p className="text-xs text-muted-foreground">
+          Practice-Modus: Du lernst auch Karten, die noch nicht fällig sind.
+        </p>
+      )}
+
       {/* Progress */}
       {cards.length > 0 && (
         <p className="text-sm text-muted-foreground">
@@ -106,12 +119,32 @@ export function StudySession() {
         </div>
       ) : !currentCard ? (
         <div className="w-full max-w-2xl text-center py-12">
-          <p className="text-xl font-medium">Keine Karten fällig</p>
-          <p className="text-sm text-muted-foreground mt-2">
-            {topic
-              ? "Wechsle das Thema oder komme später zurück."
-              : "Alle Karten sind auf dem neuesten Stand."}
+          <p className="text-xl font-medium">
+            {mode === "practice" ? "Keine Übungskarten verfügbar" : "Keine Karten fällig"}
           </p>
+          <p className="text-sm text-muted-foreground mt-2">
+            {mode === "practice"
+              ? "Aktuell sind für diese Auswahl keine Karten vorhanden."
+              : topic
+                ? "Wechsle das Thema, starte Practice oder komme später zurück."
+                : "Alle Karten sind auf dem neuesten Stand."}
+          </p>
+          {mode !== "practice" && (
+            <button
+              onClick={() => setMode("practice")}
+              className="mt-4 text-sm text-muted-foreground underline"
+            >
+              Practice starten
+            </button>
+          )}
+          {mode === "practice" && (
+            <button
+              onClick={() => setMode("due")}
+              className="mt-4 text-sm text-muted-foreground underline"
+            >
+              Zurück zu fälligen Karten
+            </button>
+          )}
         </div>
       ) : (
         <>

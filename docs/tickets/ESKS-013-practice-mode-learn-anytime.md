@@ -1,6 +1,6 @@
 # ESKS-013 - Practice Mode / Lernen jederzeit (ohne Faelligkeit)
 
-- Status: `todo`
+- Status: `review`
 - Prioritaet: `P1`
 - Bereich: `cross-cutting`
 - Owner: `unassigned`
@@ -11,9 +11,11 @@ Nutzer koennen jederzeit lernen, auch wenn keine Karten faellig sind. Das verbes
 
 ## Kontext / Ist-Stand
 
-- Frontend nutzt aktuell nur `GET /study/due`.
-- Wenn keine Karten faellig sind, zeigt die UI "Keine Karten fällig".
-- Es existiert noch kein `new`-/`practice`-Modus.
+- MVP implementiert:
+  - separater Endpunkt `GET /study/practice`
+  - CTA im leeren Due-State (`Practice starten`)
+  - Practice-Modus-Hinweis in der Lernansicht
+- Produktentscheidung getroffen: Practice-Reviews nutzen denselben `POST /study/review`-Pfad wie normale Reviews und beeinflussen damit FSRS-Scheduling.
 
 ## Scope
 
@@ -40,9 +42,8 @@ Nutzer koennen jederzeit lernen, auch wenn keine Karten faellig sind. Das verbes
 
 ## API-Aenderungen
 
-- Option A: `GET /study/queue?mode=due|practice`
-- Option B: Neuer Endpunkt `GET /study/practice`
-- Fehlercodes/Validierung fuer unbekannte Modi
+- Implementiert (MVP): `GET /study/practice` (gleiche Query-Filter wie `/study/due`, inkl. `topic`)
+- Fehlercodes fuer invalides `topic` analog zu `/study/due` (`400`)
 
 ## DB-/Migrations-Aenderungen
 
@@ -61,10 +62,10 @@ Nutzer koennen jederzeit lernen, auch wenn keine Karten faellig sind. Das verbes
 
 ## Akzeptanzkriterien
 
-- [ ] Wenn keine due-Karten vorhanden sind, kann der Nutzer trotzdem eine Lernsession starten.
-- [ ] Practice-Modus ist in UI und Backend eindeutig definiert.
-- [ ] Ratings verhalten sich gem. Produktentscheidung konsistent.
-- [ ] Tests decken leere Due-Queue + Practice-Fallback ab.
+- [x] Wenn keine due-Karten vorhanden sind, kann der Nutzer trotzdem eine Lernsession starten.
+- [x] Practice-Modus ist in UI und Backend eindeutig definiert.
+- [x] Ratings verhalten sich gem. Produktentscheidung konsistent.
+- [x] Tests decken leere Due-Queue + Practice-Fallback ab.
 
 ## Testplan
 
@@ -82,14 +83,12 @@ Nutzer koennen jederzeit lernen, auch wenn keine Karten faellig sind. Das verbes
 
 ## Progress-Checklist
 
-- [ ] Produktentscheidung fuer Rating-Verhalten im Practice-Modus treffen
-- [ ] API-Design festlegen (`mode` vs separater Endpunkt)
-- [ ] Backend-Queue fuer Practice implementieren
-- [ ] Leere-State-CTA im Frontend implementieren
-- [ ] Tests ergaenzen
+- [x] Produktentscheidung fuer Rating-Verhalten im Practice-Modus treffen (Practice-Reviews aktualisieren FSRS)
+- [x] API-Design festlegen (`mode` vs separater Endpunkt) (MVP: separater Endpunkt)
+- [x] Backend-Queue fuer Practice implementieren
+- [x] Leere-State-CTA im Frontend implementieren
+- [x] Tests ergaenzen
 
 ## Offene Fragen
 
-- Sollen Practice-Ratings den FSRS-Plan beeinflussen?
 - Welche Karten sollen im Practice-Modus bevorzugt werden?
-

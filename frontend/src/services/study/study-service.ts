@@ -20,6 +20,16 @@ export async function getDueCards(
   return data;
 }
 
+export async function getPracticeCards(
+  topic?: TopicValue
+): Promise<StudyCard[]> {
+  const { data, error } = await apiClient.GET("/study/practice", {
+    params: { query: topic ? { topic } : {} },
+  });
+  if (error || !data) throw new Error("Failed to fetch practice cards");
+  return data;
+}
+
 export async function reviewCard(
   cardId: string,
   rating: Rating

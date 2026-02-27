@@ -116,23 +116,27 @@ class TestDueCardsEndpoint:
 
     async def test_excludes_due_cards_of_other_users(self, client, db_session):
         now = datetime.now(timezone.utc)
-        db_session.add(CardRow(
-            card_id="api-own-1",
-            front_text="Own Q",
-            front_images=[],
-            answer_text="Own A",
-            answer_images=[],
-            short_answer=[],
-            tags=["navigation"],
-        ))
-        db_session.add(CardSchedulingInfoRow(
-            user_id="test-user",
-            card_id="api-own-1",
-            state=0, stability=0, difficulty=0,
-            elapsed_days=0, scheduled_days=0,
-            reps=0, lapses=0,
-            due=now - timedelta(hours=1),
-        ))
+        # Fill the queue cap with own due cards so no "new introductions"
+        # are added and we can assert strict user isolation of due data.
+        for i in range(20):
+            card_id = f"api-own-{i}"
+            db_session.add(CardRow(
+                card_id=card_id,
+                front_text="Own Q",
+                front_images=[],
+                answer_text="Own A",
+                answer_images=[],
+                short_answer=[],
+                tags=["navigation"],
+            ))
+            db_session.add(CardSchedulingInfoRow(
+                user_id="test-user",
+                card_id=card_id,
+                state=0, stability=0, difficulty=0,
+                elapsed_days=0, scheduled_days=0,
+                reps=0, lapses=0,
+                due=now - timedelta(hours=1),
+            ))
         db_session.add(CardRow(
             card_id="api-other-1",
             front_text="Other Q",
@@ -156,7 +160,7 @@ class TestDueCardsEndpoint:
         assert resp.status_code == 200
         data = resp.json()
         card_ids = [sc["card"]["card_id"] for sc in data]
-        assert "api-own-1" in card_ids
+        assert "api-own-0" in card_ids
         assert "api-other-1" not in card_ids
 
     async def test_invalid_topic_returns_400(self, client):
@@ -202,6 +206,45 @@ class TestReviewEndpoint:
             "rating": 3,
         })
         assert resp.status_code == 404
+
+
+@pytest.mark.asyncio
+class TestPracticeCardsEndpoint:
+    async def test_returns_future_cards_when_no_due_cards_exist(self, client, db_session):
+        now = datetime.now(timezone.utc)
+        db_session.add(CardRow(
+            card_id="api-practice-1",
+            front_text="Practice Q",
+            front_images=[],
+            answer_text="Practice A",
+            answer_images=[],
+            short_answer=["Short"],
+            tags=["navigation"],
+        ))
+        db_session.add(CardSchedulingInfoRow(
+            user_id="test-user",
+            card_id="api-practice-1",
+            state=0,
+            stability=0.0,
+            difficulty=0.0,
+            elapsed_days=0,
+            scheduled_days=0,
+            reps=0,
+            lapses=0,
+            due=now + timedelta(days=3),
+            last_review=None,
+        ))
+        await db_session.flush()
+
+        resp = await client.get("/study/practice")
+        assert resp.status_code == 200
+        data = resp.json()
+        card_ids = [sc["card"]["card_id"] for sc in data]
+        assert "api-practice-1" in card_ids
+
+    async def test_invalid_topic_returns_400(self, client):
+        resp = await client.get("/study/practice?topic=invalid_topic")
+        assert resp.status_code == 400
 
 
 @pytest.mark.asyncio

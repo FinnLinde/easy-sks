@@ -38,6 +38,9 @@ class FakeSchedulingRepository:
     def __init__(self, infos: list[CardSchedulingInfo] | None = None) -> None:
         self._infos = {(i.user_id, i.card_id): i for i in (infos or [])}
 
+    async def list_for_user(self, user_id: str) -> list[CardSchedulingInfo]:
+        return [i for i in self._infos.values() if i.user_id == user_id]
+
     async def get_by_user_and_card_id(
         self, user_id: str, card_id: str
     ) -> CardSchedulingInfo | None:
@@ -328,3 +331,59 @@ class TestReviewCard:
 
         assert [sc.card.card_id for sc in user1_due] == ["c1"]
         assert user2_due == []
+
+
+class TestPracticeCards:
+    @pytest.mark.asyncio
+    async def test_returns_future_scheduled_cards_when_no_due_cards_exist(self):
+        card = _make_card("c1", ["navigation"])
+        future_info = _make_future_info("c1")
+
+        service = StudyService(
+            card_repo=FakeCardRepository([card]),
+            scheduling_repo=FakeSchedulingRepository([future_info]),
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=5,
+        )
+
+        result = await service.get_practice_cards(user_id="test-user")
+
+        assert [sc.card.card_id for sc in result] == ["c1"]
+
+    @pytest.mark.asyncio
+    async def test_practice_queue_keeps_due_cards_first_then_future_cards(self):
+        due_card = _make_card("due", ["navigation"])
+        future_card = _make_card("future", ["navigation"])
+        due_info = _make_due_info("due")
+        future_info = _make_future_info("future")
+
+        service = StudyService(
+            card_repo=FakeCardRepository([due_card, future_card]),
+            scheduling_repo=FakeSchedulingRepository([future_info, due_info]),
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=5,
+        )
+
+        result = await service.get_practice_cards(user_id="test-user")
+
+        assert [sc.card.card_id for sc in result] == ["due", "future"]
+
+    @pytest.mark.asyncio
+    async def test_practice_queue_respects_topic_filter(self):
+        nav = _make_card("nav", ["navigation"])
+        weather = _make_card("wx", ["wetterkunde"])
+        infos = [_make_future_info("nav"), _make_future_info("wx")]
+
+        service = StudyService(
+            card_repo=FakeCardRepository([nav, weather]),
+            scheduling_repo=FakeSchedulingRepository(infos),
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=5,
+        )
+
+        result = await service.get_practice_cards(
+            user_id="test-user",
+            topic=SksTopic.NAVIGATION,
+        )
+
+        assert [sc.card.card_id for sc in result] == ["nav"]
