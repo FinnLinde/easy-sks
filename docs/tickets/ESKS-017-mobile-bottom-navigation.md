@@ -1,6 +1,6 @@
 # ESKS-017 - Mobile Bottom Navigation fuer Kernrouten
 
-- Status: `todo`
+- Status: `review`
 - Prioritaet: `P2`
 - Bereich: `frontend`
 - Owner: `unassigned`
@@ -54,10 +54,10 @@ Auf Mobilgeraeten sollen die wichtigsten Bereiche mit einem Daumen erreichbar se
 
 ## Akzeptanzkriterien
 
-- [ ] Auf < md ist Bottom-Navigation sichtbar und klickbar.
-- [ ] Aktive Route ist visuell eindeutig.
-- [ ] Kein Content wird durch die Leiste abgeschnitten.
-- [ ] Drawer und Bottom-Navigation funktionieren konfliktfrei.
+- [x] Auf < md ist Bottom-Navigation sichtbar und klickbar.
+- [x] Aktive Route ist visuell eindeutig.
+- [x] Kein Content wird durch die Leiste abgeschnitten.
+- [x] Drawer und Bottom-Navigation funktionieren konfliktfrei.
 
 ## Testplan
 
@@ -71,10 +71,10 @@ Auf Mobilgeraeten sollen die wichtigsten Bereiche mit einem Daumen erreichbar se
 
 ## Progress-Checklist
 
-- [ ] Component + Styles bauen.
-- [ ] In AppShell integrieren.
-- [ ] Layout-Padding/Safe-Area pruefen.
-- [ ] Mobile QA dokumentieren.
+- [x] Component + Styles bauen.
+- [x] In AppShell integrieren.
+- [x] Layout-Padding/Safe-Area pruefen.
+- [x] Mobile QA dokumentieren.
 
 ## Offene Fragen
 

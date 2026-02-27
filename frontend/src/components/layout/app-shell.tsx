@@ -20,7 +20,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <Sidenav />
         <div className="flex flex-1 flex-col">
           <MobileHeader />
-          <main className="flex-1 overflow-auto pb-20 md:pb-0">{children}</main>
+          <main className="flex-1 overflow-auto pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
+            {children}
+          </main>
           <MobileBottomNav />
         </div>
       </div>

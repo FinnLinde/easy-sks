@@ -6,9 +6,12 @@ import { useAuth } from "@/auth/auth-provider";
 import { cn } from "@/lib/utils";
 import { navItems } from "./nav-config";
 
+const MOBILE_CORE_ROUTES = new Set(["/", "/study", "/account"]);
+
 export function MobileBottomNav() {
   const pathname = usePathname();
   const { status, hasRole } = useAuth();
+  const mobileNavItems = navItems.filter((item) => MOBILE_CORE_ROUTES.has(item.href));
 
   if (status !== "authenticated") {
     return null;
@@ -20,7 +23,7 @@ export function MobileBottomNav() {
       aria-label="Mobile Navigation"
     >
       <div className="flex h-16 px-1 pb-[env(safe-area-inset-bottom)]">
-        {navItems.map(({ href, label, icon: Icon, requiredRole }) => {
+        {mobileNavItems.map(({ href, label, icon: Icon, requiredRole }) => {
           const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
           const isAllowed = !requiredRole || hasRole(requiredRole);
 
@@ -41,6 +44,7 @@ export function MobileBottomNav() {
             <Link
               key={href}
               href={href}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "flex flex-1 flex-col items-center justify-center gap-1 rounded-md text-xs transition-colors",
                 isActive
