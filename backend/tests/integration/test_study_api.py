@@ -13,6 +13,16 @@ from scheduling.db.scheduling_table import CardSchedulingInfoRow
 from user.db.user_table import UserRow
 
 
+async def _add_user(db_session, user_id: str) -> None:
+    db_session.add(UserRow(
+        id=user_id,
+        auth_provider="cognito",
+        auth_provider_user_id=user_id,
+        email=f"{user_id}@example.com",
+    ))
+    await db_session.flush()
+
+
 @pytest.mark.asyncio
 class TestTopicsEndpoint:
     async def test_list_topics(self, client):
@@ -40,6 +50,7 @@ class TestDueCardsEndpoint:
 
     async def test_returns_due_cards(self, client, db_session):
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
         db_session.add(CardRow(
             card_id="api-due-1",
             front_text="Question?",
@@ -73,6 +84,7 @@ class TestDueCardsEndpoint:
 
     async def test_filters_by_topic(self, client, db_session):
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
         db_session.add(CardRow(
             card_id="api-nav-1",
             front_text="Nav Q",
@@ -118,6 +130,8 @@ class TestDueCardsEndpoint:
 
     async def test_excludes_due_cards_of_other_users(self, client, db_session):
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
+        await _add_user(db_session, "other-user")
         # Fill the queue cap with own due cards so no "new introductions"
         # are added and we can assert strict user isolation of due data.
         for i in range(20):
@@ -171,6 +185,7 @@ class TestDueCardsEndpoint:
 
     async def test_returns_due_cards_in_deterministic_order(self, client, db_session):
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
         same_due = now - timedelta(hours=2)
         newer_due = now - timedelta(hours=1)
 
@@ -235,6 +250,7 @@ class TestDueCardsEndpoint:
 class TestReviewEndpoint:
     async def test_review_updates_scheduling(self, client, db_session):
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
         db_session.add(CardRow(
             card_id="api-review-1",
             front_text="Q",
@@ -286,6 +302,7 @@ class TestReviewEndpoint:
 class TestPracticeCardsEndpoint:
     async def test_returns_future_cards_when_no_due_cards_exist(self, client, db_session):
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
         db_session.add(CardRow(
             card_id="api-practice-1",
             front_text="Practice Q",
@@ -324,6 +341,7 @@ class TestPracticeCardsEndpoint:
         self, client, db_session
     ):
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
         db_session.add(CardRow(
             card_id="api-practice-review-1",
             front_text="Practice review Q",

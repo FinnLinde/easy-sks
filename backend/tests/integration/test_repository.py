@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 
 from card.db.card_repository import CardRepository
 from card.model.card import Card
@@ -17,6 +18,17 @@ from scheduling.model.card_state import CardState
 from scheduling.model.rating import Rating
 from scheduling.model.review_log import ReviewLog
 from user.db.user_repository import UserRepository
+from user.db.user_table import UserRow
+
+
+async def _add_user(db_session, user_id: str) -> None:
+    db_session.add(UserRow(
+        id=user_id,
+        auth_provider="cognito",
+        auth_provider_user_id=user_id,
+        email=f"{user_id}@example.com",
+    ))
+    await db_session.flush()
 
 
 @pytest.mark.asyncio
@@ -103,6 +115,7 @@ class TestSchedulingRepository:
     async def test_save_and_get_by_user_and_card_id(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "user-1")
 
         info = CardSchedulingInfo(
             user_id="user-1",
@@ -128,6 +141,8 @@ class TestSchedulingRepository:
     async def test_get_due_for_user(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "user-1")
+        await _add_user(db_session, "user-2")
 
         due_info = CardSchedulingInfo(
             user_id="user-1",
@@ -161,6 +176,7 @@ class TestSchedulingRepository:
     ):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "user-1")
 
         same_due = now - timedelta(hours=1)
         older_review = now - timedelta(days=3)
@@ -200,6 +216,7 @@ class TestSchedulingRepository:
     async def test_save_updates_existing(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "user-1")
 
         info = CardSchedulingInfo(user_id="user-1", card_id="upd-1", due=now, reps=0)
         await repo.save(info)
@@ -218,6 +235,7 @@ class TestSchedulingRepository:
     async def test_save_review_log(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)
+        await _add_user(db_session, "user-1")
         log = ReviewLog(
             user_id="user-1",
             card_id="log-1",
@@ -238,6 +256,18 @@ class TestSchedulingRepository:
         ).scalar_one()
         assert row.rating == int(Rating.GOOD)
         assert row.reviewed_at == now
+
+    async def test_save_requires_existing_user(self, db_session):
+        repo = SchedulingRepository(db_session)
+        now = datetime.now(timezone.utc)
+
+        await repo.save(CardSchedulingInfo(
+            user_id="missing-user",
+            card_id="sched-1",
+            due=now,
+        ))
+        with pytest.raises(IntegrityError):
+            await db_session.flush()
 
 
 @pytest.mark.asyncio

@@ -1,6 +1,6 @@
 # ESKS-001 - Multi-User-Fortschritt einfuehren
 
-- Status: `in_progress`
+- Status: `done`
 - Prioritaet: `P0`
 - Bereich: `backend`
 - Owner: `unassigned`
@@ -76,11 +76,13 @@ Jeder Nutzer hat seinen eigenen Lernfortschritt. Reviews und Due-Cards duerfen n
 - Umgesetzt:
   - user-scoped Scheduling via Composite Key `(user_id, card_id)`
   - `review_logs.user_id` + User-Indizes
+  - FK-Verknuepfung `card_scheduling_info.user_id -> users.id`
+  - FK-Verknuepfung `review_logs.user_id -> users.id`
   - Repository-/Service-/Controller-Refactor auf `user_id`
   - Tests fuer User-Isolation in Service/API/Repository ergaenzt
   - Alembic-Migration mit Backfill auf `legacy-user`
 - Noch offen:
-  - lokales `users`-Modell + FK-Verknuepfung (ueber `ESKS-003`)
+  - `none` fuer den Scope dieses Tickets
 
 ## Frontend-Aenderungen
 
@@ -92,10 +94,10 @@ Jeder Nutzer hat seinen eigenen Lernfortschritt. Reviews und Due-Cards duerfen n
 
 ## Akzeptanzkriterien
 
-- [ ] Zwei Nutzer koennen dieselbe Karte unterschiedlich weit gelernt haben.
-- [ ] Review eines Nutzers veraendert nicht den Fortschritt eines anderen Nutzers.
-- [ ] `GET /study/due` liefert nur Karten des angemeldeten Nutzers.
-- [ ] Bestehende Tests werden angepasst und laufen weiterhin.
+- [x] Zwei Nutzer koennen dieselbe Karte unterschiedlich weit gelernt haben.
+- [x] Review eines Nutzers veraendert nicht den Fortschritt eines anderen Nutzers.
+- [x] `GET /study/due` liefert nur Karten des angemeldeten Nutzers.
+- [x] Bestehende Tests werden angepasst und laufen weiterhin.
 
 ## Testplan
 
