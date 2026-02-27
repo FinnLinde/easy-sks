@@ -22,6 +22,10 @@ from study.controller.study_controller import (
     get_study_service as _study_svc_placeholder,
     router as study_router,
 )
+from user.controller.user_controller import (
+    get_current_app_user as _user_app_user_placeholder,
+    router as user_router,
+)
 
 app = FastAPI(
     title="Easy SKS API",
@@ -69,6 +73,7 @@ async def _wired_current_app_user(
 app.dependency_overrides[_study_svc_placeholder] = _wired_study_service
 app.dependency_overrides[_card_repo_placeholder] = _wired_card_repository
 app.dependency_overrides[_app_user_placeholder] = _wired_current_app_user
+app.dependency_overrides[_user_app_user_placeholder] = _wired_current_app_user
 
 # -- Routers ---------------------------------------------------------------
 
@@ -76,6 +81,7 @@ app.dependency_overrides[_app_user_placeholder] = _wired_current_app_user
 authenticated_router = APIRouter(dependencies=[Depends(get_current_user)])
 authenticated_router.include_router(study_router)
 authenticated_router.include_router(card_router)
+authenticated_router.include_router(user_router)
 
 app.include_router(authenticated_router)
 

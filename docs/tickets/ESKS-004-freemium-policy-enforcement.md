@@ -1,6 +1,6 @@
 # ESKS-004 - Freemium-Regeln definieren und durchsetzen
 
-- Status: `todo`
+- Status: `blocked`
 - Prioritaet: `P1`
 - Bereich: `cross-cutting`
 - Owner: `unassigned`
@@ -101,3 +101,6 @@ Gratis- und Premium-Nutzer erhalten klar unterschiedliche Leistungsumfaenge. Lim
 - Welche Features sind im Freemium enthalten (Themen, KI, Simulation)?
 - Werden Limits pro Tag, Woche oder Monat gesetzt?
 
+## Hinweis
+
+- Ticket vorerst aufgeschoben (deferred), um zuerst andere Business-Tickets umzusetzen.

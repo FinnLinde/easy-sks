@@ -1,6 +1,6 @@
 # ESKS-003 - User-Provisioning und Entitlement-Basis
 
-- Status: `in_progress`
+- Status: `done`
 - Prioritaet: `P0`
 - Bereich: `backend`
 - Owner: `unassigned`
@@ -67,9 +67,9 @@ Das Backend kennt lokale App-User und kann damit Fortschritt, Billing und Featur
   - `UserProvisioningService` fuer create-on-first-seen
   - Study-Endpoints verwenden lokalen `AppUser` (Provisioning bei `/study/due` und `/study/review`)
   - Email-Claim wird aus Cognito-Token in `AuthenticatedUser` uebernommen
+  - `GET /me` Endpoint fuer Session-Grunddaten (`user_id`, `email`, `roles`, `plan`, `entitlements`)
   - Tests fuer User-Repository/Provisioning via API-Flow ergaenzt
 - Noch offen:
-  - optionaler `GET /me` Endpoint
   - Entitlement-/Subscription-Basistabelle (kommt mit Billing/Freemium-Tickets)
 
 ## Frontend-Aenderungen
@@ -86,7 +86,7 @@ Das Backend kennt lokale App-User und kann damit Fortschritt, Billing und Featur
 - [x] Erster authentifizierter Request eines neuen Cognito-Users erzeugt lokalen User-Datensatz.
 - [x] Wiederholte Requests erzeugen keine Duplikate.
 - [x] Lokaler User ist fuer Services (z. B. Study) verfgbar.
-- [ ] Optionaler `GET /me` Endpoint liefert stabile Session-Grunddaten.
+- [x] Optionaler `GET /me` Endpoint liefert stabile Session-Grunddaten.
 
 ## Testplan
 
@@ -109,7 +109,7 @@ Das Backend kennt lokale App-User und kann damit Fortschritt, Billing und Featur
 - [x] Provisioning-Service implementieren
 - [x] Auth-Dependency/Service-Wiring erweitern
 - [x] Study/weitere Services auf lokalen User umstellen
-- [ ] Optional `GET /me` Endpoint implementieren
+- [x] Optional `GET /me` Endpoint implementieren
 - [x] Tests ergaenzen
 
 ## Offene Fragen
