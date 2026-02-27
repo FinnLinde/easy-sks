@@ -514,3 +514,23 @@ class TestDashboardSummary:
         assert summary.recommended_topic == "navigation"
         assert summary.due_by_topic["navigation"] == 2
         assert summary.due_by_topic["wetterkunde"] == 0
+
+    @pytest.mark.asyncio
+    async def test_summary_does_not_persist_new_scheduling_rows(self):
+        cards = [
+            _make_card("new-1", ["navigation"]),
+            _make_card("new-2", ["wetterkunde"]),
+        ]
+        sched_repo = FakeSchedulingRepository([])
+        service = StudyService(
+            card_repo=FakeCardRepository(cards),
+            scheduling_repo=sched_repo,
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=20,
+        )
+
+        summary = await service.get_dashboard_summary(user_id="test-user")
+
+        assert summary.due_now == 2
+        assert await sched_repo.get_by_user_and_card_id("test-user", "new-1") is None
+        assert await sched_repo.get_by_user_and_card_id("test-user", "new-2") is None

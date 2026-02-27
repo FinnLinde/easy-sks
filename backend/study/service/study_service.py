@@ -41,6 +41,19 @@ class StudyService:
         self, user_id: str, topic: SksTopic | None = None
     ) -> list[StudyCard]:
         """Return a due-first study queue, optionally filtered by topic."""
+        return await self._build_due_queue(
+            user_id=user_id,
+            topic=topic,
+            persist_new_cards=True,
+        )
+
+    async def _build_due_queue(
+        self,
+        user_id: str,
+        topic: SksTopic | None,
+        persist_new_cards: bool,
+    ) -> list[StudyCard]:
+        """Build due queue with optional persistence for newly introduced cards."""
         now = datetime.now(timezone.utc)
         due_infos = await self._scheduling_repo.get_due_for_user(
             user_id=user_id, before=now
@@ -66,6 +79,7 @@ class StudyService:
             user_id=user_id,
             topic=topic,
             limit=new_card_slots,
+            persist=persist_new_cards,
         )
         return study_cards + new_cards
 
@@ -73,7 +87,24 @@ class StudyService:
         self, user_id: str, topic: SksTopic | None = None
     ) -> list[StudyCard]:
         """Return a practice queue (due-first, then non-due scheduled cards)."""
-        due_first = await self.get_due_cards(user_id=user_id, topic=topic)
+        return await self._build_practice_queue(
+            user_id=user_id,
+            topic=topic,
+            persist_new_cards=True,
+        )
+
+    async def _build_practice_queue(
+        self,
+        user_id: str,
+        topic: SksTopic | None,
+        persist_new_cards: bool,
+    ) -> list[StudyCard]:
+        """Build practice queue with optional persistence for newly introduced cards."""
+        due_first = await self._build_due_queue(
+            user_id=user_id,
+            topic=topic,
+            persist_new_cards=persist_new_cards,
+        )
         if len(due_first) >= self._new_card_limit_per_queue:
             return due_first
 
@@ -112,6 +143,7 @@ class StudyService:
             user_id=user_id,
             topic=topic,
             limit=remaining,
+            persist=persist_new_cards,
         )
         return queue + introduced
 
@@ -120,6 +152,7 @@ class StudyService:
         user_id: str,
         topic: SksTopic | None,
         limit: int,
+        persist: bool,
     ) -> list[StudyCard]:
         """Create missing scheduling rows for up to *limit* new cards."""
         if limit <= 0:
@@ -147,7 +180,8 @@ class StudyService:
                 user_id=user_id,
                 card_id=card.card_id,
             )
-            await self._scheduling_repo.save(info)
+            if persist:
+                await self._scheduling_repo.save(info)
             introduced.append(StudyCard(card=card, scheduling_info=info))
 
         return introduced
@@ -179,8 +213,16 @@ class StudyService:
 
     async def get_dashboard_summary(self, user_id: str) -> DashboardSummary:
         """Aggregate dashboard KPI values for the current user."""
-        due_cards = await self.get_due_cards(user_id=user_id)
-        practice_cards = await self.get_practice_cards(user_id=user_id)
+        due_cards = await self._build_due_queue(
+            user_id=user_id,
+            topic=None,
+            persist_new_cards=False,
+        )
+        practice_cards = await self._build_practice_queue(
+            user_id=user_id,
+            topic=None,
+            persist_new_cards=False,
+        )
         review_logs = await self._scheduling_repo.list_review_logs_for_user(
             user_id=user_id
         )
