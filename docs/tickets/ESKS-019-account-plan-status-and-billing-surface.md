@@ -1,6 +1,6 @@
 # ESKS-019 - Account Plan Status und Billing Surface
 
-- Status: `todo`
+- Status: `review`
 - Prioritaet: `P2`
 - Bereich: `cross-cutting`
 - Owner: `unassigned`
@@ -56,9 +56,9 @@ Nutzer sollen im Account-Bereich klar sehen, welchen Plan sie haben, welche Enti
 
 ## Akzeptanzkriterien
 
-- [ ] Account zeigt Plan + Entitlements aus API.
-- [ ] Billing-Status wird mit klaren Badges dargestellt.
-- [ ] Fehlen von Billing-Daten fuehrt nicht zu UI-Absturz.
+- [x] Account zeigt Plan + Entitlements aus API.
+- [x] Billing-Status wird mit klaren Badges dargestellt.
+- [x] Fehlen von Billing-Daten fuehrt nicht zu UI-Absturz.
 
 ## Testplan
 
@@ -72,9 +72,9 @@ Nutzer sollen im Account-Bereich klar sehen, welchen Plan sie haben, welche Enti
 
 ## Progress-Checklist
 
-- [ ] API-Vertrag definieren und implementieren.
-- [ ] Frontend-Integration bauen.
-- [ ] Status-Badges und Fallbacks testen.
+- [x] API-Vertrag definieren und implementieren.
+- [x] Frontend-Integration bauen.
+- [x] Status-Badges und Fallbacks testen.
 
 ## Offene Fragen
 

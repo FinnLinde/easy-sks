@@ -30,4 +30,6 @@ class TestMeEndpoint:
         assert data["roles"] == ["freemium"]
         assert data["plan"] == "freemium"
         assert data["entitlements"] == ["study_access"]
-
+        assert data["billing_status"] is None
+        assert data["renews_at"] is None
+        assert data["cancels_at"] is None

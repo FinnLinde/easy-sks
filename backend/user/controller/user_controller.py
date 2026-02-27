@@ -21,6 +21,9 @@ class MeOut(BaseModel):
     roles: list[str]
     plan: str
     entitlements: list[str]
+    billing_status: Optional[str] = None
+    renews_at: Optional[str] = None
+    cancels_at: Optional[str] = None
 
 
 def get_current_app_user() -> AppUser:
@@ -45,5 +48,7 @@ async def get_me(
         roles=roles,
         plan=plan,
         entitlements=entitlements,
+        billing_status=None,
+        renews_at=None,
+        cancels_at=None,
     )
-

@@ -56,6 +56,19 @@ paths:
                 items:
                   $ref: "#/components/schemas/Topic"
 
+  /me:
+    get:
+      summary: Get account summary for current user
+      operationId: get_me
+      tags: [User]
+      responses:
+        "200":
+          description: Account summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MeResponse"
+
   /study/due:
     get:
       summary: Get cards due for review
@@ -148,6 +161,37 @@ components:
         label:
           type: string
       required: [value, label]
+
+    MeResponse:
+      type: object
+      properties:
+        user_id:
+          type: string
+        email:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+        plan:
+          type: string
+        entitlements:
+          type: array
+          items:
+            type: string
+        billing_status:
+          type: string
+          nullable: true
+        renews_at:
+          type: string
+          format: date-time
+          nullable: true
+        cancels_at:
+          type: string
+          format: date-time
+          nullable: true
+      required: [user_id, roles, plan, entitlements]
 
     CardContentResponse:
       type: object

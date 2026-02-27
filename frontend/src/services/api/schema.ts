@@ -55,6 +55,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get account summary for current user */
+        get: operations["get_me"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/study/due": {
         parameters: {
             query?: never;
@@ -147,6 +164,18 @@ export interface components {
         Topic: {
             value: string;
             label: string;
+        };
+        MeResponse: {
+            user_id: string;
+            email?: string | null;
+            roles: string[];
+            plan: string;
+            entitlements: string[];
+            billing_status?: string | null;
+            /** Format: date-time */
+            renews_at?: string | null;
+            /** Format: date-time */
+            cancels_at?: string | null;
         };
         CardContentResponse: {
             text: string;
@@ -267,6 +296,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Topic"][];
+                };
+            };
+        };
+    };
+    get_me: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Account summary */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MeResponse"];
                 };
             };
         };
