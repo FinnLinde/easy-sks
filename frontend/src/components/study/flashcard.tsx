@@ -15,7 +15,7 @@ export function Flashcard({ studyCard, revealed, onReveal }: FlashcardProps) {
 
   return (
     <Card
-      className="w-full max-w-2xl cursor-pointer select-none transition-all"
+      className="w-full max-w-3xl cursor-pointer select-none border-white/10 bg-card/80 shadow-xl transition-all hover:border-sky-400/30"
       onClick={!revealed ? onReveal : undefined}
     >
       <CardHeader className="flex flex-row items-center justify-between gap-2">
@@ -29,14 +29,14 @@ export function Flashcard({ studyCard, revealed, onReveal }: FlashcardProps) {
         <Badge variant="outline">{scheduling_info.state}</Badge>
       </CardHeader>
 
-      <CardContent className="space-y-6">
+      <CardContent className="min-h-[320px] space-y-6 md:min-h-[360px]">
         {/* Question */}
         <div>
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
             Frage
           </p>
-          <p className="text-lg leading-relaxed">{card.front.text}</p>
-        </div>
+              <p className="text-lg leading-relaxed text-foreground md:text-xl">{card.front.text}</p>
+            </div>
 
         {/* Answer (revealed) */}
         {revealed ? (
@@ -45,7 +45,7 @@ export function Flashcard({ studyCard, revealed, onReveal }: FlashcardProps) {
               <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
                 Antwort
               </p>
-              <p className="leading-relaxed">{card.answer.text}</p>
+              <p className="leading-relaxed text-foreground/90">{card.answer.text}</p>
             </div>
 
             {card.short_answer.length > 0 && (

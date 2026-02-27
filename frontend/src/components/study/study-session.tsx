@@ -79,13 +79,43 @@ export function StudySession() {
   };
 
   const currentCard = cards[currentIndex];
+  const progressPercent = cards.length > 0 ? ((currentIndex + 1) / cards.length) * 100 : 0;
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full px-4">
-      {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 w-full max-w-2xl">
-        <h1 className="hidden text-2xl font-bold sm:block">Easy SKS</h1>
-        <TopicFilter value={topic} onChange={handleTopicChange} />
+    <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-4">
+      <div className="w-full max-w-3xl rounded-2xl border border-white/10 bg-card/70 p-4 shadow-xl md:p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h1 className="text-xl font-semibold md:text-2xl">Lernsession</h1>
+            <p className="text-sm text-muted-foreground">Fokussiert lernen im Dark Mode.</p>
+          </div>
+          <TopicFilter value={topic} onChange={handleTopicChange} />
+        </div>
+
+        <div className="mt-4 inline-flex rounded-xl border border-white/10 bg-background/40 p-1">
+          <button
+            type="button"
+            onClick={() => setMode("due")}
+            className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              mode === "due"
+                ? "bg-sky-500/20 text-sky-200"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Wiederholung
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode("practice")}
+            className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              mode === "practice"
+                ? "bg-emerald-500/20 text-emerald-200"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Practice
+          </button>
+        </div>
       </div>
 
       {mode === "practice" && (
@@ -94,21 +124,33 @@ export function StudySession() {
         </p>
       )}
 
-      {/* Progress */}
-      {cards.length > 0 && (
-        <p className="text-sm text-muted-foreground">
-          Karte {currentIndex + 1} von {cards.length}
-        </p>
-      )}
+      <div className="w-full max-w-3xl">
+        {cards.length > 0 ? (
+          <>
+            <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
+              <span>
+                Karte {currentIndex + 1} von {cards.length}
+              </span>
+              <span>{Math.round(progressPercent)}%</span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-full rounded-full bg-sky-400 transition-[width] duration-200"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
+          </>
+        ) : null}
+      </div>
 
       {/* Content */}
       {loading ? (
-        <div className="w-full max-w-2xl space-y-4">
+        <div className="w-full max-w-3xl space-y-4">
           <Skeleton className="h-8 w-32" />
-          <Skeleton className="h-48 w-full" />
+          <Skeleton className="h-72 w-full" />
         </div>
       ) : error ? (
-        <div className="w-full max-w-2xl text-center py-12">
+        <div className="w-full max-w-3xl rounded-2xl border border-red-500/30 bg-red-500/10 p-10 text-center">
           <p className="text-destructive">{error}</p>
           <button
             onClick={() => fetchCards(topic)}
@@ -118,11 +160,11 @@ export function StudySession() {
           </button>
         </div>
       ) : !currentCard ? (
-        <div className="w-full max-w-2xl text-center py-12">
+        <div className="w-full max-w-3xl rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-10 text-center">
           <p className="text-xl font-medium">
             {mode === "practice" ? "Keine Übungskarten verfügbar" : "Keine Karten fällig"}
           </p>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="mt-2 text-sm text-muted-foreground">
             {mode === "practice"
               ? "Aktuell sind für diese Auswahl keine Karten vorhanden."
               : topic

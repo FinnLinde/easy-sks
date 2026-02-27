@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { AuthGuard } from "@/components/auth/auth-guard";
 import { MobileHeader } from "@/components/layout/mobile-header";
+import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
 import { Sidenav } from "@/components/layout/sidenav";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -19,7 +20,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <Sidenav />
         <div className="flex flex-1 flex-col">
           <MobileHeader />
-          <main className="flex-1 overflow-auto">{children}</main>
+          <main className="flex-1 overflow-auto pb-20 md:pb-0">{children}</main>
+          <MobileBottomNav />
         </div>
       </div>
     </AuthGuard>

@@ -28,10 +28,10 @@ export function TopicFilter({ value, onChange }: TopicFilterProps) {
       value={value ?? "all"}
       onValueChange={(v) => onChange(v === "all" ? undefined : (v as TopicValue))}
     >
-      <SelectTrigger className="w-full min-w-0 sm:w-[240px]">
+      <SelectTrigger className="w-full min-w-0 border-white/10 bg-card/70 sm:w-[260px]">
         <SelectValue placeholder="Alle Themen" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="border-white/10 bg-popover/95 backdrop-blur">
         <SelectItem value="all">Alle Themen</SelectItem>
         {topics.map((t) => (
           <SelectItem key={t.value} value={t.value}>
