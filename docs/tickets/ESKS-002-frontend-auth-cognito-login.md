@@ -1,6 +1,6 @@
 # ESKS-002 - Frontend Cognito Login und Token-Injektion
 
-- Status: `in_progress`
+- Status: `done`
 - Prioritaet: `P0`
 - Bereich: `frontend`
 - Owner: `unassigned`
@@ -86,7 +86,7 @@ Nutzer koennen sich anmelden und die bereits geschuetzten Study-Endpunkte im Fro
 ## Akzeptanzkriterien
 
 - [x] Nicht eingeloggte Nutzer erhalten auf `/study` eine klare Login-Aufforderung.
-- [ ] Nach erfolgreichem Login kann der Nutzer Due-Cards laden. (manueller E2E-Check mit Cognito-Config noch offen)
+- [x] Nach erfolgreichem Login kann der Nutzer Due-Cards laden.
 - [x] API-Requests an geschuetzte Endpunkte enthalten Bearer-Token.
 - [x] Ungueltige/abgelaufene Session fuehrt zu sauberem Re-Login-Flow.
 
@@ -114,10 +114,15 @@ Nutzer koennen sich anmelden und die bereits geschuetzten Study-Endpunkte im Fro
 - [x] `/study` Auth-Guard integrieren
 - [x] Login/Logout UI ergaenzen
 - [x] 401-Handling implementieren
-- [ ] Manuelle E2E-Pruefung lokal dokumentieren
+- [x] Manuelle E2E-Pruefung lokal dokumentieren
 
 ## Offene Fragen
 
 - Hosted UI vs. SDK-basierter Login?
 - Sollen Tokens clientseitig gespeichert werden oder via serverseitiger Session abstrahiert werden?
 - MVP-Entscheidung getroffen: clientseitige Speicherung in `localStorage` fuer schnelle Integration; spaeter auf serverseitige Session umstellen.
+
+## Manuelle E2E-Validierung
+
+- Datum: `2026-02-27`
+- Ergebnis: Login via Cognito erfolgreich, danach koennen Due-Cards in `/study` geladen werden.
