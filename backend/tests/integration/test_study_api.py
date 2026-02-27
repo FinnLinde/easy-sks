@@ -246,6 +246,48 @@ class TestPracticeCardsEndpoint:
         resp = await client.get("/study/practice?topic=invalid_topic")
         assert resp.status_code == 400
 
+    async def test_practice_review_updates_scheduling_state(
+        self, client, db_session
+    ):
+        now = datetime.now(timezone.utc)
+        db_session.add(CardRow(
+            card_id="api-practice-review-1",
+            front_text="Practice review Q",
+            front_images=[],
+            answer_text="Practice review A",
+            answer_images=[],
+            short_answer=["Short"],
+            tags=["navigation"],
+        ))
+        db_session.add(CardSchedulingInfoRow(
+            user_id="test-user",
+            card_id="api-practice-review-1",
+            state=0,
+            stability=0.0,
+            difficulty=0.0,
+            elapsed_days=0,
+            scheduled_days=0,
+            reps=0,
+            lapses=0,
+            due=now + timedelta(days=2),
+            last_review=None,
+        ))
+        await db_session.flush()
+
+        practice_resp = await client.get("/study/practice")
+        assert practice_resp.status_code == 200
+        practice_ids = [sc["card"]["card_id"] for sc in practice_resp.json()]
+        assert "api-practice-review-1" in practice_ids
+
+        review_resp = await client.post("/study/review", json={
+            "card_id": "api-practice-review-1",
+            "rating": 3,
+        })
+        assert review_resp.status_code == 200
+        reviewed = review_resp.json()
+        assert reviewed["card"]["card_id"] == "api-practice-review-1"
+        assert reviewed["scheduling_info"]["reps"] == 1
+
 
 @pytest.mark.asyncio
 class TestCardEndpoint:
