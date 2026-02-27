@@ -1,6 +1,6 @@
 # ESKS-016 - Study Session UX States (Setup, Completion, Welcome)
 
-- Status: `todo`
+- Status: `review`
 - Prioritaet: `P1`
 - Bereich: `frontend`
 - Owner: `unassigned`
@@ -55,10 +55,10 @@ Die Lernsession fuehrt Nutzer klar durch Start, aktive Bearbeitung und Abschluss
 
 ## Akzeptanzkriterien
 
-- [ ] Session startet erst nach explizitem Klick auf "Session starten".
-- [ ] Nach letzter Karte erscheint Completion-Screen mit klaren CTAs.
-- [ ] Erstnutzer sehen einmalig das Welcome-Overlay.
-- [ ] Loading/Error/Empty bleiben fuer Due und Practice robust.
+- [x] Session startet erst nach explizitem Klick auf "Session starten".
+- [x] Nach letzter Karte erscheint Completion-Screen mit klaren CTAs.
+- [x] Erstnutzer sehen einmalig das Welcome-Overlay.
+- [x] Loading/Error/Empty bleiben fuer Due und Practice robust.
 
 ## Testplan
 
@@ -72,10 +72,10 @@ Die Lernsession fuehrt Nutzer klar durch Start, aktive Bearbeitung und Abschluss
 
 ## Progress-Checklist
 
-- [ ] State-Machine/Flow im Code modellieren.
-- [ ] Setup- und Completion-UI bauen.
-- [ ] Welcome-Overlay + Persistenz bauen.
-- [ ] Tests + QA dokumentieren.
+- [x] State-Machine/Flow im Code modellieren.
+- [x] Setup- und Completion-UI bauen.
+- [x] Welcome-Overlay + Persistenz bauen.
+- [x] Tests + QA dokumentieren.
 
 ## Offene Fragen
 
