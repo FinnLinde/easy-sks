@@ -30,6 +30,7 @@ Diese Tickets dienen als Spezifikation und Arbeitsgrundlage fuer die technische 
 16. `ESKS-016` Study Session UX States (Setup/Completion/Welcome)
 17. `ESKS-017` Mobile Bottom Navigation
 18. `ESKS-018` Dashboard Insights API
+19. `ESKS-019` Account Plan Status und Billing Surface
 
 ## Hinweise fuer Agenten
 
