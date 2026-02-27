@@ -63,6 +63,9 @@ class FakeSchedulingRepository:
     async def save_review_log(self, log: ReviewLog) -> None:
         self.saved_review_logs.append(log)
 
+    async def list_review_logs_for_user(self, user_id: str) -> list[ReviewLog]:
+        return [log for log in self.saved_review_logs if log.user_id == user_id]
+
 
 class FailingReviewLogRepository(FakeSchedulingRepository):
     async def save_review_log(self, log: ReviewLog) -> None:
@@ -452,3 +455,62 @@ class TestPracticeCards:
         )
 
         assert [sc.card.card_id for sc in result] == ["nav"]
+
+
+class TestDashboardSummary:
+    @pytest.mark.asyncio
+    async def test_aggregates_dashboard_metrics(self):
+        now = datetime.now(timezone.utc)
+        cards = [
+            _make_card("c1", ["navigation"]),
+            _make_card("c2", ["navigation"]),
+            _make_card("c3", ["wetterkunde"]),
+        ]
+        sched_repo = FakeSchedulingRepository([
+            CardSchedulingInfo(
+                user_id="test-user",
+                card_id="c1",
+                due=now - timedelta(hours=1),
+            ),
+            CardSchedulingInfo(
+                user_id="test-user",
+                card_id="c2",
+                due=now - timedelta(hours=2),
+            ),
+            CardSchedulingInfo(
+                user_id="test-user",
+                card_id="c3",
+                due=now + timedelta(days=2),
+            ),
+        ])
+        sched_repo.saved_review_logs.extend([
+            ReviewLog(
+                user_id="test-user",
+                card_id="c1",
+                rating=Rating.GOOD,
+                reviewed_at=now - timedelta(hours=1),
+            ),
+            ReviewLog(
+                user_id="test-user",
+                card_id="c2",
+                rating=Rating.HARD,
+                reviewed_at=now - timedelta(days=1),
+            ),
+        ])
+
+        service = StudyService(
+            card_repo=FakeCardRepository(cards),
+            scheduling_repo=sched_repo,
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=10,
+        )
+
+        summary = await service.get_dashboard_summary(user_id="test-user")
+
+        assert summary.due_now == 2
+        assert summary.available_cards == 3
+        assert summary.reviewed_today == 1
+        assert summary.streak_days == 2
+        assert summary.recommended_topic == "navigation"
+        assert summary.due_by_topic["navigation"] == 2
+        assert summary.due_by_topic["wetterkunde"] == 0

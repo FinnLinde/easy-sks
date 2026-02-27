@@ -83,6 +83,19 @@ paths:
                 items:
                   $ref: "#/components/schemas/StudyCardResponse"
 
+  /dashboard/summary:
+    get:
+      summary: Get aggregate dashboard summary for current user
+      operationId: get_dashboard_summary
+      tags: [Study]
+      responses:
+        "200":
+          description: Dashboard KPI summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummaryResponse"
+
   /study/review:
     post:
       summary: Review a card with a rating
@@ -209,6 +222,31 @@ components:
         scheduling_info:
           $ref: "#/components/schemas/SchedulingInfoResponse"
       required: [card, scheduling_info]
+
+    DashboardSummaryResponse:
+      type: object
+      properties:
+        due_now:
+          type: integer
+        reviewed_today:
+          type: integer
+        streak_days:
+          type: integer
+        due_by_topic:
+          type: object
+          additionalProperties:
+            type: integer
+        recommended_topic:
+          type: string
+          nullable: true
+        available_cards:
+          type: integer
+      required:
+        - due_now
+        - reviewed_today
+        - streak_days
+        - due_by_topic
+        - available_cards
 
     ReviewRequest:
       type: object

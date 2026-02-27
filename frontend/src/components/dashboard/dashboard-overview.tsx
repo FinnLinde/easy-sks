@@ -6,28 +6,20 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getDashboardSummary, type DashboardSummary } from "@/services/dashboard/dashboard-service";
 import { listTopics, type Topic } from "@/services/topic/topic-service";
-import { getDueCards, getPracticeCards, type StudyCard, type TopicValue } from "@/services/study/study-service";
 
 type DashboardState = {
-  dueCards: StudyCard[];
-  practiceCards: StudyCard[];
+  summary: DashboardSummary | null;
   topics: Topic[];
-  dueByTopic: Record<string, number>;
 };
-
-function dayKey(date: Date) {
-  return `${date.getUTCFullYear()}-${date.getUTCMonth()}-${date.getUTCDate()}`;
-}
 
 export function DashboardOverview() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [state, setState] = useState<DashboardState>({
-    dueCards: [],
-    practiceCards: [],
+    summary: null,
     topics: [],
-    dueByTopic: {},
   });
 
   useEffect(() => {
@@ -38,26 +30,16 @@ export function DashboardOverview() {
       setError(null);
 
       try {
-        const [topics, dueCards, practiceCards] = await Promise.all([
+        const [topics, summary] = await Promise.all([
           listTopics(),
-          getDueCards(),
-          getPracticeCards(),
+          getDashboardSummary(),
         ]);
-
-        const dueCounts = await Promise.all(
-          topics.map(async (topic) => {
-            const cards = await getDueCards(topic.value as TopicValue);
-            return [topic.value, cards.length] as const;
-          })
-        );
 
         if (cancelled) return;
 
         setState({
-          dueCards,
-          practiceCards,
+          summary,
           topics,
-          dueByTopic: Object.fromEntries(dueCounts),
         });
       } catch {
         if (!cancelled) {
@@ -78,23 +60,27 @@ export function DashboardOverview() {
   }, []);
 
   const stats = useMemo(() => {
-    const dueNow = state.dueCards.length;
-    const reviewedToday = state.practiceCards.filter((entry) => {
-      if (!entry.scheduling_info.last_review) return false;
-      return dayKey(new Date(entry.scheduling_info.last_review)) === dayKey(new Date());
-    }).length;
-
-    const recommendedTopic = state.topics
-      .map((topic) => ({ topic, count: state.dueByTopic[topic.value] ?? 0 }))
-      .sort((a, b) => b.count - a.count)[0];
+    const dueNow = state.summary?.due_now ?? 0;
+    const reviewedToday = state.summary?.reviewed_today ?? 0;
+    const streakDays = state.summary?.streak_days ?? 0;
+    const availableCards = state.summary?.available_cards ?? 0;
+    const dueByTopic = state.summary?.due_by_topic ?? {};
+    const recommendedTopic = state.summary?.recommended_topic ?? null;
 
     return {
       dueNow,
       reviewedToday,
-      availableCards: state.practiceCards.length,
-      recommendedTopic: recommendedTopic?.count ? recommendedTopic : null,
+      streakDays,
+      availableCards,
+      dueByTopic,
+      recommendedTopic,
     };
-  }, [state]);
+  }, [state.summary]);
+
+  const topicLabelByValue = useMemo(
+    () => Object.fromEntries(state.topics.map((topic) => [topic.value, topic.label])),
+    [state.topics]
+  );
 
   if (loading) {
     return (
@@ -153,10 +139,10 @@ export function DashboardOverview() {
 
         <Card className="border-amber-500/30 bg-gradient-to-br from-amber-500/15 via-card to-card">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm text-muted-foreground">Karten gesamt</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Streak Tage</CardTitle>
           </CardHeader>
           <CardContent className="flex items-end justify-between">
-            <p className="text-3xl font-bold">{stats.availableCards}</p>
+            <p className="text-3xl font-bold">{stats.streakDays}</p>
             <Calendar className="size-5 text-amber-300" />
           </CardContent>
         </Card>
@@ -174,8 +160,8 @@ export function DashboardOverview() {
         </CardHeader>
         <CardContent className="space-y-3">
           {state.topics.map((topic) => {
-            const count = state.dueByTopic[topic.value] ?? 0;
-            const recommended = stats.recommendedTopic?.topic.value === topic.value;
+            const count = stats.dueByTopic[topic.value] ?? 0;
+            const recommended = stats.recommendedTopic === topic.value;
             return (
               <div key={topic.value} className="rounded-lg border border-white/10 bg-background/30 p-3">
                 <div className="mb-2 flex items-center justify-between gap-2">
@@ -212,9 +198,11 @@ export function DashboardOverview() {
           <CardContent className="flex flex-col items-start justify-between gap-3 p-6 md:flex-row md:items-center">
             <div>
               <p className="text-xs uppercase tracking-wide text-sky-200">Empfohlenes Thema</p>
-              <p className="mt-1 text-lg font-semibold">{stats.recommendedTopic.topic.label}</p>
+              <p className="mt-1 text-lg font-semibold">
+                {topicLabelByValue[stats.recommendedTopic] ?? stats.recommendedTopic}
+              </p>
               <p className="text-sm text-muted-foreground">
-                {stats.recommendedTopic.count} Karten warten auf Wiederholung.
+                {stats.dueByTopic[stats.recommendedTopic] ?? 0} Karten warten auf Wiederholung.
               </p>
             </div>
             <Link href="/study">
@@ -226,6 +214,10 @@ export function DashboardOverview() {
           </CardContent>
         </Card>
       ) : null}
+
+      <p className="text-xs text-muted-foreground">
+        Verfuegbare Karten gesamt: {stats.availableCards}
+      </p>
     </div>
   );
 }

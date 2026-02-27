@@ -382,6 +382,93 @@ class TestPracticeCardsEndpoint:
 
 
 @pytest.mark.asyncio
+class TestDashboardSummaryEndpoint:
+    async def test_returns_dashboard_summary(self, client, db_session):
+        now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
+        db_session.add(CardRow(
+            card_id="api-summary-due-1",
+            front_text="Due question",
+            front_images=[],
+            answer_text="Answer",
+            answer_images=[],
+            short_answer=[],
+            tags=["navigation"],
+        ))
+        db_session.add(CardRow(
+            card_id="api-summary-future-1",
+            front_text="Future question",
+            front_images=[],
+            answer_text="Answer",
+            answer_images=[],
+            short_answer=[],
+            tags=["wetterkunde"],
+        ))
+        db_session.add(CardSchedulingInfoRow(
+            user_id="test-user",
+            card_id="api-summary-due-1",
+            state=0,
+            stability=0.0,
+            difficulty=0.0,
+            elapsed_days=0,
+            scheduled_days=0,
+            reps=0,
+            lapses=0,
+            due=now - timedelta(hours=1),
+            last_review=now - timedelta(hours=1),
+        ))
+        db_session.add(CardSchedulingInfoRow(
+            user_id="test-user",
+            card_id="api-summary-future-1",
+            state=0,
+            stability=0.0,
+            difficulty=0.0,
+            elapsed_days=0,
+            scheduled_days=0,
+            reps=0,
+            lapses=0,
+            due=now + timedelta(days=3),
+            last_review=None,
+        ))
+        db_session.add(ReviewLogRow(
+            user_id="test-user",
+            card_id="api-summary-due-1",
+            rating=3,
+            reviewed_at=now - timedelta(hours=1),
+            review_duration_ms=None,
+        ))
+        await db_session.flush()
+
+        resp = await client.get("/dashboard/summary")
+        assert resp.status_code == 200
+        data = resp.json()
+
+        assert data["due_now"] >= 1
+        assert data["available_cards"] >= data["due_now"]
+        assert data["reviewed_today"] >= 1
+        assert "due_by_topic" in data
+        assert "navigation" in data["due_by_topic"]
+
+    async def test_excludes_other_users_review_logs(self, client, db_session):
+        now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
+        await _add_user(db_session, "other-user")
+        db_session.add(ReviewLogRow(
+            user_id="other-user",
+            card_id="other-card",
+            rating=4,
+            reviewed_at=now,
+            review_duration_ms=None,
+        ))
+        await db_session.flush()
+
+        resp = await client.get("/dashboard/summary")
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["reviewed_today"] == 0
+
+
+@pytest.mark.asyncio
 class TestCardEndpoint:
     async def test_get_card_by_id(self, client, db_session):
         db_session.add(CardRow(

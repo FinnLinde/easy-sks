@@ -33,3 +33,7 @@ class SchedulingRepositoryPort(Protocol):
     async def save_review_log(self, log: ReviewLog) -> None:
         """Persist a review log entry for a completed review."""
         ...
+
+    async def list_review_logs_for_user(self, user_id: str) -> list[ReviewLog]:
+        """Return all review logs for a user."""
+        ...

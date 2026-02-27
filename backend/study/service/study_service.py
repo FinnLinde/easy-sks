@@ -6,12 +6,14 @@ scheduling domain imports from the other.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 from scheduling.model.card_scheduling_info import CardSchedulingInfo
 from scheduling.model.rating import Rating
+from scheduling.model.review_log import ReviewLog
 from scheduling.service.scheduling_service import SchedulingService
 
+from study.model.dashboard_summary import DashboardSummary
 from study.model.sks_topic import SksTopic
 from study.model.study_card import StudyCard
 from study.service.card_repository_port import CardRepositoryPort
@@ -174,3 +176,59 @@ class StudyService:
         await self._scheduling_repo.save_review_log(review_log)
 
         return StudyCard(card=card, scheduling_info=updated_info)
+
+    async def get_dashboard_summary(self, user_id: str) -> DashboardSummary:
+        """Aggregate dashboard KPI values for the current user."""
+        due_cards = await self.get_due_cards(user_id=user_id)
+        practice_cards = await self.get_practice_cards(user_id=user_id)
+        review_logs = await self._scheduling_repo.list_review_logs_for_user(
+            user_id=user_id
+        )
+
+        due_by_topic: dict[str, int] = {topic.value: 0 for topic in SksTopic}
+        for study_card in due_cards:
+            for topic in SksTopic:
+                if topic.value in study_card.card.tags:
+                    due_by_topic[topic.value] += 1
+                    break
+
+        recommended_topic = None
+        max_due_count = 0
+        for topic, count in due_by_topic.items():
+            if count > max_due_count:
+                max_due_count = count
+                recommended_topic = topic
+
+        today_utc = datetime.now(timezone.utc).date()
+        reviewed_today = sum(
+            1 for log in review_logs if log.reviewed_at.astimezone(timezone.utc).date() == today_utc
+        )
+        streak_days = _calculate_streak_days(review_logs)
+
+        return DashboardSummary(
+            due_now=len(due_cards),
+            reviewed_today=reviewed_today,
+            streak_days=streak_days,
+            due_by_topic=due_by_topic,
+            recommended_topic=recommended_topic,
+            available_cards=len(practice_cards),
+        )
+
+
+def _calculate_streak_days(review_logs: list[ReviewLog]) -> int:
+    """Calculate consecutive-day streak ending at most recent activity day."""
+    if not review_logs:
+        return 0
+
+    activity_days: set[date] = {
+        log.reviewed_at.astimezone(timezone.utc).date()
+        for log in review_logs
+    }
+    cursor = max(activity_days)
+    streak = 0
+
+    while cursor in activity_days:
+        streak += 1
+        cursor -= timedelta(days=1)
+
+    return streak

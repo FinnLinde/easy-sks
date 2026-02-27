@@ -8,6 +8,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from scheduling.db.scheduling_db_mapper import SchedulingDbMapper
+from scheduling.db.review_log_table import ReviewLogRow
 from scheduling.db.scheduling_table import CardSchedulingInfoRow
 from scheduling.model.card_scheduling_info import CardSchedulingInfo
 from scheduling.model.review_log import ReviewLog
@@ -74,3 +75,12 @@ class SchedulingRepository:
         """Insert a review log entry."""
         row = SchedulingDbMapper.log_to_row(log)
         self._session.add(row)
+
+    async def list_review_logs_for_user(self, user_id: str) -> list[ReviewLog]:
+        """Return all review log entries for the given user."""
+        stmt = select(ReviewLogRow).where(
+            ReviewLogRow.user_id == user_id
+        ).order_by(ReviewLogRow.reviewed_at.desc())
+        result = await self._session.execute(stmt)
+        rows = result.scalars().all()
+        return [SchedulingDbMapper.log_to_domain(row) for row in rows]

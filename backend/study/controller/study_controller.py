@@ -66,6 +66,15 @@ class ReviewIn(BaseModel):
     rating: int  # 1=Again, 2=Hard, 3=Good, 4=Easy
 
 
+class DashboardSummaryOut(BaseModel):
+    due_now: int
+    reviewed_today: int
+    streak_days: int
+    due_by_topic: dict[str, int]
+    recommended_topic: Optional[str] = None
+    available_cards: int
+
+
 # -- Helpers ---------------------------------------------------------------
 
 _TOPIC_LABELS: dict[str, str] = {
@@ -205,3 +214,19 @@ async def review_card(
         raise HTTPException(status_code=404, detail=str(exc))
 
     return _study_card_to_out(result)
+
+
+@router.get("/dashboard/summary", response_model=DashboardSummaryOut)
+async def get_dashboard_summary(
+    study_service: StudyService = Depends(get_study_service),
+    user: AppUser = Depends(get_current_app_user),
+) -> DashboardSummaryOut:
+    summary = await study_service.get_dashboard_summary(user_id=user.id)
+    return DashboardSummaryOut(
+        due_now=summary.due_now,
+        reviewed_today=summary.reviewed_today,
+        streak_days=summary.streak_days,
+        due_by_topic=summary.due_by_topic,
+        recommended_topic=summary.recommended_topic,
+        available_cards=summary.available_cards,
+    )
