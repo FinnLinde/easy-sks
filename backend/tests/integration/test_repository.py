@@ -152,6 +152,47 @@ class TestSchedulingRepository:
         assert "future-1" not in card_ids
         assert "due-2" not in card_ids
 
+    async def test_get_due_for_user_applies_deterministic_tiebreak_ordering(
+        self, db_session
+    ):
+        repo = SchedulingRepository(db_session)
+        now = datetime.now(timezone.utc)
+
+        same_due = now - timedelta(hours=1)
+        older_review = now - timedelta(days=3)
+        newer_review = now - timedelta(days=1)
+        latest_due = now - timedelta(minutes=30)
+
+        # Insert in unsorted order to prove DB retrieval ordering is explicit.
+        await repo.save(CardSchedulingInfo(
+            user_id="user-1",
+            card_id="card-d",
+            due=latest_due,
+            last_review=older_review,
+        ))
+        await repo.save(CardSchedulingInfo(
+            user_id="user-1",
+            card_id="card-c",
+            due=same_due,
+            last_review=newer_review,
+        ))
+        await repo.save(CardSchedulingInfo(
+            user_id="user-1",
+            card_id="card-a",
+            due=same_due,
+            last_review=None,
+        ))
+        await repo.save(CardSchedulingInfo(
+            user_id="user-1",
+            card_id="card-b",
+            due=same_due,
+            last_review=None,
+        ))
+        await db_session.flush()
+
+        due = await repo.get_due_for_user(user_id="user-1", before=now)
+        assert [i.card_id for i in due] == ["card-a", "card-b", "card-c", "card-d"]
+
     async def test_save_updates_existing(self, db_session):
         repo = SchedulingRepository(db_session)
         now = datetime.now(timezone.utc)

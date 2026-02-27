@@ -44,6 +44,7 @@ class StudyService:
             user_id=user_id, before=now
         )
 
+        # Preserve repository order so /study/due remains deterministic.
         study_cards: list[StudyCard] = []
         for info in due_infos:
             card = await self._card_repo.get_by_id(info.card_id)

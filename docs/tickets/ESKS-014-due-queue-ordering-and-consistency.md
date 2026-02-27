@@ -1,6 +1,6 @@
 # ESKS-014 - Due-Queue Ordering und konsistente Lernreihenfolge
 
-- Status: `todo`
+- Status: `done`
 - Prioritaet: `P1`
 - Bereich: `backend`
 - Owner: `unassigned`
@@ -53,9 +53,9 @@ Nutzer erhalten eine stabile, nachvollziehbare Reihenfolge der faelligen Karten.
 
 ## Akzeptanzkriterien
 
-- [ ] Due-Queue ist bei gleichen Daten deterministisch sortiert.
-- [ ] Sortierregel ist im Code dokumentiert.
-- [ ] Tests decken Tie-Breaker-Faelle ab.
+- [x] Due-Queue ist bei gleichen Daten deterministisch sortiert.
+- [x] Sortierregel ist im Code dokumentiert.
+- [x] Tests decken Tie-Breaker-Faelle ab.
 
 ## Testplan
 
@@ -70,12 +70,30 @@ Nutzer erhalten eine stabile, nachvollziehbare Reihenfolge der faelligen Karten.
 
 ## Progress-Checklist
 
-- [ ] Sortierregel definieren
-- [ ] Repository-Query mit `order_by(...)` erweitern
-- [ ] Tests fuer Reihenfolge ergaenzen
-- [ ] Verhalten dokumentieren
+- [x] Sortierregel definieren
+- [x] Repository-Query mit `order_by(...)` erweitern
+- [x] Tests fuer Reihenfolge ergaenzen
+- [x] Verhalten dokumentieren
 
 ## Offene Fragen
 
 - Sollen neue Karten innerhalb der Due-Queue separat gruppiert werden (spaeter `ESKS-012`)?
 
+## Implementierungsnotizen
+
+- Deterministische Sortierung in `SchedulingRepository.get_due_for_user(...)` umgesetzt:
+  - `due ASC`
+  - `last_review ASC NULLS FIRST`
+  - `card_id ASC`
+- `StudyService.get_due_cards(...)` dokumentiert explizit, dass die Repository-Reihenfolge fuer stabile `/study/due`-Ausgabe erhalten bleibt.
+- Testabdeckung erweitert:
+  - Repository: Tie-Breaker-Ordering bei identischem `due`
+  - Integration: `/study/due` liefert erwartete deterministische Reihenfolge
+  - Service-Unit-Test: Reihenfolge aus Repository bleibt unveraendert
+
+## Test Evidence
+
+- `/Users/finnlinde/Developer/projects/easy-sks/backend/.venv/bin/python -m pytest backend/tests/study/service/test_study_service.py`
+  - Ergebnis: `17 passed in 0.03s`
+- `/Users/finnlinde/Developer/projects/easy-sks/backend/.venv/bin/python -m pytest backend/tests/integration/test_repository.py backend/tests/integration/test_study_api.py`
+  - Ergebnis: `25 passed, 2 warnings in 3.18s`

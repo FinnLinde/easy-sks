@@ -180,6 +180,26 @@ class TestGetDueCards:
         assert result == []
 
     @pytest.mark.asyncio
+    async def test_preserves_due_order_from_repository(self):
+        first = _make_card("first", ["navigation"])
+        second = _make_card("second", ["navigation"])
+
+        # Repository order is authoritative for due queue sequencing.
+        service = StudyService(
+            card_repo=FakeCardRepository([first, second]),
+            scheduling_repo=FakeSchedulingRepository([
+                _make_due_info("second"),
+                _make_due_info("first"),
+            ]),
+            scheduling_service=SchedulingService(),
+            new_card_limit_per_queue=2,
+        )
+
+        result = await service.get_due_cards(user_id="test-user")
+
+        assert [sc.card.card_id for sc in result] == ["second", "first"]
+
+    @pytest.mark.asyncio
     async def test_bootstraps_initial_due_queue_for_new_user(self):
         cards = [
             _make_card("c1", ["navigation"]),

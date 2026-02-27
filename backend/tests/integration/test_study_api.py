@@ -167,6 +167,67 @@ class TestDueCardsEndpoint:
         resp = await client.get("/study/due?topic=invalid_topic")
         assert resp.status_code == 400
 
+    async def test_returns_due_cards_in_deterministic_order(self, client, db_session):
+        now = datetime.now(timezone.utc)
+        same_due = now - timedelta(hours=2)
+        newer_due = now - timedelta(hours=1)
+
+        ordered_due_cards = [
+            ("api-ord-a", same_due, None),
+            ("api-ord-b", same_due, None),
+            ("api-ord-c", same_due, now - timedelta(days=2)),
+            ("api-ord-d", same_due, now - timedelta(days=1)),
+            ("api-ord-e", newer_due, None),
+        ]
+
+        # Fill queue cap so /study/due returns only due rows (no new introductions).
+        filler_cards = [
+            (
+                f"api-ord-filler-{idx}",
+                newer_due + timedelta(minutes=idx + 1),
+                None,
+            )
+            for idx in range(15)
+        ]
+
+        for card_id, due, last_review in ordered_due_cards + filler_cards:
+            db_session.add(CardRow(
+                card_id=card_id,
+                front_text="Ordering Q",
+                front_images=[],
+                answer_text="Ordering A",
+                answer_images=[],
+                short_answer=[],
+                tags=["navigation"],
+            ))
+            db_session.add(CardSchedulingInfoRow(
+                user_id="test-user",
+                card_id=card_id,
+                state=0,
+                stability=0,
+                difficulty=0,
+                elapsed_days=0,
+                scheduled_days=0,
+                reps=0,
+                lapses=0,
+                due=due,
+                last_review=last_review,
+            ))
+        await db_session.flush()
+
+        resp = await client.get("/study/due")
+        assert resp.status_code == 200
+        data = resp.json()
+
+        assert len(data) == 20
+        assert [sc["card"]["card_id"] for sc in data[:5]] == [
+            "api-ord-a",
+            "api-ord-b",
+            "api-ord-c",
+            "api-ord-d",
+            "api-ord-e",
+        ]
+
 
 @pytest.mark.asyncio
 class TestReviewEndpoint:

@@ -44,10 +44,21 @@ class SchedulingRepository:
     async def get_due_for_user(
         self, user_id: str, before: datetime
     ) -> list[CardSchedulingInfo]:
-        """Return all scheduling entries due for a user before the given time."""
+        """Return due rows with a deterministic queue order.
+
+        Ordering is intentionally explicit so repeated calls produce the same
+        study sequence for equal data:
+        1) due ASC
+        2) last_review ASC NULLS FIRST
+        3) card_id ASC
+        """
         stmt = select(CardSchedulingInfoRow).where(
             CardSchedulingInfoRow.user_id == user_id,
             CardSchedulingInfoRow.due <= before
+        ).order_by(
+            CardSchedulingInfoRow.due.asc(),
+            CardSchedulingInfoRow.last_review.asc().nullsfirst(),
+            CardSchedulingInfoRow.card_id.asc(),
         )
         result = await self._session.execute(stmt)
         rows = result.scalars().all()
