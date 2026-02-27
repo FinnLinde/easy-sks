@@ -1,6 +1,6 @@
 # ESKS-018 - Dashboard Insights API (streak, reviewedToday, topic breakdown)
 
-- Status: `todo`
+- Status: `review`
 - Prioritaet: `P1`
 - Bereich: `cross-cutting`
 - Owner: `unassigned`
@@ -59,10 +59,10 @@ Das Dashboard soll belastbare Kennzahlen aus dem Backend erhalten, statt mehrere
 
 ## Akzeptanzkriterien
 
-- [ ] Ein API-Call liefert alle Dashboard-KPIs fuer den aktuellen Nutzer.
-- [ ] Werte sind konsistent zu Scheduling- und Review-Daten.
-- [ ] Frontend benoetigt keine Topic-N+1-Requests mehr.
-- [ ] OpenAPI + Client-Typen sind aktualisiert.
+- [x] Ein API-Call liefert alle Dashboard-KPIs fuer den aktuellen Nutzer.
+- [x] Werte sind konsistent zu Scheduling- und Review-Daten.
+- [x] Frontend benoetigt keine Topic-N+1-Requests mehr.
+- [x] OpenAPI + Client-Typen sind aktualisiert.
 
 ## Testplan
 
@@ -76,10 +76,22 @@ Das Dashboard soll belastbare Kennzahlen aus dem Backend erhalten, statt mehrere
 
 ## Progress-Checklist
 
-- [ ] Endpoint + Service bauen.
-- [ ] OpenAPI aktualisieren.
-- [ ] Frontend umstellen.
-- [ ] Tests + Doku finalisieren.
+- [x] Endpoint + Service bauen.
+- [x] OpenAPI aktualisieren.
+- [x] Frontend umstellen.
+- [x] Tests + Doku finalisieren.
+
+## Implementierungsnotizen
+
+- Umgesetzt ueber `GET /dashboard/summary` mit Backend-Aggregation fuer:
+  - `due_now`
+  - `reviewed_today`
+  - `streak_days`
+  - `due_by_topic`
+  - `recommended_topic`
+  - `available_cards`
+- Frontend-Dashboard nutzt den Summary-Endpoint und berechnet KPIs nicht mehr ueber Topic-N+1-Requests.
+- Summary-Berechnung ist side-effect-free (keine Persistenz neuer Scheduling-Eintraege beim Lesen).
 
 ## Offene Fragen
 

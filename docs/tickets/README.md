@@ -32,6 +32,13 @@ Diese Tickets dienen als Spezifikation und Arbeitsgrundlage fuer die technische 
 18. `ESKS-018` Dashboard Insights API
 19. `ESKS-019` Account Plan Status und Billing Surface
 
+## Aktueller Stand (2026-02-27)
+
+- `done`: ESKS-001, ESKS-002, ESKS-003, ESKS-014, ESKS-015
+- `review`: ESKS-012, ESKS-013, ESKS-016, ESKS-017, ESKS-018, ESKS-019
+- `blocked`: ESKS-004, ESKS-008
+- `todo`: ESKS-005, ESKS-006, ESKS-007, ESKS-009, ESKS-010, ESKS-011
+
 ## Hinweise fuer Agenten
 
 - Progress immer im Ticket selbst unter `Progress-Checklist` und `Status` aktualisieren.
