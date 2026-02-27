@@ -27,6 +27,9 @@ Diese Tickets dienen als Spezifikation und Arbeitsgrundlage fuer die technische 
 13. `ESKS-009` KI-Antwortbewertung (Text) MVP
 14. `ESKS-010` Spracheingabe + Transkription
 15. `ESKS-011` Produktions-Infrastruktur-Basis
+16. `ESKS-016` Study Session UX States (Setup/Completion/Welcome)
+17. `ESKS-017` Mobile Bottom Navigation
+18. `ESKS-018` Dashboard Insights API
 
 ## Hinweise fuer Agenten
 
