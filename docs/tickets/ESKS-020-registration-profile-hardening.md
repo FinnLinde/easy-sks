@@ -1,6 +1,6 @@
 # ESKS-020 - Registrierung und Profil-Hardening (Name + Mobilnummer)
 
-- Status: `todo`
+- Status: `review`
 - Prioritaet: `P1`
 - Bereich: `cross-cutting`
 - Owner: `unassigned`
@@ -69,10 +69,10 @@ Nutzer sollen nach dem Login ein vollstaendiges Profil hinterlegen (voller Name,
 
 ## Akzeptanzkriterien
 
-- [ ] Nutzer mit unvollstaendigem Profil werden nach Login in den Profil-Onboarding-Flow geleitet.
-- [ ] Name und Mobilnummer koennen gespeichert und ueber `/me` gelesen werden.
-- [ ] Doppelte Mobilnummern werden serverseitig verhindert.
-- [ ] UI zeigt valide Fehlermeldungen bei ungultigen/konfligierenden Eingaben.
+- [x] Nutzer mit unvollstaendigem Profil werden nach Login in den Profil-Onboarding-Flow geleitet.
+- [x] Name und Mobilnummer koennen gespeichert und ueber `/me` gelesen werden.
+- [x] Doppelte Mobilnummern werden serverseitig verhindert.
+- [x] UI zeigt valide Fehlermeldungen bei ungultigen/konfligierenden Eingaben.
 
 ## Testplan
 
@@ -87,11 +87,11 @@ Nutzer sollen nach dem Login ein vollstaendiges Profil hinterlegen (voller Name,
 
 ## Progress-Checklist
 
-- [ ] Datenmodell + Migration umsetzen.
-- [ ] API fuer Profil-Update implementieren.
-- [ ] Login-Onboarding-Gate im Frontend integrieren.
-- [ ] Account-Profilform bauen.
-- [ ] Tests + Doku ergaenzen.
+- [x] Datenmodell + Migration umsetzen.
+- [x] API fuer Profil-Update implementieren.
+- [x] Login-Onboarding-Gate im Frontend integrieren.
+- [x] Account-Profilform bauen.
+- [x] Tests + Doku ergaenzen.
 
 ## Offene Fragen
 
