@@ -14,6 +14,8 @@ Pruefungsaufgaben und zugehoerige Antworten sollen per Skript importiert und zu 
 - Karten/Fragen liegen bereits im System.
 - Es gibt Scripts fuer Datenverarbeitung im Backend-Ordner.
 - Ein dediziertes Matching fuer externe Pruefungsantworten existiert noch nicht.
+- Externe Quelle fuer Aufgaben/Antworten inkl. Zuordnung zu Pruefungen:
+  - `http://www.tim.sf-ub.de/www2/trainer_online/sks/shared/katalog.html`
 
 ## Scope
 
@@ -33,6 +35,7 @@ Pruefungsaufgaben und zugehoerige Antworten sollen per Skript importiert und zu 
 - Script-Ort: `backend/scripts/`.
 - Eingaben:
   - Source-Datei(en) mit Aufgaben + Antworten.
+  - Metadaten, in welchen Pruefungen/Boegen eine Frage vorkommt.
   - Optionale Mapping-Datei/Override fuer manuelle Zuordnungen.
 - Normalisierung vor Match:
   - lowercasing
@@ -84,6 +87,7 @@ Pruefungsaufgaben und zugehoerige Antworten sollen per Skript importiert und zu 
 ## Abhaengigkeiten
 
 - Verfuegbarkeit der Quelldaten fuer Pruefungsaufgaben + Antworten.
+- Zugriff auf Quelle: `http://www.tim.sf-ub.de/www2/trainer_online/sks/shared/katalog.html`
 
 ## Progress-Checklist
 
