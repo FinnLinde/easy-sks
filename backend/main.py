@@ -16,6 +16,7 @@ from dependencies import (
     get_current_app_user,
     get_db_session,
     get_study_service,
+    get_user_profile_service,
 )
 from study.controller.study_controller import (
     get_current_app_user as _app_user_placeholder,
@@ -24,6 +25,7 @@ from study.controller.study_controller import (
 )
 from user.controller.user_controller import (
     get_current_app_user as _user_app_user_placeholder,
+    get_user_profile_service as _user_profile_service_placeholder,
     router as user_router,
 )
 
@@ -70,10 +72,19 @@ async def _wired_current_app_user(
     return await get_current_app_user(auth_user=auth_user, session=session)
 
 
+async def _wired_user_profile_service(
+    session: AsyncSession = Depends(get_db_session),
+):
+    return await get_user_profile_service(session)
+
+
 app.dependency_overrides[_study_svc_placeholder] = _wired_study_service
 app.dependency_overrides[_card_repo_placeholder] = _wired_card_repository
 app.dependency_overrides[_app_user_placeholder] = _wired_current_app_user
 app.dependency_overrides[_user_app_user_placeholder] = _wired_current_app_user
+app.dependency_overrides[_user_profile_service_placeholder] = (
+    _wired_user_profile_service
+)
 
 # -- Routers ---------------------------------------------------------------
 

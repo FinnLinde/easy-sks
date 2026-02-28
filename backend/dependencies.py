@@ -17,6 +17,7 @@ from scheduling.service.scheduling_service import SchedulingService
 from study.service.study_service import StudyService
 from user.db.user_repository import UserRepository
 from user.model.app_user import AppUser
+from user.service.user_profile_service import UserProfileService
 from user.service.user_provisioning_service import UserProvisioningService
 
 
@@ -56,6 +57,13 @@ async def get_user_repository(
 ) -> UserRepository:
     """Build a UserRepository wired to a real DB session."""
     return UserRepository(session)
+
+
+async def get_user_profile_service(
+    session: AsyncSession = None,  # type: ignore[assignment]
+) -> UserProfileService:
+    """Build a UserProfileService wired to a real DB session."""
+    return UserProfileService(UserRepository(session))
 
 
 async def get_current_app_user(

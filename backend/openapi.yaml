@@ -69,6 +69,37 @@ paths:
               schema:
                 $ref: "#/components/schemas/MeResponse"
 
+  /me/profile:
+    patch:
+      summary: Update current user's profile fields
+      operationId: patch_me_profile
+      tags: [User]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileUpdateRequest"
+      responses:
+        "200":
+          description: Updated account summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MeResponse"
+        "400":
+          description: Invalid profile data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Mobile number already in use
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   /study/due:
     get:
       summary: Get cards due for review
@@ -89,6 +120,33 @@ paths:
       responses:
         "200":
           description: List of due study cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StudyCardResponse"
+
+  /study/practice:
+    get:
+      summary: Get cards for practice mode (not limited to due cards)
+      operationId: get_practice_cards
+      tags: [Study]
+      parameters:
+        - name: topic
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - navigation
+              - schifffahrtsrecht
+              - wetterkunde
+              - seemannschaft_i
+              - seemannschaft_ii
+      responses:
+        "200":
+          description: List of practice study cards
           content:
             application/json:
               schema:
@@ -170,6 +228,14 @@ components:
         email:
           type: string
           nullable: true
+        full_name:
+          type: string
+          nullable: true
+        mobile_number:
+          type: string
+          nullable: true
+        profile_complete:
+          type: boolean
         roles:
           type: array
           items:
@@ -191,7 +257,23 @@ components:
           type: string
           format: date-time
           nullable: true
-      required: [user_id, roles, plan, entitlements]
+      required: [user_id, profile_complete, roles, plan, entitlements]
+
+    ProfileUpdateRequest:
+      type: object
+      properties:
+        full_name:
+          type: string
+        mobile_number:
+          type: string
+      required: [full_name, mobile_number]
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+      required: [detail]
 
     CardContentResponse:
       type: object
