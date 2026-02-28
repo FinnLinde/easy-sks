@@ -15,3 +15,4 @@ class Card:
     answer: CardContent = field(default_factory=CardContent)
     short_answer: list[str] = field(default_factory=list)
     tags: list[str] = field(default_factory=list)
+    exam_sheets: list[int] = field(default_factory=list)

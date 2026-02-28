@@ -35,6 +35,7 @@ class CardOut(BaseModel):
     answer: CardContentOut
     short_answer: list[str]
     tags: list[str]
+    exam_sheets: list[int]
 
 
 def _card_to_out(card: Card) -> CardOut:
@@ -64,6 +65,7 @@ def _card_to_out(card: Card) -> CardOut:
         ),
         short_answer=card.short_answer,
         tags=card.tags,
+        exam_sheets=card.exam_sheets,
     )
 
 

@@ -39,6 +39,7 @@ class CardOut(BaseModel):
     answer: CardContentOut
     short_answer: list[str]
     tags: list[str]
+    exam_sheets: list[int]
 
 
 class SchedulingInfoOut(BaseModel):
@@ -123,6 +124,7 @@ def _study_card_to_out(sc: StudyCard) -> StudyCardOut:
             ),
             short_answer=card.short_answer,
             tags=card.tags,
+            exam_sheets=card.exam_sheets,
         ),
         scheduling_info=SchedulingInfoOut(
             state=_STATE_NAMES[info.state],

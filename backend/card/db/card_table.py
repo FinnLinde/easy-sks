@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from sqlalchemy import String, Text
+from sqlalchemy import Integer, String, Text
 from sqlalchemy.dialects.postgresql import ARRAY, JSON
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -29,3 +29,6 @@ class CardRow(Base):
 
     # Tags (e.g. ["navigation"])
     tags: Mapped[list[str]] = mapped_column(ARRAY(String), default=list)
+
+    # Exam sheets this card appears on (e.g. [1, 9])
+    exam_sheets: Mapped[list[int]] = mapped_column(ARRAY(Integer), default=list)

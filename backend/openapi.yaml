@@ -315,7 +315,11 @@ components:
           type: array
           items:
             type: string
-      required: [card_id, front, answer, short_answer, tags]
+        exam_sheets:
+          type: array
+          items:
+            type: integer
+      required: [card_id, front, answer, short_answer, tags, exam_sheets]
 
     SchedulingInfoResponse:
       type: object

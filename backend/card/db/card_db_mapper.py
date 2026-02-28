@@ -40,6 +40,7 @@ class CardDbMapper:
             ),
             short_answer=row.short_answer or [],
             tags=list(row.tags) if row.tags else [],
+            exam_sheets=list(row.exam_sheets) if row.exam_sheets else [],
         )
 
     @staticmethod
@@ -67,4 +68,5 @@ class CardDbMapper:
             ],
             short_answer=card.short_answer,
             tags=card.tags,
+            exam_sheets=card.exam_sheets,
         )

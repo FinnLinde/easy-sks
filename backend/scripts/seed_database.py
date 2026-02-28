@@ -79,6 +79,7 @@ async def seed(catalog_path: Path) -> None:
                 answer_images=a_images,
                 short_answer=entry.get("short_answer", []),
                 tags=[entry["topic"]],
+                exam_sheets=entry.get("exam_sheets", []),
             )
             session.add(card_row)
 

@@ -9,6 +9,9 @@
     "short_answer": [
       "Vollständigkeit der Unterlagen prüfen",
       "Berichtigung auf den neuesten Stand bringen"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -22,6 +25,9 @@
       "Berücksichtigung des Kartendatums wichtig für genaue Positionsbestimmung.",
       "WGS 84 (World Geodetic System 1984) kann von anderen Bezugssystemen abweichen.",
       "Unterschiede können zu Positionsfehlern führen."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -34,6 +40,9 @@
     "short_answer": [
       "Differenzen von φ und λ: 0,1 kbl bis 1 kbl (20 bis 200 m)",
       "Größere Unterschiede möglich"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -46,6 +55,9 @@
     "short_answer": [
       "Am Kartenrand",
       "Unter dem Titel"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -59,6 +71,9 @@
       "Positionen im WGS 84 sind anzupassen.",
       "Korrektur: 0, ... Minuten nordwärts/südwärts.",
       "Korrektur: 0, ... Minuten westwärts/ostwärts."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -71,6 +86,9 @@
     "short_answer": [
       "Berichtigungsstempel des BSH",
       "Amtliche Seekartenberichtigungsstelle"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -82,6 +100,9 @@
     "answer_images": [],
     "short_answer": [
       "Berichtigungsstempel auf der Rückseite der Seekarte."
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -95,6 +116,9 @@
       "Seekarte ist berichtigt bis zur Mitteilung Nummer 3595",
       "Admiralty Notices to Mariners (N.T.M.)",
       "Jahr: 1998"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -109,6 +133,9 @@
       "Ereignisse und Veränderungen auf Seeschifffahrtsstraßen",
       "Informationen zur Hohen See",
       "Daten zu Hoheitsgewässern anderer Staaten in Europa und angrenzenden Bereichen"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -120,6 +147,9 @@
     "answer_images": [],
     "short_answer": [
       "Nachrichten für Seefahrer (NfS) in deutscher und englischer Sprache."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -134,6 +164,9 @@
       "Feuerschiffe",
       "Großtonnen",
       "Geographische Lage"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -145,6 +178,9 @@
     "answer_images": [],
     "short_answer": [
       "Tonnen kleiner als 8 m Höhe."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -160,6 +196,9 @@
       "Seekarten",
       "Karte 1/ INT International Hydrographic 1 des BSH",
       "Anlage I zur SeeSchStrO (z. B. Tonnen des Lateral- bzw. Kardinalsystems)"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -172,6 +211,9 @@
     "short_answer": [
       "Gewässer mit Gezeiten (z. B. Nordsee): mittleres Hochwasser",
       "Gezeitenlose Gewässer (z. B. Ostsee): mittlerer Wasserstand"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -184,6 +226,9 @@
     "short_answer": [
       "See- und Hafenhandbücher",
       "Seekarten"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -198,6 +243,9 @@
       "Naturverhältnisse",
       "Küstenkunde",
       "Segelanweisungen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -210,6 +258,9 @@
     "short_answer": [
       "Rechtweisend in Grad",
       "Im Uhrzeigersinn (rechtsherum) zählend"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -223,6 +274,9 @@
       "Roter Warnsektor: 030°-042°",
       "Peilungen zum Leuchtfeuer",
       "Liegt im Südwest-Quadranten"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -236,6 +290,9 @@
       "Einzelfeuer",
       "Sektoren verschiedener Farbe oder Kennung",
       "Bezeichnen Fahrwasser, Hafeneinfahrt oder freien Seeraum zwischen Untiefen"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -249,6 +306,9 @@
       "Richtfeuer: Unter- und Oberfeuer in Deckpeilung",
       "Bezeichnen Kurs im Fahrwasser, Hafeneinfahrt oder zwischen Untiefen",
       "In der Richtlinie: Unter- und Oberfeuer erscheinen senkrecht unter-/übereinander"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -264,6 +324,9 @@
       "Gegenüber der Fahrwasserachse angeordnet",
       "Rechtwinklig zur Fahrwasserachse",
       "Gleich weit von der Fahrwasserachse entfernt"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -275,6 +338,9 @@
     "answer_images": [],
     "short_answer": [
       "Abstand, in dem ein Feuer einen deutlichen Lichteindruck hervorruft."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -287,6 +353,9 @@
     "short_answer": [
       "Nenntragweite: Tragweite eines Feuers",
       "Definierter Wert: meteorologische Sichtweite von 10 sm am Tage"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -299,6 +368,9 @@
     "short_answer": [
       "Lichtstärke (Helligkeit) des Feuers",
       "Sichtwert (Lichtdurchlässigkeit der Atmosphäre)"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -311,6 +383,9 @@
     "short_answer": [
       "Nenntragweite",
       "18 Seemeilen"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -325,6 +400,10 @@
       "Abhängigkeit:",
       "Feuerhöhe",
       "Augenhöhe des Beobachters"
+    ],
+    "exam_sheets": [
+      7,
+      9
     ]
   },
   {
@@ -336,6 +415,9 @@
     "answer_images": [],
     "short_answer": [
       "Tragweite ≥ Sichtweite"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -348,6 +430,9 @@
     "short_answer": [
       "In deutschen Leuchtfeuerverzeichnissen",
       "In britischen Leuchtfeuerverzeichnissen"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -359,6 +444,9 @@
     "answer_images": [],
     "short_answer": [
       "In der Karte 1/INT des BSH."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -371,6 +459,10 @@
     "short_answer": [
       "BfS werden von den zuständigen Behörden der Wasser- und Schifffahrtsverwaltung des Bundes bzw. der Länder veröffentlicht.",
       "Sie umfassen wichtige Maßnahmen und Ereignisse auf den Seeschifffahrtsstraßen und der ausschließlichen Wirtschaftszone Deutschlands."
+    ],
+    "exam_sheets": [
+      1,
+      9
     ]
   },
   {
@@ -384,6 +476,9 @@
       "Bekanntmachungen für Seefahrer (BfS) werden an amtlichen Aushangstellen veröffentlicht.",
       "Aushangstellen: Wasser- und Schifffahrtsämter, Hafenverwaltungen, WSP-Dienststellen, Schleusen, Yachthäfen.",
       "Veröffentlichung auch im Internet unter www.elwis.de."
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -398,6 +493,9 @@
       "Veränderte Wassertiefen",
       "Wracks, Schifffahrtshindernisse, Rohrleitungen usw.",
       "Bauarbeiten, Baggerarbeiten, militärische Übungen und damit zusammenhängende Sperrungen oder Behinderungen"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -411,6 +509,10 @@
       "NWN werden von Verkehrszentralen und dem Seewarndienst Emden herausgegeben.",
       "Verbreitung über Funk.",
       "Rundfunksender Deutschlandfunk verbreitet alle NWN."
+    ],
+    "exam_sheets": [
+      7,
+      10
     ]
   },
   {
@@ -422,6 +524,9 @@
     "answer_images": [],
     "short_answer": [
       "Zusatz \"vital\" weist auf lebensbedrohende Gefahr hin."
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -435,6 +540,9 @@
       "Vitale nautische Warnnachrichten (NWN) für die Sportschifffahrt",
       "Verbreitung: 1. April bis 31. Oktober",
       "Über ausgewählte private und öffentlich-rechtliche Rundfunkanstalten"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -448,6 +556,9 @@
       "Herausgeber: BSH (Bundesamt für Seeschifffahrt und Hydrographie)",
       "Form: Heftform und Internet",
       "Erscheinungsfrequenz: einmal wöchentlich"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -459,6 +570,9 @@
     "answer_images": [],
     "short_answer": [
       "Britische Notices to Mariners (NtM)"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -472,6 +586,10 @@
       "P-Nachrichten kündigen bevorstehende (preliminary) Maßnahmen an.",
       "Keine Berichtigungen auf Grundlage von P-Nachrichten durch BSH oder amtliche Seekartenberichtigungsstellen.",
       "Vor Gebrauch jeder Seekarte müssen gültige P-Nachrichten erfasst und vermerkt werden."
+    ],
+    "exam_sheets": [
+      5,
+      10
     ]
   },
   {
@@ -485,6 +603,9 @@
       "T-Nachrichten informieren über temporäre Zustände.",
       "Keine Berichtigungen durch BSH/amtliche Stellen aufgrund begrenzter Geltungsdauer.",
       "Vor Gebrauch jeder Seekarte müssen gültige T-Nachrichten erfasst und vermerkt werden."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -498,6 +619,9 @@
       "Seekarten mit größtmöglichem Maßstab verwenden",
       "Enthalten alle Schifffahrtszeichen",
       "Wichtige Informationen für die Navigation sind eingetragen"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -511,6 +635,9 @@
       "Missweisung für bestimmtes Jahr beachten",
       "Jährliche Änderung in Seekarte berücksichtigen",
       "Korrektur für aktuelles Jahr durchführen"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -523,6 +650,9 @@
     "short_answer": [
       "Nach Druck keine Berichtigung durch BSH oder Seekartenvertriebsstellen.",
       "Nutzer muss nach Kauf über NfS auf aktuellen Stand berichtigen."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -535,6 +665,9 @@
     "short_answer": [
       "Doppelt so viele Knoten (kn) wie m/s",
       "m/s multipliziert mit 2 = kn"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -547,6 +680,10 @@
     "short_answer": [
       "Logmethoden liefern \"Fahrt durchs Wasser (FdW)\".",
       "Für \"Fahrt über Grund (FüG)\" Stromrichtung und Stromgeschwindigkeit berücksichtigen."
+    ],
+    "exam_sheets": [
+      3,
+      10
     ]
   },
   {
@@ -558,6 +695,10 @@
     "answer_images": [],
     "short_answer": [
       "Fahrt über Grund (FüG)"
+    ],
+    "exam_sheets": [
+      11,
+      12
     ]
   },
   {
@@ -569,7 +710,8 @@
     "answer_images": [],
     "short_answer": [
       "Kurs über Grund (KüG)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "navigation",
@@ -581,6 +723,9 @@
     "short_answer": [
       "Abweichungen von der Kurslinie frühzeitig erkennen",
       "Kurs ggf. berichtigen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -594,6 +739,9 @@
       "Richtung (rw) und Entfernung (in sm)",
       "Vom Koppelort (Ok) zum beobachteten Ort (Ob)",
       "Bezogen auf den gleichen Zeitpunkt"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -607,6 +755,9 @@
       "Ungenaues Steuern und Koppeln",
       "Kursfehler (z. B. ungenaue Steuertafel)",
       "Fehlende oder unvollständige Berücksichtigung von Strom und Wind"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -619,6 +770,9 @@
     "short_answer": [
       "Sicherere Positionsbestimmung",
       "Winkel zwischen Peilungen: min. 30°, max. 150°"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -631,6 +785,9 @@
     "short_answer": [
       "Überprüfung der Funktionsfähigkeit des Kompasses",
       "Kontrolle der Werte in der Ablenkungstabelle"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -643,6 +800,9 @@
     "short_answer": [
       "Stärke, Dauer und Richtung des Windes",
       "\"Zurückschwappen\" aufgestauter Wassermassen (z. B. Ostsee)"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -657,6 +817,10 @@
       "Untiefen und Hindernisse in der Karte kennzeichnen",
       "Leuchtfeuer in der Seekarte markieren (wann und wo in der Kimm erscheinen)",
       "Wegstrecke nach unbefeuerten Tonnen absuchen"
+    ],
+    "exam_sheets": [
+      4,
+      9
     ]
   },
   {
@@ -670,6 +834,9 @@
       "Kreuzpeilung",
       "Peilung und Abstand (Feuer in der Kimm, Radarabstand)",
       "Peilung und Lotung"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -682,6 +849,9 @@
     "short_answer": [
       "Peilung und Abstand (Feuer in der Kimm, Radarabstand)",
       "Peilung und Lotung"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -695,6 +865,9 @@
       "rwN: rechtweisend Nord, Richtung eines Meridians zum geographischen Nordpol.",
       "mwN: missweisend Nord, Richtung des erdmagnetischen Feldes zum magnetischen Nordpol, abhängig von Schiffsort und Datum.",
       "MgN: Richtung zu Magnetkompass-Nord, beeinflusst durch das schiffsmagnetische Feld."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -707,6 +880,9 @@
     "short_answer": [
       "Mw: Missweisung ist der Winkel von rwN nach mwN.",
       "Abl: Ablenkung (Abl) oder Deviation (Dev) ist der Winkel von mwN nach MgN."
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -719,6 +895,9 @@
     "short_answer": [
       "Winkel zwischen rwN und MgN: Fehlweisung (Fw)",
       "Formel: Abl + Mw = Fw"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -733,6 +912,9 @@
       "Gilt für ein bestimmtes Jahr",
       "Jährliche Änderung beachten",
       "Wert auf Jahr der Benutzung berichtigen"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -745,6 +927,9 @@
     "short_answer": [
       "Ablenkungstabelle verwenden",
       "Abl ist kursabhängig"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -758,6 +943,9 @@
       "Ablenkungstabelle variiert je nach Fahrzeug.",
       "Unterschiedliche Werte aufgrund von Bauart und Material.",
       "Notwendig für präzise Navigation."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -771,6 +959,9 @@
       "Abl für anliegenden MgK aus Steuertafel (Ablenkungstabelle) entnehmen",
       "mwK (missweisenden Kurs) ermitteln",
       "Mw (Magnetabweichung) für laufendes Jahr der Seekarte anbringen"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -783,6 +974,9 @@
     "short_answer": [
       "Meeresgrund muss ausreichend regelmäßig sein",
       "Meeresgrund muss ausreichend steil ansteigen/abfallen"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -795,6 +989,9 @@
     "short_answer": [
       "Sonderzeichen zur Bezeichnung von Sperrgebieten",
       "Kardinalzeichen für allgemeine Gefahrenstellen"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -808,6 +1005,9 @@
       "Seekarten",
       "Bekanntmachungen für Seefahrer (BfS)",
       "Nautische Warnnachrichten (NWN)"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -822,6 +1022,9 @@
       "Leuchttonnen",
       "Spierentonnen",
       "Stangen"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -837,6 +1040,9 @@
       "Spierentonnen",
       "Stangen mit breitem roten Band",
       "Beschriftung: \"Sperrgebiet\" oder \"Sperr-G\" in schwarzen Buchstaben"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -848,6 +1054,9 @@
     "answer_images": [],
     "short_answer": [
       "Farbe: gelb"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -860,6 +1069,9 @@
     "short_answer": [
       "Fahrverbot für Maschinenfahrzeuge und Wassermotorräder",
       "Gilt auf wegen Badebetrieb gesperrten Wasserflächen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -872,6 +1084,9 @@
     "short_answer": [
       "Springzeit: Mond und Sonne in Ebene mit der Erde.",
       "Nippzeit: Verbindungslinien Erde/Sonne und Erde/Mond im rechten Winkel zueinander."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -884,6 +1099,9 @@
     "short_answer": [
       "Alter der Gezeit: Phase des Tidengeschehens",
       "Nippzeit, Mittzeit, Springzeit"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -897,6 +1115,9 @@
       "Umlaufzeit des Mondes: 24 h 50 min (Mondtag)",
       "Sonnentag: 24 h",
       "Hoch- und Niedrigwasser \"rutscht\" zeitweise in den nächsten Tag"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -910,6 +1131,10 @@
       "Wasserstände können durch Wind und Luftdruck erheblich abweichen.",
       "HWH/NWH können höher oder niedriger sein als in Gezeitentafeln angegeben.",
       "Hoch- und Niedrigwasserzeiten können früher oder später eintreten."
+    ],
+    "exam_sheets": [
+      5,
+      10
     ]
   },
   {
@@ -921,6 +1146,9 @@
     "answer_images": [],
     "short_answer": [
       "Bezug auf Kartennull (KN)"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -932,6 +1160,9 @@
     "answer_images": [],
     "short_answer": [
       "Kartennull (KN) ist die Bezugsfläche für Tiefenangaben in einer Seekarte."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -945,6 +1176,10 @@
       "Ostsee: KN = mittlerer Wasserstand",
       "Nordsee/Englischer Kanal: KN = niedrigstmöglicher Gezeitenwasserstand (LAT = Lowest Astronomical Tide)",
       "Kartennullebene in der jeweiligen Seekarte beschrieben"
+    ],
+    "exam_sheets": [
+      4,
+      8
     ]
   },
   {
@@ -957,6 +1192,9 @@
     "short_answer": [
       "Wassertiefe bei Lotung ist höher als bei Niedrigwasser.",
       "Niedrigwasser führt zu geringerer Wassertiefe."
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -969,6 +1207,9 @@
     "short_answer": [
       "Kartentiefe (KT) ist die auf Kartennull bezogene Wassertiefe.",
       "Kartentiefe = Wassertiefe - Höhe der Gezeit."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -980,6 +1221,9 @@
     "answer_images": [],
     "short_answer": [
       "Kartentiefe"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -992,6 +1236,9 @@
     "short_answer": [
       "Besonders hohe Hochwasser",
       "Besonders niedrige Niedrigwasser"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -1004,6 +1251,9 @@
     "short_answer": [
       "Nippzeit = besonders niedrige Hochwasser",
       "Nippzeit = besonders hohe Niedrigwasser"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -1016,6 +1266,9 @@
     "short_answer": [
       "Springzeit: stärkere Gezeitenströme",
       "Nippzeit: schwächere Gezeitenströme"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -1030,6 +1283,9 @@
       "Seehandbücher",
       "Seekarten",
       "Gezeitenstromtabellen (bezogen auf Hochwasserzeiten des Bezugsortes)"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -1042,6 +1298,9 @@
     "short_answer": [
       "Ort der Zahl liegt 2,3 m über Kartennull",
       "Kann trockenfallen"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -1055,6 +1314,9 @@
       "WT - H = KT",
       "KT + H = WT",
       "Zusammenhang zwischen Kartentiefe, Wassertiefe und Höhe der Gezeit"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -1067,6 +1329,9 @@
     "short_answer": [
       "Gezeitentafel zur Bestimmung von Hoch- und Niedrigwasser nutzen",
       "Feststellung, ob Wasser steigt oder fällt"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -1078,6 +1343,9 @@
     "answer_images": [],
     "short_answer": [
       "Skala zur Anzeige des Wasserstandes."
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -1090,6 +1358,9 @@
     "short_answer": [
       "Wind beeinflusst Strömungen und Wasserstandsänderungen",
       "Beeinflusst Gezeitenströme und Gezeiten"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -1103,6 +1374,9 @@
       "GPS arbeitet weltweit.",
       "Positionsanzeige jederzeit verfügbar.",
       "Geringer Positionsfehler."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -1115,6 +1389,9 @@
     "short_answer": [
       "GPS: 10 - 20 m bei 95 % Wahrscheinlichkeit",
       "DGPS: 1 - 10 m bei 95 % Wahrscheinlichkeit"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -1130,6 +1407,9 @@
       "In der Nähe von Fernsehsendern",
       "In der Nähe von Marineeinrichtungen",
       "Nutzung von UKW-Geräten und anderen elektronischen/elektrischen Geräten an Bord"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -1141,6 +1421,9 @@
     "answer_images": [],
     "short_answer": [
       "Global Positioning System"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -1154,6 +1437,10 @@
       "Laufzeitmessungen von GPS-Signalen",
       "Abstandsmessungen zu Satelliten",
       "Ortsbestimmung ermöglicht"
+    ],
+    "exam_sheets": [
+      9,
+      11
     ]
   },
   {
@@ -1167,6 +1454,9 @@
       "DGPS = Differential Global Positioning System",
       "Regionale Verbesserung der Ortsbestimmung",
       "Referenzstationen senden Korrekturwerte über Funk an Schiffe"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -1179,6 +1469,9 @@
     "short_answer": [
       "Ringsum freie Sicht (ohne Abschattungen)",
       "Einwandfreie Erdung"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -1192,6 +1485,9 @@
       "Position zur Zeit des Tastendrucks wird gespeichert.",
       "Rechtweisende Peilung (rwP) wird angezeigt.",
       "Distanz zu diesem Punkt wird angezeigt."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -1204,6 +1500,9 @@
     "short_answer": [
       "Schiff mit 95 % Wahrscheinlichkeit im Fehlerkreis von 100 m Radius um den beobachteten Ort.",
       "Jede 20. Ortsbestimmung (5 %) ungenauer als ca. 100 m."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -1217,6 +1516,9 @@
       "HDOP (horizontal dilution of precision) anzeigen lassen",
       "Anzahl der getrackten Satelliten prüfen",
       "Vergleich mit anderen Navigationssystemen und Koppelposition durchführen"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -1231,6 +1533,9 @@
       "Auswahl und Einstellung des Kartenbezugssystems im Empfänger",
       "Manuelle Verschiebung des GPS-Ortes um N/S- und E/W-Korrektur",
       "Verwendung von Seekarten, die auf WGS 84 beruhen"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -1243,6 +1548,9 @@
     "short_answer": [
       "Geographische Koordination",
       "Anzusteuernder Punkt"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -1256,6 +1564,9 @@
       "Globales Bezugssystem \"World Geodetic System 1984\" (WGS 84)",
       "Referenzellipsoid bei GPS",
       "Optimale Anpassung an die reale Form des Erdkörpers weltweit"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -1270,6 +1581,11 @@
       "Falsche Bedienung",
       "Zu große Entfernung",
       "Gieren des eigenen Fahrzeugs bei relativ vorausorientierter Radarstellung (head up)"
+    ],
+    "exam_sheets": [
+      7,
+      10,
+      15
     ]
   },
   {
@@ -1282,6 +1598,9 @@
     "short_answer": [
       "Peilung des Objektes → Peilstrahl als Standlinie",
       "Abstandsmessung mit VRM → Abstandskreis als Standlinie"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -1294,6 +1613,9 @@
     "short_answer": [
       "Kurze Impulslänge wählen.",
       "Messbereich verkleinern."
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -1305,6 +1627,10 @@
     "answer_images": [],
     "short_answer": [
       "AIS: Automatisches Identifizierungssystem (Automatic Identification System)"
+    ],
+    "exam_sheets": [
+      11,
+      13
     ]
   },
   {
@@ -1317,6 +1643,10 @@
     "short_answer": [
       "Automatisches Senden der Identität und schiffsbezogener Daten in kurzen Abständen",
       "Übertragung sicherheitsrelevanter Nachrichten (\"safety related messages\") von Bord oder Landstationen"
+    ],
+    "exam_sheets": [
+      1,
+      12
     ]
   },
   {
@@ -1330,6 +1660,10 @@
       "Reichweite entspricht UKW-Bedingungen",
       "Bei Handelsschiffen: 20 bis 30 sm",
       "Abhängigkeit von Antennenhöhe"
+    ],
+    "exam_sheets": [
+      2,
+      3
     ]
   },
   {
@@ -1342,6 +1676,9 @@
     "short_answer": [
       "Reichweite des AIS-Bordgerätes kann erhöht werden (z. B. durch Relaisstationen).",
       "Hindernisse wie Berge können die Reichweite abschatten und beeinträchtigen."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -1355,6 +1692,9 @@
       "Statische Daten: ID, Rufzeichen, Länge, Breite",
       "Dynamische Daten: UTC, Position, Heading, Kurs, Fahrt über Grund, ggf. Rate-of-turn, Fahrtstatus",
       "Reisebezogene Daten: Tiefgang, Zielort (Destination), ETA"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -1369,6 +1709,11 @@
       "Sendendes Fahrzeug hat AIS nicht abgeschaltet (nur bei zwingenden Gründen erlaubt)",
       "GPS ist aktiv",
       "Keine Ausschlüsse aufgrund von Kapazitätsgründen (z. B. \"target overflow\")"
+    ],
+    "exam_sheets": [
+      5,
+      6,
+      14
     ]
   },
   {
@@ -1385,6 +1730,10 @@
       "Manuell eingegebene Daten:",
       "Zielort, Tiefgang, Fahrtstatus können falsch sein.",
       "Falsche Daten durch Nachlässigkeit der Schiffsführung möglich."
+    ],
+    "exam_sheets": [
+      7,
+      15
     ]
   },
   {
@@ -1399,6 +1748,10 @@
       "Anzeigen können im Seegangsclutter oder Informationsfülle untergehen.",
       "AIS-Daten werden auf vielen Schiffen im Radar dargestellt.",
       "Gefahr, dass Sportfahrzeuge ohne AIS weniger auffällig sind."
+    ],
+    "exam_sheets": [
+      8,
+      9
     ]
   },
   {
@@ -1414,7 +1767,8 @@
       "Lot",
       "Log",
       "Uhr"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "navigation",
@@ -1435,6 +1789,9 @@
       "Seebücher und auf den neuesten Stand berichtigte Seekarten",
       "Logbuch",
       "Uhr/Zeitmesser"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -1447,6 +1804,9 @@
     "short_answer": [
       "Kugelkompass nutzbar bei größerer Krängung",
       "Verbesserte Ablesbarkeit der Kompassrose (Vergrößerungseffekt)"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -1460,6 +1820,9 @@
       "Veränderung des magnetischen Zustandes an Bord",
       "Einbauten",
       "Lageänderung von Ausrüstungsgegenständen"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -1473,6 +1836,9 @@
       "Elektronische Geräte (z. B. Radio, Handy)",
       "Magnetisierte Gegenstände (z. B. Werkzeug, Peilkompass)",
       "Gleichstromleitungen in der Nähe des Kompasses"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -1484,6 +1850,9 @@
     "answer_images": [],
     "short_answer": [
       "Mindestens 1 Meter Abstand vom Magnetkompass."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -1497,7 +1866,8 @@
       "Sicherheitszonen: Wasserflächen im Umkreis von 500 m",
       "Gilt für Plattformen, Bohrinseln, Forschungsanlagen u. a.",
       "Nicht befahren dürfen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -1511,6 +1881,9 @@
       "Für Schiffe mit Bundesflagge",
       "Seewärts der Begrenzung des Küstenmeeres der Bundesrepublik Deutschland",
       "Weltweit, sofern keine abweichenden Regelungen in Hoheitsgewässern anderer Staaten bestehen"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -1525,6 +1898,9 @@
       "Personen unter Einfluss alkoholischer Getränke",
       "Personen unter Einfluss anderer berauschender Mittel",
       "Beeinträchtigung der sicheren Führung eines Fahrzeugs oder der Ausübung von Brücken- oder Decksdiensten"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -1538,6 +1914,9 @@
       "0,25 mg/l oder mehr Alkohol in der Atemluft",
       "0,5 Promille oder mehr Alkohol im Blut",
       "Alkoholmenge, die zu obigen Konzentrationen führt"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -1552,6 +1931,10 @@
       "Besondere Umstände, einschließlich Behinderungen der Fahrzeuge, beachten",
       "Abweichen von KVR kann erforderlich sein, um unmittelbare Gefahr abzuwenden",
       "Beispiel: Abweichen von der Kurshaltepflicht bei unangemessenem Verhalten des Ausweichpflichtigen"
+    ],
+    "exam_sheets": [
+      3,
+      10
     ]
   },
   {
@@ -1565,6 +1948,9 @@
       "KVR befreien nicht von Folgen unzureichender Einhaltung.",
       "Allgemeine seemännische Praxis muss beachtet werden.",
       "Besondere Umstände können zusätzliche Maßnahmen erfordern."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -1579,6 +1965,9 @@
       "Sie sind in Einbahnwege unterteilt.",
       "Befahrung nur in Fahrtrichtung rechts der Trennlinie/Trennzone.",
       "Nutzung der vollen Breite des Einbahnweges erlaubt."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -1591,6 +1980,9 @@
     "short_answer": [
       "Manövrierunfähig: Fahrzeug kann wegen außergewöhnlicher Umstände (z. B. Ruderbruch) nicht regelgerecht manövrieren.",
       "Kann daher einem anderen Fahrzeug nicht ausweichen."
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -1604,6 +1996,9 @@
       "Manövrierbehindert = Fahrzeug, das durch Einsatzart behindert ist",
       "Beispiele: Bagger, Kabelleger",
       "Kann anderen Fahrzeugen nicht ausweichen"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -1620,6 +2015,9 @@
       "Flugzeugträger im Einsatz",
       "Minenräumfahrzeuge im Einsatz",
       "Fahrzeuge während eines Schleppvorganges, bei dem das schleppende Fahrzeug und sein Anhang erheblich behindert sind, vom Kurs abzuweichen."
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -1632,6 +2030,9 @@
     "short_answer": [
       "Fahrzeug muss jederzeit zum Stehen gebracht werden können",
       "Abstand muss ausreichend sein, um Zusammenstoß zu vermeiden"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -1643,7 +2044,8 @@
     "answer_images": [],
     "short_answer": [
       "Fahrzeuge ab 12 m Länge."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -1656,6 +2058,9 @@
       "Tanker kennzeichnet sich als Wegerechtschiff.",
       "Manövrierbehindertes Fahrzeug.",
       "Bei Kollisionsgefahr muss ausgewichen werden."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -1669,6 +2074,10 @@
       "Ohne FdW: rot-weiß-rot senkrecht übereinander.",
       "Mit FdW: rot-weiß-rot senkrecht übereinander + Lichter eines Maschinenfahrzeugs (Topplicht[er], Seitenlichter, Hecklicht).",
       "Vor Anker: rot-weiß-rot senkrecht übereinander + Ankerlicht(er)."
+    ],
+    "exam_sheets": [
+      6,
+      10
     ]
   },
   {
@@ -1681,6 +2090,9 @@
     "short_answer": [
       "Manövrierbehinderte Fahrzeuge: Ball-Rhombus-Ball senkrecht übereinander.",
       "Manövrierunfähige Fahrzeuge: zwei schwarze Bälle senkrecht übereinander."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -1693,6 +2105,9 @@
     "short_answer": [
       "Bei Nacht: Lichterführung eines Maschinenfahrzeugs entsprechender Größe",
       "Bei Tage: Kegel - Spitze unten - im Vorschiff gut sichtbar"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -1705,6 +2120,9 @@
     "short_answer": [
       "Lichterführung zwischen Sonnenuntergang und Sonnenaufgang",
       "Bei verminderter Sicht auch zwischen Sonnenaufgang und Sonnenuntergang"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -1724,6 +2142,9 @@
       "Anhang nachts:",
       "Seitenlichter",
       "Hecklicht"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -1741,6 +2162,9 @@
       "Schleppendes Fahrzeug: lang-kurz-kurz",
       "Anhängendes Fahrzeug: lang-kurz-kurz-kurz",
       "Signal wiederholt etwa jede Minute"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -1753,6 +2177,9 @@
     "short_answer": [
       "Signal von einem Fahrzeug auf Grund",
       "Länge unter 100 m"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -1771,6 +2198,9 @@
       "Ausgebrachtes Fanggerät waagerecht über 150 m",
       "Unteres weißes Licht kann Hecklicht sein",
       "Schallsignal: lang-kurz-kurz, mindestens alle 2 Minuten"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -1785,6 +2215,9 @@
     "short_answer": [
       "Manövrierunfähiges Fahrzeug",
       "In Fahrt ohne Fahrt durchs Wasser"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -1800,6 +2233,9 @@
     "short_answer": [
       "Manövrierunfähiges Fahrzeug in Fahrt ohne FdW hat FdW aufgenommen.",
       "Sichtbarkeit des Backbord-Seitenlichts bestätigt dies."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -1814,6 +2250,9 @@
       "Nutzung aller verfügbaren Mittel",
       "Vollständiger Überblick über die Lage",
       "Möglichkeit der Gefahr eines Zusammenstoßes erkennen"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -1826,6 +2265,9 @@
     "short_answer": [
       "Fahrzeuge < 20 m oder Segelfahrzeuge dürfen Durchfahrt nicht behindern.",
       "Frühzeitige Maßnahmen ergreifen, um Raum für sichere Durchfahrt zu lassen."
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -1837,6 +2279,9 @@
     "answer_images": [],
     "short_answer": [
       "Gebiet zwischen Küste und landwärtiger Grenze eines Verkehrstrennungsgebietes."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -1849,6 +2294,9 @@
     "short_answer": [
       "Fahrzeuge von weniger als 20 m Länge",
       "Segelfahrzeuge"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -1861,6 +2309,9 @@
     "short_answer": [
       "Maschinenfahrzeuge müssen mit sicherer Geschwindigkeit fahren.",
       "Geschwindigkeit an die gegebenen Umstände und Bedingungen der verminderten Sicht anpassen."
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -1873,6 +2324,9 @@
     "short_answer": [
       "Segelfahrzeuge müssen mit sicherer, angepasster Geschwindigkeit fahren.",
       "Maschine an Bord sollte bereitgehalten werden (gute Seemannschaft)."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -1887,6 +2341,9 @@
       "Erforderlichenfalls jegliche Fahrt wegnehmen",
       "Mit äußerster Vorsicht manövrieren",
       "Gefahr eines Zusammenstoßes abwarten"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -1903,6 +2360,9 @@
       "Manöver des sogenannten \"vorletzten Augenblicks\" fahren.",
       "Manöver des sogenannten \"letzten Augenblicks\" fahren.",
       "Zwingend vorgeschrieben sind die Maßnahmen nach 2. und 5."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -1919,6 +2379,9 @@
       "Gefahr eines Zusammenstoßes",
       "Beide Fahrzeuge müssen Kurs nach Steuerbord ändern",
       "Änderung durch kurzen Ton anzeigen"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -1930,6 +2393,9 @@
     "answer_images": [],
     "short_answer": [
       "Kielrichtung (rwK) muss rechtwinklig zur allgemeinen Verkehrsrichtung zeigen."
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -1941,7 +2407,8 @@
     "answer_images": [],
     "short_answer": [
       "Ausweichregeln der KVR beachten."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -1953,6 +2420,9 @@
     "short_answer": [
       "Kompasspeilung zu anderem Fahrzeug beachten",
       "Annäherung der beiden Fahrzeuge erkennen"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -1966,6 +2436,9 @@
       "Möglichst frühzeitig durchführen",
       "Durchgreifend, damit das andere Fahrzeug die Absicht rasch erkennt",
       "Gut klar halten"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -1978,6 +2451,9 @@
     "short_answer": [
       "Erfolg des Manövers laufend überprüfen",
       "Bis das andere Fahrzeug klar passiert ist"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -1990,6 +2466,9 @@
     "short_answer": [
       "Licht: Backbordlicht eines Segelfahrzeugs in Fahrt",
       "Ausweichen: Segelfahrzeug in Luv muss ausweichen, da es den Wind von Backbord hat oder luvwärts steht."
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -2003,6 +2482,9 @@
       "Licht: Steuerbordlicht eines Segelfahrzeugs in Fahrt",
       "Ausweichen: Ihr Fahrzeug muss als leewärtiges Fahrzeug ausweichen",
       "Begründung: Sie können nicht erkennen, von welcher Seite das andere Fahrzeug den Wind hat (Wind von Backbord)"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -2017,6 +2499,9 @@
       "Fahrzeug giert im Seegang",
       "Ausweichpflicht: Ihr Fahrzeug muss ausweichen",
       "Begründung: Nähert sich aus dem Hecksektor, steht auf der Sektorengrenze, muss als überholendes Fahrzeug agieren"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -2030,6 +2515,9 @@
       "Manövrierbehindertes Fahrzeug (FdW) mit Topplichtern und Seitenlichtern.",
       "Fahrzeug nähert sich im Hecklichtsektor.",
       "Es muss als Überholer ausweichen."
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -2042,6 +2530,9 @@
     "short_answer": [
       "Zeitpunkt: Augenblick des ersten Insichtkommens",
       "Verantwortlichkeit bleibt unverändert, auch bei späterer Lageänderung der Fahrzeuge"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -2055,6 +2546,9 @@
       "Kurshalter: Kurs und Geschwindigkeit beibehalten.",
       "Manövrieren zur Abwendung eines Zusammenstoßes, wenn das andere Fahrzeug nicht regelgerecht manövriert.",
       "Zweckdienliches Manövrieren, wenn Ausweichpflichtiger allein keinen Zusammenstoß mehr vermeiden kann."
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -2069,6 +2563,9 @@
       "manövrierbehinderten Fahrzeugen",
       "fischenden Fahrzeugen",
       "ggf. anderen Segelfahrzeugen (abhängig von der Segelstellung in Bezug auf den Wind)"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -2084,6 +2581,9 @@
       "frühzeitige Kursänderung",
       "Geschwindigkeitsänderung",
       "Kombination aus beidem"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -2096,6 +2596,9 @@
     "short_answer": [
       "In engen Fahrwassern",
       "Auf dem Einbahnweg eines Verkehrstrennungsgebietes (VTG) gegenüber Maschinenfahrzeugen im VTG"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -2107,7 +2610,8 @@
     "answer_images": [],
     "short_answer": [
       "Mindestens 1.000 m Abstand zu Minenräumfahrzeugen halten."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2121,6 +2625,9 @@
       "A und B müssen Kurs nach Steuerbord ändern.",
       "Passieren an der Backbord-Seite.",
       "Signal \"ein kurzer Ton\" geben."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -2136,6 +2643,9 @@
       "B ist ein Maschinenfahrzeug von weniger als 50 m Länge in Fahrt, dessen Steuerbord-Seite man sieht.",
       "B muss ausweichen, weil es die Motoryacht A an seiner Steuerbord-Seite hat.",
       "Die Motoryacht A muss Kurs und Geschwindigkeit beibehalten."
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -2151,6 +2661,9 @@
       "Fischenden Fahrzeugen",
       "Segelfahrzeugen",
       "Ggf. einem anderen Maschinenfahrzeug"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -2167,6 +2680,9 @@
       "A muss ausweichen (B an Steuerbord)",
       "A gibt \"ein kurzer Ton\"",
       "B beibehaltung von Kurs und Geschwindigkeit"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -2182,6 +2698,10 @@
       "Weißes Rundumlicht führen (nicht verwechselbar)",
       "Signal \"weißer Stern\" oder \"Blitz-Knall\" abfeuern",
       "Verkehrszentrale sofort informieren (wenn vorhanden)"
+    ],
+    "exam_sheets": [
+      3,
+      8
     ]
   },
   {
@@ -2193,7 +2713,8 @@
     "answer_images": [],
     "short_answer": [
       "Fahrwasser der Seeschifffahrtsstraßen gelten als enge Fahrwasser im Sinne der KVR."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2206,6 +2727,9 @@
       "Umfasst alle Fahrzeuge, die dem Fahrwasserverlauf folgen",
       "Abweichen von höchstens ± 10° von der Richtung des Fahrwassers erlaubt",
       "Zweck des Betriebs des Fahrzeugs ist gleichgültig"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -2218,6 +2742,9 @@
     "short_answer": [
       "Sicherheit und Leichtigkeit des Verkehrs gewährleisten",
       "Andere nicht schädigen, gefährden oder mehr als unvermeidbar behindern oder belästigen"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -2231,6 +2758,9 @@
       "Befolgung der Vorschriften im Verkehr (z. B. KVR, SeeSchStrO)",
       "Ausrüstung/Einrichtung des Fahrzeugs für Lichter und Signalkörper",
       "Geben von Schallsignalen"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -2244,6 +2774,9 @@
       "Wasserflächen zwischen Küstenlinie bei mittlerem Hochwasser und 3 Seemeilen seewärts der Basislinie",
       "Durchgehend durch laterale Zeichen (Tonnen) begrenzte Wasserflächen der seewärtigen Teile der Fahrwasser im Küstenmeer",
       "Wasserflächen zwischen den Ufern bestimmter Binnenwasserstraßen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -2256,6 +2789,9 @@
     "short_answer": [
       "Teile der Wasserflächen, die durch Tonnen (laterale Zeichen) begrenzt sind",
       "Auf Binnenwasserstraßen für die durchgehende Schifffahrt bestimmte Bereiche"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -2270,6 +2806,9 @@
       "Seeschifffahrtsstraßen-Ordnung",
       "Bekanntmachungen der WSD Nord und Nordwest",
       "ggf. Hafenordnungen"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -2284,6 +2823,9 @@
       "Gilt innerhalb und außerhalb der Fahrwasser.",
       "Ausnahmen nur, wenn SeeSchStrO ausdrücklich etwas anderes bestimmt (z. B. Vorfahrt).",
       "Grundsatz: Vorrang der spezielleren Rechtsvorschrift vor der allgemeineren."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -2296,6 +2838,9 @@
     "short_answer": [
       "Ausweichen nach KVR-Regeln",
       "Keine Gefährdung oder Behinderung vorfahrtberechtigter Fahrzeuge"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -2312,6 +2857,9 @@
       "Möglichst weit entfernen (sicherer Abstand)",
       "Keine elektrischen Schalter bedienen",
       "Kein offenes Feuer"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -2324,6 +2872,9 @@
     "short_answer": [
       "Signal bei Gefährdung eines anderen Fahrzeugs oder eigener Gefährdung.",
       "Schallsignal: ein langer Ton, vier kurze Töne; ein langer Ton, vier kurze Töne."
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -2338,6 +2889,9 @@
       "Nutzung bei verminderter Sicht ist nicht erlaubt.",
       "Kanalfahrt muss so geplant werden, dass vor Ablauf der Tagfahrzeit eine Sportliegestelle erreicht wird.",
       "Bei plötzlicher verminderter Sicht dürfen Sportfahrzeuge in Weichengebieten hinter Dalben oder an geeigneten Liegestellen festmachen."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -2351,6 +2905,9 @@
       "Segeln ist auf dem NOK verboten.",
       "Sportfahrzeuge mit Maschinenantrieb dürfen zusätzlich die Segel setzen.",
       "Ein motorbetriebenes Sportfahrzeug darf nur ein Sportfahrzeug schleppen."
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -2363,7 +2920,8 @@
     "short_answer": [
       "Schnellstmöglich in einem Weichengebiet hinter den Dalben festmachen",
       "An geeigneten Liegestellen festmachen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2376,6 +2934,9 @@
       "Einfahren verboten.",
       "Freigabe wird vorbereitet.",
       "Sportfahrzeuge können einfahren."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -2390,6 +2951,10 @@
       "Wartepflichtige müssen rechtzeitig durch Fahrverhalten erkennen lassen, dass sie warten.",
       "Weiterfahren nur erlaubt, wenn keine Beeinträchtigung der Schifffahrt im Fahrwasser erkennbar ist.",
       "Kurs und/oder Geschwindigkeit des Wartepflichtigen kann geändert werden (nicht als Ausweichen gewertet)."
+    ],
+    "exam_sheets": [
+      4,
+      8
     ]
   },
   {
@@ -2404,6 +2969,10 @@
       "Andere Fahrzeuge müssen warten, wenn sie in das Fahrwasser einlaufen, drehen oder an- und ablegen wollen.",
       "\"Vorfahrt haben\" bedeutet nicht, Vorfahrt zu erzwingen.",
       "Vorfahrtberechtigte Fahrzeuge müssen ggf. Kollisionen verhindern."
+    ],
+    "exam_sheets": [
+      5,
+      9
     ]
   },
   {
@@ -2417,6 +2986,9 @@
       "Vorfahrt der Fahrzeuge im Fahrwasser beachten",
       "Warten, bis das Fahrwasser frei ist",
       "Rechtzeitig durch Fahrverhalten erkennen lassen, dass gewartet wird"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -2430,6 +3002,9 @@
       "Vorfahrt der Fahrzeuge im Fahrwasser beachten",
       "Warten, bis das Fahrwasser frei ist",
       "Rechtzeitig durch Fahrverhalten erkennen lassen, dass gewartet wird"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -2443,6 +3018,9 @@
       "Sportfahrzeug muss sich nahe am äußeren Rand des Fahrwassers halten",
       "Steuerbordseite ist zu bevorzugen",
       "Gefahrensituation vermeiden"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -2454,6 +3032,9 @@
     "answer_images": [],
     "short_answer": [
       "Klar erkennbar machen, dass das Fahrwasser nicht benutzt wird."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -2465,6 +3046,9 @@
     "answer_images": [],
     "short_answer": [
       "Jedes Fahrzeug muss nach Steuerbord ausweichen."
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -2478,6 +3062,9 @@
       "Queren = deutliches Abweichen vom Fahrwasserverlauf",
       "Allgemeine Verkehrsmeinung: mehr als 10°",
       "Beispiel: Kreuzen eines Segelfahrzeuges über gesamte oder teilweise Fahrwasserbreite"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -2490,7 +3077,8 @@
     "short_answer": [
       "Höchstgeschwindigkeit 8 km/h",
       "Abstand weniger als 500 m vom Ufer"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2507,6 +3095,9 @@
       "Führt Unterwasserarbeiten aus (z. B. baggert)",
       "Passierseite an Steuerbord: zwei grüne Rundumlichter übereinander",
       "Passierbehinderung an Backbord-Seite: zwei rote Rundumlichter übereinander"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -2523,6 +3114,9 @@
       "Fahrt durchs Wasser, führt Unterwasserarbeiten aus (z. B. baggert)",
       "Passierseite: Backbord (zwei schwarze Rhomben übereinander)",
       "Passierbehinderung: Steuerbord-Seite (zwei schwarze Bälle übereinander)"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -2535,6 +3129,9 @@
     "short_answer": [
       "Backbordfahrwassertonne",
       "Nächste Tonne: Aufschrift 32"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -2547,6 +3144,9 @@
     "short_answer": [
       "Motorsportfahrzeuge, die andere Sportfahrzeuge schleppen, gelten nicht als schleppende Maschinenfahrzeuge.",
       "Keine besondere Lichterführung/Kennzeichnung erforderlich."
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -2560,6 +3160,9 @@
       "Ein motorbetriebenes Sportfahrzeug darf nur ein Sportfahrzeug schleppen.",
       "Geschlepptes Sportfahrzeug: Höchstlänge weniger als 15 m.",
       "Mindestgeschwindigkeit beim Schleppen: 9 km/h."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -2574,6 +3177,9 @@
     "short_answer": [
       "Signal: Außergewöhnliche Schifffahrtsbehinderung.",
       "Nachts: Rundumlichter rot-rot-grün senkrecht übereinander."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -2588,6 +3194,9 @@
       "Personen unter Einfluss alkoholischer Getränke",
       "Personen unter Einfluss anderer berauschender Mittel",
       "Beeinträchtigung der sicheren Führung eines Fahrzeugs oder der Ausübung von Brücken- oder Decksdiensten"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -2601,6 +3210,9 @@
       "0,25 mg/l oder mehr Alkohol in der Atemluft",
       "0,5 Promille oder mehr Alkohol im Blut",
       "Alkoholmenge, die zu einer solchen Atem- oder Blutalkoholkonzentration führt"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -2614,7 +3226,8 @@
       "Einreiseformalitäten beachten",
       "Gesundheitsformalitäten erledigen",
       "Zollformalitäten durchführen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2628,6 +3241,9 @@
       "Nachweis des Rechts und der Pflicht zum Führen der Bundesflagge",
       "Für Fahrzeuge unter 15 m Lüa",
       "Gilt für \"nicht registerpflichtige Fahrzeuge\""
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -2641,6 +3257,9 @@
       "Nachweis der Eintragung im Seeschiffsregister",
       "Ausgestellt vom Registergericht",
       "Vorgeschrieben ab 15 m Rumpflänge"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -2653,6 +3272,9 @@
     "short_answer": [
       "Seewärts der Küstenlinie bei mittlerem Hochwasser oder Basislinie",
       "Meeresgewässer bis zu einer Breite von 12 sm"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -2664,7 +3286,8 @@
     "answer_images": [],
     "short_answer": [
       "Gewässer landwärts der Basislinien."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2676,6 +3299,9 @@
     "short_answer": [
       "Grenze zwischen inneren Gewässern und Küstenmeer",
       "In Seekarten eingezeichnet"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -2690,6 +3316,9 @@
       "Ermittlung der Umstände des Seeunfalls",
       "Herausgabe von Untersuchungsberichten",
       "Sicherheitsempfehlungen zur Verhütung von Seeunfällen"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -2707,6 +3336,10 @@
       "Maritimer Umweltschaden oder sonstiger Sachschaden",
       "Gefahr für einen Menschen oder ein Schiff",
       "Gefahr eines schweren Schadens an einem Schiff, meerestechnischen Bauwerk oder Meeresumwelt"
+    ],
+    "exam_sheets": [
+      1,
+      10
     ]
   },
   {
@@ -2720,6 +3353,9 @@
       "Seeunfall unverzüglich der Bundesstelle für Seeunfalluntersuchung melden",
       "In deutschem Einlaufhafen: Meldung über Wasserschutzpolizei",
       "Im Ausland: Meldung über zuständige Hafenbehörden"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -2744,6 +3380,9 @@
       "Angaben über andere Schiffe, die am Unfall beteiligt sind",
       "Wetterbedingungen",
       "Darstellung der Gefahr einer Meeresverschmutzung"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -2759,6 +3398,9 @@
       "Schiffsführer",
       "Bei Verhinderung: anderes Besatzungsmitglied",
       "Ggf. Betreiber des Schiffes."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -2774,6 +3416,10 @@
       "Untersuchung von Fahrverboten.",
       "Entzug von Befähigungszeugnissen.",
       "Entzug von amtlichen Führerscheinen der Sportschifffahrt."
+    ],
+    "exam_sheets": [
+      2,
+      15
     ]
   },
   {
@@ -2786,6 +3432,9 @@
     "short_answer": [
       "Sicherheit auf dem Wasser, Leitfaden für Wassersportler",
       "Sicherheit im See- und Küstenbereich, Sorgfaltsregeln für Wassersportler"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -2799,6 +3448,9 @@
       "Meldung der Gefahr an das Maritime Lagezentrum (MLZ) in Cuxhaven",
       "Meldung direkt oder über Verkehrszentrale/Küstenfunkstelle",
       "Schnelligkeit der Meldung ist wichtig"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -2811,7 +3463,8 @@
     "short_answer": [
       "Beim Einlaufen in die Küstengewässer des Gastlandes",
       "Unter der Steuerbordsaling"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2826,7 +3479,8 @@
       "In Küstengewässern, auf See und im Hafen",
       "Am Flaggenstock am Heck",
       "Auf segelnden mehrmastigen Yachten auch im Topp des hintersten Mastes (nicht am Achterstag)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2839,6 +3493,9 @@
       "Verlassen der Fahrwasser zwischen 3 h nach Hochwasser und 3 h vor Hochwasser untersagt.",
       "Höchstgeschwindigkeit für Sportfahrzeuge außerhalb des Fahrwassers: 8 kn.",
       "Höchstgeschwindigkeit im Fahrwasser: 12 kn."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -2850,7 +3507,8 @@
     "answer_images": [],
     "short_answer": [
       "In den Seekarten."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2861,6 +3519,10 @@
     "answer_images": [],
     "short_answer": [
       "Zweck: Verschmutzung der Meere verhindern."
+    ],
+    "exam_sheets": [
+      1,
+      7
     ]
   },
   {
@@ -2874,6 +3536,9 @@
       "Ostsee",
       "Nordsee",
       "Mittelmeer"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -2888,6 +3553,9 @@
       "Einleiten von Schiffsabwässern",
       "Einleiten von Schiffsmüll",
       "Einleiten anderer Schadstoffe"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -2900,6 +3568,9 @@
     "short_answer": [
       "MARPOL-Übereinkommen gilt für alle Schiffe",
       "Einschließlich Sportfahrzeuge"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -2912,6 +3583,9 @@
     "short_answer": [
       "Broschüre \"Entsorgungsmöglichkeiten für Öl, Schiffsmüll und Schiffsabwässer\"",
       "Herausgeber: BSH (Bundesamt für Seeschifffahrt und Hydrographie)"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -2923,6 +3597,9 @@
     "answer_images": [],
     "short_answer": [
       "Im Hafen entsorgen."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -2935,7 +3612,8 @@
     "short_answer": [
       "Nord-, Ostsee und Mittelmeer sind Sondergebiete nach MARPOL.",
       "Müll darf dort nicht in die See entsorgt werden."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "schifffahrtsrecht",
@@ -2955,6 +3633,9 @@
       "Metall",
       "Steingut",
       "Schalungs- oder Verpackungsmaterial"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -2967,6 +3648,9 @@
     "short_answer": [
       "Wind ist bewegte Luft.",
       "Entstehung durch Druckunterschiede zwischen Hoch- und Tiefdruckgebieten."
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -2979,6 +3663,9 @@
     "short_answer": [
       "Temperatur, bei der Luft mit Feuchtigkeit gesättigt ist",
       "Kondensation (Taubildung) setzt ein"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -2990,7 +3677,8 @@
     "answer_images": [],
     "short_answer": [
       "Relative Feuchtigkeit in Prozent."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3010,6 +3698,9 @@
       "Strom",
       "Temperatur",
       "ggf. Luftfeuchte"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -3022,6 +3713,9 @@
     "short_answer": [
       "Windstärke: Beaufortskala (Bft)",
       "Windgeschwindigkeit: kn, m/s, km/h"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -3034,6 +3728,9 @@
     "short_answer": [
       "Isobaren",
       "Hektopascal (hPa) oder Millibar (mb, teilweise mbar)"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -3048,6 +3745,9 @@
       "Plötzliche Winddrehungen",
       "Regen- oder Hagelschauer mit starker Sichtminderung",
       "Blitzschlag"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -3060,6 +3760,9 @@
     "short_answer": [
       "Ende einer hochsommerlichen Schönwetterperiode",
       "Zusammenhang mit Kaltfronten"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -3072,6 +3775,9 @@
     "short_answer": [
       "1. Vorhersagen und Aussichten: 8-teilige Skala, 45°-Stufen",
       "2. Stationsmeldungen: 16-teilige Skala, 22,5°-Stufen"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -3084,7 +3790,8 @@
     "short_answer": [
       "Ab Windstärke 10 Bft",
       "Erfahrungsgemäß mit Böen über Bft 12"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3097,6 +3804,9 @@
       "12-teilige Beaufortskala",
       "Mäßiger Wind: Stärke 4",
       "Starkwind: Stärke 6 und 7"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -3110,6 +3820,9 @@
       "\"Handbuch Nautischer Funkdienst\" (Europa)",
       "\"Jachtfunkdienst\" (Europa)",
       "\"Admiralty List of Radio Signals\" (Europa und weltweit)"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -3126,6 +3839,9 @@
       "NAVTEX",
       "SafetyNet (Satcom)",
       "Online-Dienste (z. B. SEEWIS-Online des Deutschen Wetterdienstes)"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -3138,6 +3854,9 @@
     "short_answer": [
       "Wolkenaufzug, meist Cirrostratus",
       "Ggf. Niederschlag und Wetterverschlechterung"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -3150,6 +3869,9 @@
     "short_answer": [
       "Haufenwolken",
       "Besonders Cumulonimbus (Schauer- und Gewitterwolke)"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -3173,6 +3895,9 @@
       "Stratus",
       "Cumulus",
       "Cumulonimbus"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -3186,6 +3911,9 @@
       "Tiefe Wolken: 0 bis 2 km",
       "Mittelhohe Wolken: 2 bis 7 km",
       "Hohe Wolken: 7 bis 13 km"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -3197,7 +3925,8 @@
     "answer_images": [],
     "short_answer": [
       "Hohe Wolken bestehen aus kleinen Eiskristallen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3209,6 +3938,9 @@
     "short_answer": [
       "Cumulonimbus als Indikator",
       "Ambossförmiger Schirm in großer Höhe"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -3220,6 +3952,9 @@
     "answer_images": [],
     "short_answer": [
       "Altocumulus castellanus (mittelhohe türmchenartige Haufenwolken)"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -3232,6 +3967,9 @@
     "short_answer": [
       "Wind weht rechtsherum aus dem Hochdruckzentrum heraus",
       "Wind weht linksherum in den Tiefdruckkern hinein"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -3247,6 +3985,9 @@
       "Warmfront",
       "Kaltfront",
       "Okklusionsfront"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -3260,6 +4001,9 @@
       "Vor dem Durchzug: Luftdruck gleichbleibend oder fällt nur wenig.",
       "Während des Durchgangs: Luftdruck erreicht tiefsten Wert.",
       "Nach dem Durchzug: Luftdruck steigt wieder deutlich an."
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -3273,6 +4017,9 @@
       "Windrichtung und Druckgefälle erkennen",
       "Engere Isobaren = größeres Druckgefälle",
       "Größeres Druckgefälle = stärkerer Wind"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -3286,6 +4033,9 @@
       "Bodenreibung beeinflusst Windrichtung",
       "Wind weht nicht parallel zu Isobaren",
       "Rückdrehung des Winds gegen den Uhrzeigersinn"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -3299,6 +4049,9 @@
       "Wind weht nicht parallel zu Isobaren",
       "Rückgedreht, weht in das Tief hinein",
       "Änderung in der Windrichtung: 10° bis 20° (1 bis 2 Strich)"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -3312,6 +4065,9 @@
       "Wind weht nicht parallel zu Isobaren",
       "Rückgedreht, weht aus Hoch hinaus",
       "Änderung in der Windrichtung: 10° bis 20° (1 bis 2 Strich)"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -3325,6 +4081,9 @@
       "Schnelle: 30 bis 50 kn",
       "Mittlere: 15 bis 30 kn",
       "Langsame: bis 15 kn"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -3337,6 +4096,9 @@
     "short_answer": [
       "Aufeinandertreffen kalter Luftmassen aus hohen Breiten",
       "Subtropische warme Luftmassen"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -3348,7 +4110,8 @@
     "answer_images": [],
     "short_answer": [
       "Meist schwache umlaufende Winde."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3360,7 +4123,8 @@
     "short_answer": [
       "Abstand von 5 hPa",
       "Abstand von 5 mbar"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3373,6 +4137,9 @@
       "Vor oder nahe der Warmfront: Sichtverschlechterung durch Niederschlag, bedeckt, länger andauernder Regen.",
       "Im Warmsektor: Diesig oder mäßige Sicht, Wolkenauflockerung, zeitweise Regen.",
       "Hinter der Kaltfront: Sichtbesserung, meist gute Sicht. Schauer mit zum Teil kräftigen Böen."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -3390,6 +4157,9 @@
       "Punkt 3: Südwest",
       "Punkt 4: Nordwest",
       "Punkt 5: Umlaufender Wind"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -3405,6 +4175,9 @@
       "1: Okklusionsfront (Tiefausläufer)",
       "2: Warmfront",
       "3: Kaltfront"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -3421,6 +4194,9 @@
       "Kaltfront",
       "Warmfront",
       "Okklusion"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -3432,7 +4208,8 @@
     "answer_images": [],
     "short_answer": [
       "Land-/Seewind-Zirkulation"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3446,6 +4223,9 @@
       "Scirocco",
       "Bora",
       "Etesien/Meltemi"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -3457,7 +4237,8 @@
     "answer_images": [],
     "short_answer": [
       "Bora"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3469,6 +4250,9 @@
     "short_answer": [
       "Etesien",
       "Meltemi"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -3482,6 +4266,9 @@
       "Auf der Rückseite von Tiefdruckgebieten",
       "In hochreichender Kaltluft",
       "Trog folgt typischerweise einer Kaltfront"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -3493,7 +4280,8 @@
     "answer_images": [],
     "short_answer": [
       "Okklusion"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3507,6 +4295,9 @@
       "Erwärmte Luft über Land steigt auf",
       "Entstehung eines Bodentiefs",
       "Auffüllung durch Seewind (Wind von See)"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -3518,6 +4309,9 @@
     "answer_images": [],
     "short_answer": [
       "Haufenwolke (Cumulus)"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -3530,6 +4324,9 @@
     "short_answer": [
       "Mittelmeer: bis zu 25 kn oder Bft 6",
       "Nord- und Ostsee: bis 15 kn, in Einzelfällen bis 20 kn oder Bft 4/5, in Einzelfällen Bft 5/6"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -3541,7 +4338,8 @@
     "answer_images": [],
     "short_answer": [
       "Von Mittag bis zum frühen Abend."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3553,7 +4351,8 @@
     "short_answer": [
       "Er verändert den vorher wehenden Wind erheblich",
       "Änderung in Richtung und Stärke"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3568,6 +4367,9 @@
       "Erwärmte Luft über Wasser steigt auf",
       "Bodentief entsteht",
       "Landwind (Wind von Land) füllt Bodentief auf"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -3581,7 +4383,8 @@
       "Weht schwächer als der Seewind",
       "Etwa 1 bis 10 kn",
       "Bft 1-3"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3592,7 +4395,8 @@
     "answer_images": [],
     "short_answer": [
       "Von Mitternacht bis zum frühen Morgen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3603,6 +4407,9 @@
     "answer_images": [],
     "short_answer": [
       "Meistens etwa 10 Meter über dem Erdboden/der Wasseroberfläche."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -3614,6 +4421,9 @@
     "answer_images": [],
     "short_answer": [
       "Wahre Windgeschwindigkeit bleibt unverändert."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -3626,6 +4436,9 @@
     "short_answer": [
       "Schwankungsbreite in Windrichtung: bis zu 45° (WNW bis NNW)",
       "Schwankungsbreite in Windstärke (Böen): etwa 1 bis 2 Bft über dem Mittelwind"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -3639,6 +4452,9 @@
       "Schauerböen treten bei Kaltfronten auf.",
       "In der Nähe von Schauern können Böen auftreten.",
       "Böen überschreiten den Mittelwind um 2 Bft."
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -3652,7 +4468,8 @@
       "Gewitterböen können in Schwachwindlagen auftreten.",
       "Besonders häufig im Sommer.",
       "Können Sturm- oder Orkanstärke erreichen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3667,6 +4484,9 @@
       "Vorhersagen",
       "Aussichten",
       "Stationsmeldungen"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -3679,6 +4499,9 @@
     "short_answer": [
       "Land-/Seewind-Zirkulation",
       "Düsen- und Kapeffekte"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -3691,6 +4514,9 @@
     "short_answer": [
       "Bei erwarteten oder noch andauernden Windstärken zwischen 6 und 7 Bft.",
       "Near-gale warning."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -3703,6 +4529,9 @@
     "short_answer": [
       "Bei zu erwartenden oder noch andauernden Windstärken von mindestens 8 Bft.",
       "Gale warning."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -3714,6 +4543,9 @@
     "answer_images": [],
     "short_answer": [
       "Kennzeichnende (charakteristische) Wellenhöhe"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -3727,6 +4559,9 @@
       "Mittlere Höhe der gut ausgeprägten Wellen (Mittel des oberen Drittels)",
       "Nicht extreme Wellen",
       "Einzelne Wellen können das 1,5-fache der kennzeichnenden Wellenhöhe erreichen"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -3739,6 +4574,9 @@
     "short_answer": [
       "Rechtdrehend: Windrichtung ändert sich im Uhrzeigersinn.",
       "Rückdrehend: Windrichtung ändert sich gegen den Uhrzeigersinn um mindestens 45°."
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -3751,6 +4589,9 @@
     "short_answer": [
       "Windrichtung kann durch Umgebung der Wetterstation verfälscht werden.",
       "Windgeschwindigkeit meist reduziert, in Einzelfällen erhöht."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -3763,7 +4604,8 @@
     "short_answer": [
       "Sichtweiten über 1 km bis 10 km",
       "Ca. 0,5 bis 6 Seemeilen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3776,6 +4618,9 @@
       "Handbuch Nautischer Funkdienst",
       "Jachtfunkdienst für Nord- und Ostsee",
       "Admiralty List of Radio Signals"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -3788,6 +4633,9 @@
     "short_answer": [
       "Hafen- und Revierführer",
       "Monatskarten"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -3800,6 +4648,10 @@
     "short_answer": [
       "Schwerer Sturm.",
       "Kurs und Fahrt des Schiffes in Bezug auf das Tiefdruckgebiet beachten."
+    ],
+    "exam_sheets": [
+      5,
+      6
     ]
   },
   {
@@ -3811,7 +4663,8 @@
     "answer_images": [],
     "short_answer": [
       "Luftdruckfall wird verstärkt."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3824,6 +4677,9 @@
       "Windgeschwindigkeiten im Hafen sind geringer als auf See.",
       "Abladender Wind kann zu unvorhersehbaren Bedingungen führen.",
       "Windrichtung und -stärke können sich schnell ändern."
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -3835,7 +4691,8 @@
     "answer_images": [],
     "short_answer": [
       "Windgeschwindigkeiten im Hafen entsprechen etwa den Verhältnissen auf der freien See."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3848,6 +4705,9 @@
       "Düseneffekt (Trichtereffekt) in Durchfahrten",
       "Luftströmung wird \"zusammengepresst\"",
       "Beschleunigung der Luftströmung"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -3866,7 +4726,8 @@
       "Windrichtung kann umlaufend werden (bei hohen Gebirgen)",
       "Windgeschwindigkeit meist schwach",
       "Örtlich sehr böig (Fallwinde)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3882,6 +4743,9 @@
       "Ablandiger Wind:",
       "Ortsweise umlaufende Winde möglich.",
       "Erhöhte Böigkeit (Fallwinde) zu erwarten."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -3894,6 +4758,9 @@
     "short_answer": [
       "Abflauen des Windes: Zeichen für gutes Wetter.",
       "Zunahme des Windes: häufig Starkwind, Sturm und Regen."
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -3907,6 +4774,9 @@
       "Deutliche Wetterverschlechterung",
       "Erneut auffrischender Wind bis Sturmstärke",
       "Troglage"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -3919,6 +4789,9 @@
     "short_answer": [
       "Wind dreht recht, meist über 60 bis 90°",
       "Winde bis Orkanstärke, besonders auf der Rückseite eines Troges"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -3932,6 +4805,9 @@
       "Zufuhr von Feuchte",
       "Mischung von Luftmassen mit hoher Feuchtigkeit und verschiedener Temperatur",
       "Abkühlung der Luftmasse"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -3943,7 +4819,8 @@
     "answer_images": [],
     "short_answer": [
       "Sichtweite unter 1.000 Meter."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -3955,6 +4832,9 @@
     "short_answer": [
       "Warme und feuchte Luftmassen werden durch den kalten Untergrund (Meer) unter den Taupunkt abgekühlt.",
       "Überwiegend im Frühjahr."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -3969,6 +4849,9 @@
       "Verdunstung an der Wasseroberfläche.",
       "Hohe Differenz zwischen Luft- und Wassertemperatur führt zur Feuchtesättigung.",
       "Überwiegend im Herbst."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -3981,6 +4864,9 @@
     "short_answer": [
       "Entstehung: Bodennahen Luftschicht kühlt unter Taupunkt ab nach Sonnenuntergang bei klarem Himmel.",
       "Vorkommen: Besonders auf Flüssen, engen Durchfahrten und durch seewärtige Windverdriftung in Küstennähe."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -3994,6 +4880,9 @@
       "Sichtreduktion durch Saharastaub",
       "Transport durch Luftmassen",
       "Besondere Wetterlagen im Mittelmeerraum"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -4006,7 +4895,8 @@
     "short_answer": [
       "Windsee",
       "Dünung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4018,7 +4908,8 @@
     "short_answer": [
       "Seegang durch Wind",
       "Entsteht am Ort oder in der näheren Umgebung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4031,7 +4922,8 @@
       "Windgeschwindigkeit",
       "Fetch (Windwirklänge)",
       "Wirkdauer des Windes"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4044,6 +4936,9 @@
       "Seegang, der dem erzeugenden Windfeld vorausläuft",
       "Abklingender (alter) Seegang",
       "Eventuell aufziehender Sturm"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -4055,7 +4950,8 @@
     "answer_images": [],
     "short_answer": [
       "Senkrechter Abstand zwischen Wellenberg und Wellental."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4066,7 +4962,8 @@
     "answer_images": [],
     "short_answer": [
       "Horizontaler Abstand zwischen zwei Wellenbergen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4078,6 +4975,9 @@
     "short_answer": [
       "Seegang ist geringer als auf freier See.",
       "Fetch (Windwirklänge) ist kurz."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -4090,6 +4990,9 @@
     "short_answer": [
       "Seegang ähnlich wie auf freier See aufgrund ausreichendem Fetch.",
       "Gefahr von Brechern und Grundseen in flachen Gewässern oder bei Untiefen."
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -4102,6 +5005,9 @@
     "short_answer": [
       "Meereswellen mit hohen Brechern durch Untiefen, Küstennähe oder ansteigenden Meeresboden.",
       "Höhen bis etwa das 2,5-fache der charakteristischen Wellenhöhe."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -4114,7 +5020,8 @@
     "short_answer": [
       "Wellen werden kürzer",
       "Wellen werden steiler"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4126,7 +5033,8 @@
     "short_answer": [
       "Wellen werden länger",
       "Wellen werden flacher"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4141,6 +5049,9 @@
       "Kurz vor und bei dem Durchzug einer Kaltfront",
       "Bei einem Trog",
       "In der Nähe des Tiefkerns"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -4153,6 +5064,9 @@
     "short_answer": [
       "Kreuzlaufende See",
       "Meist kurz und kabbelig"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -4166,6 +5080,9 @@
       "Wassertiefe",
       "Meeresströmungen",
       "Gezeitenströmungen"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -4177,6 +5094,9 @@
     "answer_images": [],
     "short_answer": [
       "Nein, Dünung kann vorhanden sein, auch wenn kein Windfeld unmittelbar vorhanden ist."
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -4188,7 +5108,8 @@
     "answer_images": [],
     "short_answer": [
       "Anemometer"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4199,6 +5120,9 @@
     "answer_images": [],
     "short_answer": [
       "Scheinbare Windgeschwindigkeit"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -4211,6 +5135,9 @@
     "short_answer": [
       "Eventuelle Wetterveränderungen (z. B. Trog, Annäherung eines Tiefdruckgebiets) können registriert werden.",
       "Mindestens alle 4 Stunden."
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -4223,7 +5150,8 @@
     "short_answer": [
       "Barometer",
       "Barograph"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "wetterkunde",
@@ -4235,6 +5163,9 @@
     "short_answer": [
       "Windstärke: Schätzung mit Beaufortskala, orientiert am Seegangsbild.",
       "Windrichtung: Schätzung anhand der Verlagerung der Wellenkämme."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -4247,6 +5178,9 @@
     "short_answer": [
       "Äußere Schutzschicht",
       "Bauteil aus glasfaserverstärktem Kunststoff"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -4259,6 +5193,9 @@
     "short_answer": [
       "Zwischen zwei GFK-Schichten wird eine Zwischenlage zur Versteifung einlaminiert",
       "Beispiel: Balsaholz"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -4273,6 +5210,9 @@
       "Verwindungsfestigkeit",
       "Geringes Gewicht",
       "Gute Isolierung"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -4290,6 +5230,9 @@
       "Nachteile:",
       "hohes Gewicht",
       "Rostanfälligkeit"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -4302,6 +5245,9 @@
     "short_answer": [
       "Kategorie legt Fahrgebiet, Windstärke und Wellenhöhe fest.",
       "Bestimmt, bis zu welchen Bedingungen das Fahrzeug sicher betrieben werden kann."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -4316,6 +5262,9 @@
       "B Außerhalb von Küstengewässern",
       "C Küstennahe Gewässer",
       "D Geschützte Gewässer"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -4329,6 +5278,9 @@
       "Fahrzeug für Fahrten außerhalb von Küstengewässern",
       "Windstärken bis einschließlich 8 Bft",
       "Signifikante Wellenhöhen bis einschließlich 4 m"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -4344,6 +5296,9 @@
       "Kette verbunden mit Steuerseilen",
       "Steuerseile verlaufen über Umlenkrollen",
       "Steuerseile führen zum Ruderquadranten"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -4356,7 +5311,8 @@
     "short_answer": [
       "Stagen",
       "Wanten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4368,6 +5324,9 @@
     "short_answer": [
       "Dienen zum zusätzlichen Abstagen des Mastes nach achtern.",
       "Vor allem bei 7/8-Takelung und anderen nicht toppgetakelten Yachten."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -4381,7 +5340,8 @@
       "Tauwerk",
       "Dient zum Setzen, Bergen oder Bedienen von Segeln",
       "Bezieht sich auf Teile der Takelage"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4395,6 +5355,9 @@
       "Segel vor Sonnenlicht schützen",
       "Salzwasserreste abspülen",
       "Beschädigungen umgehend beseitigen"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -4407,6 +5370,9 @@
     "short_answer": [
       "Verhindert, dass überkommende Seen ins Segel schlagen",
       "Reduziert Belastung von Rigg und Segel"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -4421,6 +5387,9 @@
       "Ersetzt das Großsegel",
       "Hat loses Unterliek",
       "Wird bei starkem Wind gefahren"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -4435,6 +5404,9 @@
       "Minimierung von Schäden an der Takelage",
       "Erhöhung der Sicherheit an Bord",
       "Verbesserung der Segelleistung"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -4447,7 +5419,8 @@
     "short_answer": [
       "Profilierung des Segels",
       "Verhindert Einklappen des Achterlieks"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4459,6 +5432,9 @@
     "short_answer": [
       "Regulierung der Vorliekspannung des Großsegels",
       "Trimmen des Segels"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -4472,6 +5448,9 @@
       "Reffbares Großsegel",
       "Reffbare Rollfock oder Vorsegel verschiedener Größen",
       "Sturmfock"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -4484,7 +5463,8 @@
     "short_answer": [
       "Vorsegel wird um das Vorstag gerollt",
       "Stufenlose Verkleinerung des Vorsegels"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4496,7 +5476,8 @@
     "short_answer": [
       "Großsegel wird im Mast oder Baum aufgerollt",
       "Stufenlose Verkleinerung des Segels möglich"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4508,6 +5489,9 @@
     "short_answer": [
       "Lenzkorb verhindert Verunreinigungen und Verstopfungen der Lenzpumpe.",
       "Regelmäßige Überprüfung und Reinigung erforderlich."
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -4521,6 +5505,9 @@
       "Zwei unabhängige Bilgenpumpen",
       "Eine Pumpe über Deck, eine unter Deck bedienbar",
       "Zwei Pützen mit Leinen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -4535,6 +5522,9 @@
       "Verwarpen oder Verkatten",
       "Unterschiedliche Ankergründe berücksichtigen",
       "Bei schwerem Wetter oder in Tidengewässern vor 2 Ankern liegen können"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -4547,7 +5537,8 @@
     "short_answer": [
       "4 Festmacherleinen",
       "4 Fender"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4561,6 +5552,9 @@
       "Wurfleine",
       "Schlepptrosse",
       "Ankerleine"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -4576,6 +5570,9 @@
       "Motorreparaturen",
       "Elektroreparaturen",
       "Reparaturen an Schlauchleitungen"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -4592,6 +5589,9 @@
       "Wachs",
       "Zange",
       "Selbstklebendes Segeltuch"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -4606,6 +5606,9 @@
       "Metallsäge mit Ersatzblättern",
       "Schraubenschlüssel",
       "Verschiedene Zangen"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -4623,6 +5626,9 @@
       "Schäkelöffner",
       "Bordmesser",
       "Kombizange"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -4636,7 +5642,8 @@
       "Notpinne erforderlich",
       "Schnelle Einsatzbereitschaft notwendig",
       "Alle Mitsegler sollten vertraut sein"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4648,6 +5655,9 @@
     "short_answer": [
       "\"Sicherheit im See- und Küstenbereich, Sorgfaltsregeln für Wassersportler\", BSH",
       "\"Sicherheit auf dem Wasser, Leitfaden für Wassersportler\", Bundesministerium für Verkehr, Bau und Stadtentwicklung"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -4660,7 +5670,8 @@
     "short_answer": [
       "Handlenzpumpen sind unabhängig von Strom oder Motor.",
       "Sie gewährleisten Sicherheit bei Ausfall elektrischer Systeme."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4674,6 +5685,9 @@
       "Sinkt nach unten",
       "Bildet explosives Gemisch mit Luft",
       "Kann sich im Schiffsinneren (z. B. in der Bilge) sammeln"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -4688,6 +5702,9 @@
       "Handpumpe für Toilettenspülung",
       "Hebel zur Unterbrechung der Seewasserzufuhr (Handpumpe dient dann nur noch zum Abpumpen)",
       "Abwasserschlauch (via Fäkalientank) zum Seeventil"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -4703,6 +5720,9 @@
       "Seewasserzufuhr unterbrechen (Hebel umlegen)",
       "Becken mit Handpumpe leer pumpen",
       "Seeventile für Zu- und Abfluss schließen"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -4715,6 +5735,9 @@
     "short_answer": [
       "Eigenschaft eines Schiffes, in aufrechter Lage zu schwimmen",
       "Fähigkeit, sich aus einer Krängung wieder aufzurichten"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -4731,6 +5754,9 @@
       "krängende Momente durch Seitenwind",
       "Trossenzug",
       "Drehkreisfahrt bei schnellen Motoryachten"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -4744,6 +5770,9 @@
       "Wind",
       "Seegang",
       "Brechende Wellen"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -4760,6 +5789,9 @@
       "Massenschwerpunkt (G):",
       "Masse des Schiffes, Ausrüstung und Besatzung vereint",
       "Gewichtskraft wirkt nach unten"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -4776,6 +5808,9 @@
       "Entstehung eines Kräftepaars.",
       "Seitlicher Abstand = Hebelarm.",
       "Aufrichtendes Moment entsteht (Produkt aus Gewichtskraft und Hebelarm)."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -4793,6 +5828,9 @@
       "Vor Einfall der Bö: sW und Fw in einer bestimmten Relation.",
       "Bei Einfall der Bö: sW fällt achterlicher ein (raumt).",
       "Vorteil beim Kreuzen: Segelboot kann höher an wW gehen."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -4807,6 +5845,9 @@
       "Auf Amwindkursen stärker.",
       "Auf Raumschot- oder Vorwindkursen schwächer.",
       "Ungerefftes Boot hat weniger Winddruck."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -4820,6 +5861,9 @@
       "Lateralplan wird kleiner",
       "Verringert seitlichen Widerstand im Wasser",
       "Versetzung durch den Wind nimmt zu"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -4832,6 +5876,9 @@
     "short_answer": [
       "Zunehmende Krängung erhöht Luvgierigkeit.",
       "Segeldruckpunkt wandert nach Lee."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -4846,6 +5893,9 @@
       "Traveller nach Lee setzen.",
       "Großschot (etwas) fieren.",
       "Großsegel reffen."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -4858,6 +5908,9 @@
     "short_answer": [
       "Reguliert die Spannung der Unterlieks",
       "Je nach Zugkraft wird der untere Teil des Großsegels flacher oder bauchiger"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -4869,6 +5922,9 @@
     "answer_images": [],
     "short_answer": [
       "Fall ist nicht genügend durchgesetzt."
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -4880,6 +5936,9 @@
     "answer_images": [],
     "short_answer": [
       "Holepunkt der Schot liegt zu weit vorne."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -4891,6 +5950,9 @@
     "answer_images": [],
     "short_answer": [
       "Holepunkt der Schot liegt zu weit achtern."
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -4903,7 +5965,8 @@
     "short_answer": [
       "Sichtbarmachung des Strömungsverlaufs am Segel",
       "Optimales Trimmen des Segels"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4919,6 +5982,9 @@
       "Durchsetzen des Großfalls.",
       "Spannung des Achterstags erhöhen.",
       "Traveller nach Lee."
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -4935,6 +6001,9 @@
       "Cunninghamstrecker",
       "Großfall",
       "Achterstagspanner"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -4948,6 +6017,9 @@
       "Schutz gegen Schäden durch Elektrolyse",
       "Austausch nach einer Saison",
       "Nicht erst bei vollständigem Verbrauch ersetzen"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -4959,6 +6031,9 @@
     "answer_images": [],
     "short_answer": [
       "Zinkanode auf der Propellerwelle anbringen."
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -4972,6 +6047,10 @@
       "Maschine abstellen",
       "Offenes Feuer löschen (Rauchen einstellen)",
       "Maßnahmen gegen Überlaufen treffen"
+    ],
+    "exam_sheets": [
+      1,
+      8
     ]
   },
   {
@@ -4986,7 +6065,8 @@
       "Möglichst an Zapfsäulen mit Zapfhahn tanken",
       "Beim Tanken aus Kanistern großen Trichter mit Schlauch benutzen",
       "Nachfüllen aus Kanistern bei Wind und bewegter See möglichst vermeiden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -4999,6 +6079,9 @@
       "Ein- und Auskuppeln des Propellers",
       "Umsteuern des Propellers auf Rückwärtsfahrt",
       "Drehzahluntersetzung"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -5012,6 +6095,9 @@
       "Hauptstromschalter einschalten",
       "Kraftstoff- und Kühlwasserventile öffnen",
       "Getriebe auf \"neutral\" stellen"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -5026,6 +6112,9 @@
       "Öldruck und Ladung",
       "Motorengeräusche",
       "Auspuffgase"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -5042,6 +6131,9 @@
       "Aufleuchten der Ladekontrolle",
       "Aufleuchten der Öldruckkontrolle",
       "Entsprechende akustische Warnungen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -5054,6 +6146,9 @@
     "short_answer": [
       "Kraftstoffzufuhr unterbrechen",
       "Verschließen des Luftansaugrohres/der Luftansaugrohre"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -5069,6 +6164,9 @@
       "Luft in der Kraftstoffleitung",
       "Falsche Bedienung der Kaltstarthilfe (eventuell Vorglühen zu kurz)",
       "Anlasser defekt"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -5085,6 +6183,9 @@
       "Lagerschaden",
       "dickem Öl",
       "verbogene Propellerwelle"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -5097,6 +6198,9 @@
     "short_answer": [
       "Fremdkörper (Folienstücke, Plastiktüten, Pflanzenteile o. Ä.) verstopfen Kühlwassereinlass.",
       "Mehrmals abwechselnd vor- und zurückfahren, um Fremdkörper zu lösen."
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -5111,7 +6215,8 @@
       "Faltpropeller",
       "Drehflügelpropeller",
       "Verstellpropeller"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5123,7 +6228,8 @@
     "short_answer": [
       "Propeller entfaltet sich eventuell erst bei hoher Drehzahl",
       "Geringerer Wirkungsgrad im Vergleich zu Festflügelpropeller"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5137,6 +6243,9 @@
       "Größe ihrer Fläche",
       "Durchmesser",
       "Steigung"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -5150,7 +6259,8 @@
       "Tank und Vergaser müssen leer sein.",
       "Lagerung an Deck oder in einer Backskiste mit Außenentlüftung, niemals unter Deck.",
       "Restbenzin und entweichende Benzingase bilden mit Luft ein leicht entzündliches Gemisch."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5162,7 +6272,8 @@
     "short_answer": [
       "Sammelt Kondenswasser aus dem Tank",
       "Vermeidet Startschwierigkeiten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5174,6 +6285,9 @@
     "short_answer": [
       "Verringerung der Kondenswasserbildung",
       "Vermeidung von Startschwierigkeiten"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -5188,6 +6302,9 @@
       "Reservekeilriemen",
       "Motorenöl",
       "Dichtungsmaterial"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -5200,6 +6317,9 @@
     "short_answer": [
       "2 Batterien mit jeweils 60 Ah → insgesamt 120 Ah Nennkapazität.",
       "Nettokapazität etwa 72 Ah, da max. 80 % der Nennkapazität nutzbar."
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -5214,6 +6334,9 @@
       "Anzahl der Verbraucher: 2",
       "Betriebsdauer: 10 h",
       "Gesamtstrommenge: 2 A x 2 x 10 h = 40 Ah"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -5226,7 +6349,8 @@
     "short_answer": [
       "Bruchfest",
       "Elastisch"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5239,6 +6363,9 @@
       "Plastikschlauch über Festmacher an Scheuerstelle ziehen",
       "Gegen Verrutschen sichern",
       "Hilfsweise Tuchstreifen verwenden"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -5250,6 +6377,9 @@
     "answer_images": [],
     "short_answer": [
       "Festigkeitsverluste bis zu 50 % beim Knoten."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -5261,7 +6391,8 @@
     "answer_images": [],
     "short_answer": [
       "Genähter Takling verhindern, dass die Seele in den Mantel rutscht."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5279,6 +6410,9 @@
       "Achterspring",
       "Vorspring",
       "Vorleine"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -5297,6 +6431,9 @@
       "Fenderbrett zwischen den Fendern platzieren.",
       "Leinen von den Pfählen zum Boot führen.",
       "Leinen straff ziehen, um das Boot zu sichern."
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -5311,6 +6448,9 @@
       "Schiff nur auf entsprechend ausgerüstetem Reinigungsplatz abspritzen",
       "Wasser und Schmutz auffangen",
       "Nicht in die Kanalisation leiten"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -5325,6 +6465,9 @@
       "Kontakte fest anziehen",
       "Korrodierte Stellen mit feinstem Schleifpapier säubern",
       "Kontaktspray verwenden"
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -5337,7 +6480,8 @@
     "short_answer": [
       "Laminat unter Gelcoat nimmt Wasser auf",
       "Gefahr von Schäden am Laminat"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5356,6 +6500,9 @@
       "Strömung",
       "Wetter",
       "Luftdruck"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -5369,6 +6516,9 @@
       "Großschot und Baumniederholer müssen ausreichend Lose haben.",
       "Großfall muss frei laufen und darf nicht vertörnt sein.",
       "Verletzungsgefahr durch schlagenden Großbaum."
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -5381,6 +6531,9 @@
     "short_answer": [
       "Untere Latte entfernen",
       "Segel bis über den Riss reffen"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -5397,6 +6550,9 @@
       "Fall wieder dichtholen",
       "Segelschothorn (hintere Reffkausch) mit Schmeerreep oder Reffleine nach achtern auf den Baum holen",
       "Eventuell loses Segeltuch auftuchen und mit Reffbändseln/Reffleine einbinden"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -5409,6 +6565,9 @@
     "short_answer": [
       "Verhindert ungewolltes Überkommen des Großbaums bei achterlichen Winden.",
       "Wird von der Baumnock zum Vorschiff gefahren."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -5420,7 +6579,8 @@
     "answer_images": [],
     "short_answer": [
       "Verhindert das Steigen des Baumes."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5432,7 +6592,8 @@
     "short_answer": [
       "Boote versetzt legen, um Masten auf unterschiedlichen Höhen zu haben.",
       "Im Wechsel Heck-Bug zur Pier legen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5444,7 +6605,8 @@
     "short_answer": [
       "Benachbarte Boote sollten mit ihren Masten versetzt liegen.",
       "Verhindern, dass Boote gegeneinander schlagen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5458,6 +6620,9 @@
       "Großsegel klar zum Reffen oder Bergen",
       "Schlechtwetterkleidung, Sicherheitsgurte und Rettungswesten anlegen",
       "Position in Karte eintragen"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -5474,6 +6639,9 @@
       "Q-Wende",
       "Verschiedene Rettungsmanöver",
       "Unterschiedliche Geschwindigkeit und Besegelung ausprobieren."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -5487,6 +6655,9 @@
       "Mast an Bord nehmen und sichern, wenn möglich.",
       "Falls nicht möglich, Mast und Wanten kappen.",
       "Rumpfschäden vermeiden."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -5502,6 +6673,9 @@
       "Seegang",
       "Strömung",
       "Form und Gewicht des Bootes"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -5515,7 +6689,8 @@
       "Achterleinen mit Auge versehen (z. B. Palstek)",
       "Möglichst früh über die Pfähle legen",
       "Bei seitlichem Wind zuerst über den Luvpfahl"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5527,7 +6702,8 @@
     "short_answer": [
       "Crew für Manöver einteilen",
       "Leinen und Fender bereitlegen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5540,6 +6716,9 @@
       "Großer Abstand zwischen Propeller und Ruder",
       "Ruder wird nicht direkt angeströmt",
       "Verschlechterte Manövrierfähigkeit beim Anfahren"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -5553,6 +6732,9 @@
       "Röhre im Bug einer Yacht mit Propeller",
       "Erzeugt Querschub",
       "Dient zum Drehen des Buges bei geringen Vorausgeschwindigkeiten"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -5565,7 +6747,8 @@
     "short_answer": [
       "An- und Ablegen",
       "Drehen auf engem Raum"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -5579,6 +6762,9 @@
       "Ruderlage deutlich nach Steuerbord",
       "Langsame Fahrt voraus (Heck nach Backbord ausschwenken)",
       "Schiff wird fast parallel von der Pier abgedrückt"
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -5595,6 +6781,9 @@
       "Liegen vor Treibanker",
       "Unter Sturmbesegelung aktiv segeln",
       "Brechende Seen aussteuern"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -5607,6 +6796,9 @@
     "short_answer": [
       "Gefahr durch Grundseen bzw. Kreuzseen",
       "Möglichkeit von Querstrom"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -5619,6 +6811,9 @@
     "short_answer": [
       "Gefahr der Strandung",
       "Unmöglichkeit, sich freizukreuzen"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -5639,6 +6834,9 @@
       "Vorsegel bergen",
       "Großsegel reffen",
       "Kurs anpassen"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -5652,6 +6850,9 @@
       "Bug im Wind halten",
       "Driftgeschwindigkeit verringern",
       "Richtige Leinenlänge beachten"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -5666,6 +6867,9 @@
       "Sicheres Aufsetzen muss gewährleistet sein.",
       "Leinen müssen für Tidenstieg oder -fall ausreichend lang sein.",
       "Bei größerem Tidenhub darf das Fahrzeug nicht unbeaufsichtigt bleiben."
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -5677,6 +6881,9 @@
     "answer_images": [],
     "short_answer": [
       "Kurze, steile und kabbelige See durch gegen den Wind setzenden Strom."
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -5689,6 +6896,9 @@
     "short_answer": [
       "Mitlaufender Strom erhöht die Fahrt über Grund.",
       "Loganzeige zeigt dies nicht an."
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -5706,6 +6916,9 @@
       "Unterfangen mit kleinem Segel",
       "Bergegurt",
       "Dingi"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -5725,6 +6938,9 @@
       "ggf. Markierungsblitzboje werfen",
       "ggf. MOB-Taste eines satellitengestützten Navigationsgerätes drücken",
       "Bergung durchführen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -5738,6 +6954,9 @@
       "Sicherheitsgurte anlegen und einpicken.",
       "Anbringen von \"Streck-\" oder Laufleinen vom Bug zum Heck.",
       "Crew auf Befestigungspunkte (Einpickpunkte für Karabinerhaken) hinweisen."
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -5754,6 +6973,9 @@
       "Bergung, sicheres und schnelles Anbordnehmen der Person",
       "Erste Hilfe, Betreuung",
       "ggf. Notalarm abgeben"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -5766,6 +6988,9 @@
     "short_answer": [
       "Markierungsblitzboje",
       "MOB-Taste eines satellitengestützten Navigationsgerätes (z. B. GPS)"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -5787,6 +7012,9 @@
       "Erste-Hilfe-Ausrüstung",
       "Radarreflektor",
       "Rettungsmittel"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -5801,6 +7029,9 @@
       "Rettungsfloß (Rettungsinsel)",
       "Rettungskragen mit Tag- und Nachtsignal",
       "Erste-Hilfe-Ausrüstung mit Anleitung"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -5813,6 +7044,9 @@
     "short_answer": [
       "Runde, farbige Serviceplakette auf dem Rettungsfloß",
       "Zertifikat von der letzten Wartung"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -5825,6 +7059,9 @@
     "short_answer": [
       "Regelmäßige Wartung erforderlich",
       "Wartungsfälligkeit an farbiger Serviceplakette erkennbar"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -5839,6 +7076,9 @@
       "Aus Draht, Gurt oder starker Leine",
       "Zwischen Cockpit und Vorschiff straff gespannt",
       "Dient zum Einpicken der Sicherheitsleine (Lifebelt)"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -5857,6 +7097,9 @@
       "Signalflaggen N und C",
       "Signallampe",
       "Seenotfunkboje"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -5871,6 +7114,9 @@
       "Pütz zum Löschen von Bränden fester Stoffe",
       "Feuerlöschdecke",
       "Löschdurchlass für geschlossene Motorräume (für CO2-Löscher ohne Sauerstoffzutritt)"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -5888,6 +7134,9 @@
       "Feuerlöscher muss gebrauchsfertig und leicht erreichbar sein",
       "CO₂-Löscher nicht im Schiffsinneren (Erstickungsgefahr)",
       "In der Nähe von Maschinenräumen, Kombüse oder Koch-/Heizstelle montieren"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -5900,6 +7149,9 @@
     "short_answer": [
       "Einhaltung des vorgeschriebenen Prüftermins (Prüfplakette)",
       "Schutz vor Feuchtigkeit und Korrosion"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -5916,6 +7168,9 @@
       "Feuer von unten und von vorn bekämpfen",
       "Löschdecke einsetzen",
       "Flüssigkeitsbrände nicht mit Wasser bekämpfen"
+    ],
+    "exam_sheets": [
+      10
     ]
   },
   {
@@ -5940,6 +7195,9 @@
       "Feuerlöscher",
       "Boots- und Personalpapiere",
       "Betriebsfähigkeit der UKW-Seefunkanlage"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -5962,6 +7220,9 @@
       "Einweisung in das Rundfunkgerät und die UKW-Seefunkanlage",
       "Verhalten bei \"Mensch-über-Bord\"",
       "Erkennen und Verhalten bei Seekrankheit"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -5981,6 +7242,9 @@
       "MOB-Taste von satellitengestützten Navigationsgerät (z. B. GPS)",
       "Seenotsignalmittel",
       "Notrudereinrichtung"
+    ],
+    "exam_sheets": [
+      8
     ]
   },
   {
@@ -6000,6 +7264,9 @@
       "Kontrolle der Schall- und Lichtsignaleinrichtung",
       "Kontrolle der Navigationslichter",
       "Bereitlegen der aktuellen Seekarten und nautischen Veröffentlichungen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -6014,7 +7281,8 @@
       "Schnelle Reaktion bei Notfällen",
       "Vermeidung von Schäden und Gefahren",
       "Verbesserung der Sicherheit an Bord"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6025,6 +7293,9 @@
     "answer_images": [],
     "short_answer": [
       "Unsachgemäße Bedienung kann Wasser ins Bootsinnere gelangen."
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -6039,6 +7310,9 @@
       "Vermeidung von Missverständnissen und Fehlern",
       "Effiziente Durchführung des Ankermanövers",
       "Gewährleistung der Zusammenarbeit der Crew"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -6054,6 +7328,10 @@
       "Lenzpumpen betätigen, Lecksuche, Leck mit Bordmitteln abdichten.",
       "Küste bzw. flaches Wasser ansteuern.",
       "Fahrzeug so trimmen, dass Leckstelle aus dem Wasser kommt bzw. möglichst wenig unter Wasser ist."
+    ],
+    "exam_sheets": [
+      1,
+      7
     ]
   },
   {
@@ -6072,6 +7350,9 @@
       "Rettungsfloß klarmachen",
       "Ruhiges Flachwasser anlaufen (wenn möglich)",
       "Schiff auf Grund setzen"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -6084,7 +7365,8 @@
     "short_answer": [
       "Beschädigung der Bordwand",
       "Sinkgefahr"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6100,6 +7382,9 @@
       "Rettungsweste und Sicherheitsgurt anlegen.",
       "So lange wie möglich an Bord bleiben.",
       "Wärmende Kleidung anziehen."
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -6114,6 +7399,9 @@
       "Wärmende Kleidung anziehen.",
       "Reichlich warme Flüssigkeit trinken.",
       "Proviant, Wasser, Seenotsignalmittel und ggf. Seenotfunkbake, Radartransponder und UKW-Handsprechfunkgeräte ins Rettungsfloß bringen."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -6127,6 +7415,9 @@
       "Überlebensmöglichkeiten sind auf dem Schiff größer.",
       "Schiff ist besser zu orten.",
       "Einstieg in das Rettungsfloß und Aufenthalt können sehr schwierig sein."
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -6141,6 +7432,9 @@
       "Mit Kopf und beiden Armen in die Rettungsschlinge einsteigen.",
       "Arme nach unten drücken, Hände schließen.",
       "Windenseil muss frei hängen, nicht an Bord befestigen."
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -6155,6 +7449,9 @@
       "Auf Anordnung des Schiffsführers",
       "Bei unmittelbarer Gefahr für Schiff oder Besatzung",
       "Wenn Gefahr ohne fremde Hilfe nicht überwunden werden kann"
+    ],
+    "exam_sheets": [
+      3
     ]
   },
   {
@@ -6166,7 +7463,8 @@
     "answer_images": [],
     "short_answer": [
       "In Notfällen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6180,6 +7478,9 @@
       "Flüssigkeitsverlust ausgleichen (Wasser)",
       "Crewmitglied anhalten, zur Küste oder zum Horizont zu schauen",
       "Mit Arbeiten beschäftigen"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -6193,6 +7494,9 @@
       "Zieht die Ankertrosse auf den Grund",
       "Verhindert zu steilen Winkel beim Anker",
       "Wirkt ruckdämpfend"
+    ],
+    "exam_sheets": [
+      11
     ]
   },
   {
@@ -6205,7 +7509,8 @@
     "short_answer": [
       "Zug auf den Anker nicht zu steil",
       "Vermeidung von Ankerverdrängung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6218,6 +7523,9 @@
       "Gut geeignet: Sand, Schlick, weicher Ton, Lehm",
       "Mäßig geeignet: harter Ton, Lehm",
       "Ungeeignet: steinige, verkrautete, stark schlammige Böden"
+    ],
+    "exam_sheets": [
+      12
     ]
   },
   {
@@ -6231,6 +7539,9 @@
       "Schutz vor Wind und Wellen",
       "Ausreichend Platz zum Schwojen",
       "Mögliche Winddrehungen einplanen"
+    ],
+    "exam_sheets": [
+      9
     ]
   },
   {
@@ -6244,7 +7555,8 @@
       "Steinige Böden",
       "Verkrautete Böden",
       "Stark schlammige Böden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6256,6 +7568,9 @@
     "short_answer": [
       "Reitgewicht verwenden",
       "Anker besser am Boden halten"
+    ],
+    "exam_sheets": [
+      13
     ]
   },
   {
@@ -6268,6 +7583,9 @@
     "short_answer": [
       "Mehr Trosse oder Kette stecken",
       "Reitgewicht verwenden"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -6281,7 +7599,8 @@
       "Stockanker verwenden",
       "Höheres Gewicht",
       "Besseres Eingraben im verkrauteten Grund"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6293,7 +7612,8 @@
     "short_answer": [
       "Zeigt die Lage des Ankers an.",
       "Trippleine unterstützt beim Bergen eines unklaren Ankers."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6307,6 +7627,9 @@
       "Einrucken des Ankers prüfen",
       "Wiederholte Peilungen und Schätzungen des Abstands zu anderen Schiffen oder Landmarken",
       "Ankeralarmfunktion des GPS einschalten (falls vorhanden)"
+    ],
+    "exam_sheets": [
+      14
     ]
   },
   {
@@ -6321,7 +7644,8 @@
       "Stockanker (einklappbarer Stock)",
       "Draggen (klappbare Flunken)",
       "Pflugscharanker"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6335,6 +7659,9 @@
       "CQR-Anker",
       "Danforth-Anker",
       "D'Hone-Anker"
+    ],
+    "exam_sheets": [
+      15
     ]
   },
   {
@@ -6351,6 +7678,9 @@
       "Kann nicht an Steinen durchscheuern",
       "Erhöht die Haltekraft des Ankers",
       "Kettenvorlauf von 3 bis 5 m zwischen Anker und Leine"
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -6363,6 +7693,9 @@
     "short_answer": [
       "Knoten reduzieren die Bruchlast einer Leine um bis zu 50 %.",
       "Kette muss im Notfall schnell gekappt werden können."
+    ],
+    "exam_sheets": [
+      7
     ]
   },
   {
@@ -6377,6 +7710,9 @@
       "Begründung:",
       "Sandiger Grund, guter Halt des Ankers",
       "Dunkler Grund weist auf Bewuchs hin, schlechter Halt"
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -6390,6 +7726,10 @@
       "Leine könnte mit Anker vertörnen.",
       "Verhindert Eingraben des Ankers.",
       "Anker hält dann nicht."
+    ],
+    "exam_sheets": [
+      8,
+      10
     ]
   },
   {
@@ -6405,6 +7745,10 @@
       "Möglichkeit des Übersehenwerdens (Radarschatten)",
       "Beeinträchtigung durch Bugwellen des großen Schiffes",
       "Mögliche Beeinträchtigung der Manövrierfähigkeit durch Windabdeckung"
+    ],
+    "exam_sheets": [
+      3,
+      9
     ]
   },
   {
@@ -6416,7 +7760,8 @@
     "answer_images": [],
     "short_answer": [
       "Sog und Hecksee gefährden das eigene Boot."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_i",
@@ -6428,6 +7773,9 @@
     "short_answer": [
       "Heck schwenkt bei Kursänderung deutlich in entgegengesetzte Richtung aus.",
       "Bei Kursänderung nach Steuerbord schwenkt das Heck nach Backbord und umgekehrt."
+    ],
+    "exam_sheets": [
+      1
     ]
   },
   {
@@ -6444,6 +7792,9 @@
       "Beispiel: 300 m Containerschiff, voll abgeladen, 24 kn:",
       "Stoppstrecke ca. 2 sm",
       "Stoppzeit ca. 12 Minuten"
+    ],
+    "exam_sheets": [
+      4
     ]
   },
   {
@@ -6458,6 +7809,9 @@
       "Heck schlägt zur entgegengesetzten Richtung aus.",
       "Schiff verlässt alte Kurslinie erst nach mehreren Schiffslängen.",
       "Bei 300 m langen Containerschiffen: 1,5 bis 2,5 Schiffslängen (ca. 500 bis 600 m)."
+    ],
+    "exam_sheets": [
+      6
     ]
   },
   {
@@ -6469,6 +7823,9 @@
     "answer_images": [],
     "short_answer": [
       "Sichtbeschränkung nach voraus: maximal 2 Schiffslängen oder 500 m."
+    ],
+    "exam_sheets": [
+      5
     ]
   },
   {
@@ -6481,6 +7838,9 @@
     "short_answer": [
       "Hoch und fest angebrachter passiver Radarreflektor",
       "Besser: aktiver Radarreflektor"
+    ],
+    "exam_sheets": [
+      2
     ]
   },
   {
@@ -6496,7 +7856,8 @@
       "Aluminium",
       "wasserfest verleimtes Sperrholz",
       "Massivholz"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6511,7 +7872,8 @@
       "Gleitfahrt auf glattem Wasser bei höherer Geschwindigkeit",
       "Hartes Aufschlagen bei Seegang",
       "Starke Beanspruchung der Konstruktionen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6524,7 +7886,8 @@
       "Konventionelle Schiffe",
       "Gewicht wird vom hydrostatischen Auftrieb getragen",
       "Geschwindigkeit ist beschränkt (Rumpfgeschwindigkeit)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6538,7 +7901,8 @@
       "Hohe Formstabilität",
       "Schnelle Fahrweise",
       "Starke Motorisierung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6550,7 +7914,8 @@
     "short_answer": [
       "Äußere Schutzschicht",
       "Bauteil aus glasfaserverstärktem Kunststoff"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6562,7 +7927,8 @@
     "short_answer": [
       "Sandwichverfahren: Zwischen zwei GFK-Schichten wird eine Zwischenlage zur Versteifung einlaminiert.",
       "Beispiel für Zwischenlage: Balsaholz."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6576,7 +7942,8 @@
       "Verwindungsfestigkeit",
       "Geringes Gewicht",
       "Gute Isolierung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6593,7 +7960,8 @@
       "Nachteile:",
       "hohes Gewicht",
       "Rostanfälligkeit"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6605,7 +7973,8 @@
     "short_answer": [
       "Kategorie legt Einsatzbereich des Fahrzeugs fest",
       "Bestimmt Windstärke und Wellenhöhe für sicheren Betrieb"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6619,7 +7988,8 @@
       "B Außerhalb von Küstengewässern",
       "C Küstennahe Gewässer",
       "D Geschützte Gewässer"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6632,7 +8002,8 @@
       "Fahrzeug ausgelegt für Fahrten außerhalb von Küstengewässern",
       "Windstärken bis einschließlich 8 Bft",
       "Signifikante Wellenhöhen bis einschließlich 4 m"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6647,7 +8018,8 @@
       "Kette verbunden mit Steuerseilen",
       "Steuerseile verlaufen über Umlenkrollen",
       "Steuerseile führen zum Ruderquadranten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6659,7 +8031,8 @@
     "short_answer": [
       "Lenzkorb verhindert Verunreinigungen und Verstopfungen der Lenzpumpe.",
       "Regelmäßige Überprüfung und Reinigung erforderlich."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6672,7 +8045,8 @@
       "Zwei voneinander unabhängige Bilgepumpen",
       "Eine Bilgepumpe über Deck bedienbar",
       "Zwei Pützen mit Leinen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6686,7 +8060,8 @@
       "Zum Verwarpen oder Verkatten",
       "Um unterschiedliche Ankergründe berücksichtigen zu können",
       "Um bei schwerem Wetter oder in Tidengewässern vor 2 Ankern liegen zu können"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6698,7 +8073,8 @@
     "short_answer": [
       "4 Festmacherleinen",
       "4 Fender"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6712,7 +8088,8 @@
       "Wurfleine",
       "Schlepptrosse",
       "Ankerleine"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6724,7 +8101,8 @@
     "short_answer": [
       "\"Sicherheit im See- und Küstenbereich, Sorgfaltsregeln für Wassersportler\", herausgegeben vom BSH",
       "\"Sicherheit auf dem Wasser, Leitfaden für Wassersportler\", herausgegeben vom Bundesministerium für Verkehr, Bau und Stadtentwicklung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6737,7 +8115,8 @@
       "Handlenzpumpen sind unabhängig von Strom und Motor.",
       "Funktionieren auch bei Ausfall elektrischer Systeme.",
       "Sicherstellung der Sicherheit und Funktionsfähigkeit der Yacht."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6751,7 +8130,8 @@
       "Sinkt nach unten",
       "Bildet explosives Gemisch mit Luft",
       "Kann sich im Schiffsinneren (z. B. in der Bilge) sammeln"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6765,7 +8145,8 @@
       "Handpumpe für Toilettenspülung",
       "Hebel zur Unterbrechung der Seewasserzufuhr (Handpumpe dient dann nur noch zum Abpumpen)",
       "Abwasserschlauch (via Fäkalientank) zum Seeventil"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6780,7 +8161,8 @@
       "Seewasserzufuhr unterbrechen (Hebel umlegen)",
       "Becken mit Handpumpe leer pumpen",
       "Seeventile für Zu- und Abfluss schließen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6792,7 +8174,8 @@
     "short_answer": [
       "Eigenschaft eines Schiffes, in aufrechter Lage zu schwimmen",
       "Fähigkeit, sich aus einer Krängung wieder aufzurichten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6808,7 +8191,8 @@
       "krängende Momente durch Seitenwind",
       "Trossenzug",
       "Drehkreisfahrt bei schnellen Motoryachten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6821,7 +8205,8 @@
       "Wind",
       "Seegang",
       "Brechende Wellen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6837,7 +8222,8 @@
       "Massenschwerpunkt (G):",
       "Masse des Schiffes, Ausrüstung und Besatzung vereinigt",
       "Gewichtskraft wirkt nach unten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6853,7 +8239,8 @@
       "Entstehung eines Kräftepaars.",
       "Seitlicher Abstand = Hebelarm.",
       "Aufrichtendes Moment entsteht (Produkt aus Gewichtskraft und Hebelarm)."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6864,7 +8251,8 @@
     "answer_images": [],
     "short_answer": [
       "Unterschied zwischen vorderem und achterem Tiefgang."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6877,7 +8265,8 @@
       "Vorlicher Trimm: vorderer Tiefgang größer als achterer",
       "Achterlicher Trimm: achterer Tiefgang größer als vorderer",
       "Ebenes Kiel: beide Tiefgänge gleich"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6889,7 +8278,8 @@
     "short_answer": [
       "Rumpfgeschwindigkeit: rechnerische Höchstfahrt eines Verdrängers",
       "Abhängigkeit: Wasserlinienlänge"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6901,7 +8291,8 @@
     "short_answer": [
       "Diesel ist weniger feuergefährlich als Benzin.",
       "Geringerer Kraftstoffverbrauch."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6914,7 +8305,8 @@
       "Explosions- und Brandgefahr durch Benzin-Luft-Gemisch",
       "Zündanlage störanfällig gegen Feuchtigkeit und Nässe",
       "Höherer Kraftstoffverbrauch im Vergleich zum Dieselmotor"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6927,7 +8319,8 @@
       "Ein- und Auskuppeln des Propellers",
       "Umsteuern des Propellers auf Rückwärtsfahrt",
       "Drehzahluntersetzung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6940,7 +8333,8 @@
       "Einhebel- und Zweihebelschaltung unterscheiden sich in der Bedienung.",
       "Einhebel: Gas und Getriebe gleichzeitig bedient.",
       "Zweihebel: Gas und Getriebe mit 2 Hebeln getrennt bedient."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6955,7 +8349,8 @@
       "Offener Seewasserkreislauf",
       "Thermostatgeregelter Wärmetauscher verbindet beide Kreisläufe",
       "Innerer Süßwasserkreislauf durchfließt den Motor"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6969,7 +8364,8 @@
       "Zusätze wie Frostschutzmittel möglich",
       "Verhindert Ablagerungen durch Fremdwasser",
       "Schnellere Erreichung und konstante Betriebstemperatur durch thermostatische Regelung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6983,7 +8379,8 @@
       "Öldruck und Ladung",
       "Motorengeräusche",
       "Auspuffgase"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -6998,7 +8395,8 @@
       "Verfärbung der Abgase",
       "Aufleuchten der Ladekontrolle bzw. Öldruckkontrolle",
       "Entsprechende akustische Warnungen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7013,7 +8411,8 @@
       "Kraftstoffschläuche",
       "Kraftstofffilter",
       "Kraftstoffpumpe"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7029,7 +8428,8 @@
       "Kraftstofffilter",
       "Kraftstoffpumpe",
       "Vergaser"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7045,7 +8445,8 @@
       "Defekte Ölpumpe",
       "Defektes Öldruckventil",
       "Defektes Anzeigegerät"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7058,7 +8459,8 @@
       "Kabelverbindungen sind unterbrochen (oxidiert, lose oder gebrochen)",
       "Keilriemen zum Antrieb der Lichtmaschine ist defekt (keine Stromerzeugung)",
       "Regler oder Lichtmaschine können defekt sein"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7074,7 +8476,8 @@
       "schlechte Kraftstoffqualität",
       "verstellte Einspritzpumpe",
       "Überlastung des Motors"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7087,7 +8490,8 @@
       "Verdampfung von Wasser durch Kondensat im Auspuffsystem bei kaltem Motor",
       "Gerissener Zylinderkopf",
       "Defekte Zylinderkopfdichtung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7102,7 +8506,8 @@
       "Keine elektrischen Schalter betätigen.",
       "Alle Öffnungen schließen.",
       "Tragbare Tanks möglichst außerhalb des Bootes befüllen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7116,7 +8521,8 @@
       "Kraftstoff- und Kühlwasserventile öffnen",
       "Getriebe auf \"neutral\" stellen",
       "Kühlwasser prüfen (Zweikreis-Kühlsystem)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7131,7 +8537,8 @@
       "Kraftstoff- und Kühlwasserventile öffnen.",
       "Getriebe auf \"neutral\" stellen.",
       "Kühlwasser prüfen (Zweikreis-Kühlsystem)."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7150,7 +8557,8 @@
       "Motorgeräusche",
       "Vibrationen",
       "Farbe der Auspuffgase"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7163,7 +8571,8 @@
       "Kraftstoffventil schließen",
       "Hauptstromschalter (Batterie) ausschalten",
       "Seeventile schließen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7175,7 +8584,8 @@
     "short_answer": [
       "Fremdkörper (Folienstücke, Plastiktüten, Pflanzenteile o. Ä.) verstopfen Kühlwassereinlass.",
       "Mehrmals abwechselnd vor- und zurückfahren, um Fremdkörper zu lösen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7188,7 +8598,8 @@
       "Zweitaktmotor: zu fettes Benzin-Öl-Gemisch, zu viel Schmieröl im Gemisch.",
       "Viertaktmotor: zu viel Schmieröl, defekte Ölabstreifringe oder Kolbenringe.",
       "In beiden Fällen: Verbrennung/Verdampfung von Schmieröl."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7204,7 +8615,8 @@
       "Dieselmotor:",
       "Angesaugte Luft hoch verdichtet und erwärmt",
       "Einspritzung von Dieselkraftstoff führt zu Eigenzündung in komprimierter Luft"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7218,7 +8630,8 @@
       "Erfolgloser Startversuch nach Tanken",
       "Entlüftung von Leitung und Einspritzpumpe notwendig",
       "Ablagerungen und Kondenswasserbildung durch Temperaturschwankungen möglich"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7230,7 +8643,8 @@
     "short_answer": [
       "Schwimmender Fremdkörper im Propeller (Leine, Trosse, Plane, Persening o. Ä.)",
       "Behinderung oder Blockierung des Propellers"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7242,7 +8656,8 @@
     "short_answer": [
       "Starten des Motors",
       "Bordnetzversorgung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7254,7 +8669,8 @@
     "short_answer": [
       "Batteriekästen/-räume müssen ausreichend belüftet sein.",
       "Entlüftung ist ebenfalls wichtig."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7266,7 +8682,8 @@
     "short_answer": [
       "2 Batterien mit jeweils 60 Ah → insgesamt 120 Ah Nennkapazität.",
       "Nettokapazität ca. 72 Ah, da max. 80 % der Nennkapazität nutzbar."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7280,7 +8697,8 @@
       "Anzahl der Verbraucher: 2",
       "Betriebsdauer: 10 h",
       "Berechnung: 2 A x 2 x 10 h = 40 Ah"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7298,7 +8716,8 @@
       "Fallende Drehzahl",
       "Zitternde Nadel im Drehzahlmesser",
       "Klopfende Motorgeräusche"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7310,7 +8729,8 @@
     "short_answer": [
       "Bruchfest",
       "Elastisch"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7323,7 +8743,8 @@
       "Plastikschlauch über Festmacher an Scheuerstelle ziehen",
       "Gegen Verrutschen sichern",
       "Hilfsweise Tuchstreifen verwenden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7334,7 +8755,8 @@
     "answer_images": [],
     "short_answer": [
       "Festigkeitsverluste bis zu 50 % beim Knoten."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7345,7 +8767,8 @@
     "answer_images": [],
     "short_answer": [
       "Genähter Takling verhindern, dass die Seele in den Mantel rutscht."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7363,7 +8786,8 @@
       "Achterspring",
       "Vorspring",
       "Vorleine"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7382,7 +8806,8 @@
       "Leinen vom Boot zu den Pfählen führen",
       "Leinen straff ziehen, um das Boot zu sichern",
       "Sicherstellen, dass das Boot nicht gegen die Pfähle stößt"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7396,7 +8821,8 @@
       "Schiff nur auf entsprechend ausgerüstetem Reinigungsplatz abspritzen",
       "Wasser und Schmutz auffangen",
       "Nicht in die Kanalisation lassen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7410,7 +8836,8 @@
       "Kontakte fest anziehen",
       "Korrodierte Stellen mit feinstem Schleifpapier säubern",
       "Kontaktspray verwenden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7423,7 +8850,8 @@
       "Laminat unter Gelcoat nimmt Wasser auf",
       "Schäden am Laminat durch Wasseraufnahme",
       "Unverzügliche Beseitigung notwendig"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7442,7 +8870,8 @@
       "Strömung",
       "Wetter",
       "Luftdruck"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7454,7 +8883,8 @@
     "short_answer": [
       "Rettungswesten und Sicherheitsgurt tragen bei Tätigkeiten an Deck.",
       "Nur mit am Schiff eingepickter Sicherheitsleine über Deck gehen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7466,7 +8896,8 @@
     "short_answer": [
       "Seitliche Versetzung des Hecks",
       "Verursacht durch drehende Schraube (Propeller)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7480,7 +8911,8 @@
       "Größe ihrer Fläche",
       "Durchmesser",
       "Steigung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7492,7 +8924,8 @@
     "short_answer": [
       "Rechtsdrehender Propeller: Heck bewegt sich nach Backbord",
       "Linksdrehender Propeller: Heck bewegt sich nach Steuerbord"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7505,7 +8938,8 @@
       "Gegenläufig.",
       "Mit 2 Propellern kann man nahezu auf der Stelle drehen (einen vorwärts, einen rückwärts).",
       "Verbesserte Manövrierfähigkeit."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7517,7 +8951,8 @@
     "short_answer": [
       "Drehrichtungen der Schrauben sind gegenläufig",
       "Radeffekte heben sich gegenseitig auf"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7530,7 +8965,8 @@
       "Röhre im Bug einer Yacht mit Propeller",
       "Erzeugt Querschub",
       "Dient zum Drehen des Buges bei geringen Vorausgeschwindigkeiten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7542,7 +8978,8 @@
     "short_answer": [
       "Bei verminderter Sicht zum Wahrnehmen der Schallsignale.",
       "Bei Manövern in engen Gewässern zur besseren Rundumsicht."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7555,7 +8992,8 @@
       "Hahnepot verteilt Zugkräfte auf mehrere Belegpunkte.",
       "Durchführung an Bug und auf beiden Bootsseiten.",
       "Kräftigere Klampen für die Vorspring auf Bootsseiten verwenden."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7568,7 +9006,8 @@
       "Achterleinen mit Auge versehen",
       "Möglichst frühzeitig über die Pfähle legen",
       "Bei seitlichem Wind zuerst über den Luvpfahl legen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7580,7 +9019,8 @@
     "short_answer": [
       "Crew für Manöver einteilen",
       "Leinen und Fender bereitlegen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7593,7 +9033,8 @@
       "Ruder hart Steuerbord",
       "Steuerbordmaschine rückwärts",
       "Backbordmaschine voraus"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7605,7 +9046,8 @@
     "short_answer": [
       "An- und Ablegen",
       "Drehen auf engem Raum"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7620,7 +9062,8 @@
       "Langsame Fahrt voraus",
       "Heck nach Backbord ausschwenken",
       "Schiff wird fast parallel von der Pier abgedrückt"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7632,7 +9075,8 @@
     "short_answer": [
       "Gefahr durch Grundseen bzw. Kreuzseen",
       "Möglichkeit von Querstromwirbeln"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7645,7 +9089,8 @@
       "Möglichst rasch Hafen oder Landschutz ansteuern.",
       "Motoryacht mit langsamer Fahrt gegen die See halten.",
       "Sicherheitsmaßnahmen für die Besatzung treffen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7659,7 +9104,8 @@
       "Sicheres Aufsetzen muss gewährleistet sein.",
       "Leinen müssen für Tidenstieg oder -fall ausreichend lang sein.",
       "Bei größerem Tidenhub darf das Fahrzeug nicht unbeaufsichtigt bleiben."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7670,7 +9116,8 @@
     "answer_images": [],
     "short_answer": [
       "Kurze, steile und kabbelige See durch gegen den Wind setzenden Strom."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7682,7 +9129,8 @@
     "short_answer": [
       "Mitlaufender Strom erhöht die Fahrt über Grund.",
       "Loganzeige bleibt unverändert."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7694,7 +9142,8 @@
     "short_answer": [
       "Kurswinkel von 20 bis 25° bezogen auf Seegangsrichtung",
       "Verringert hartes Aufschlagen des Bootes"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7708,7 +9157,8 @@
       "Beschwerte Trittschlinge",
       "Rettungstalje",
       "Bergegurt"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7727,7 +9177,8 @@
       "ggf. Markierungsblitzboje werfen",
       "ggf. MOB-Taste eines satellitengestützten Navigationsgerätes drücken",
       "Bergung durchführen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7740,7 +9191,8 @@
       "Sicherheitsgurte anlegen und einpicken.",
       "Anbringen von Strecktau oder Laufleinen von Bug zum Heck.",
       "Crew auf Befestigungspunkte (Einpickpunkte für Karabinerhaken) hinweisen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7756,7 +9208,8 @@
       "Bergung, sicheres und schnelles Anbordnehmen der Person",
       "Erste Hilfe, Betreuung",
       "ggf. Notalarm abgeben"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7768,7 +9221,8 @@
     "short_answer": [
       "Markierungsblitzboje",
       "MOB-Taste eines satellitengestützten Navigationsgerätes (z. B. GPS)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7789,7 +9243,8 @@
       "Erste-Hilfe-Ausrüstung",
       "Radarreflektor",
       "Rettungsmittel"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7803,7 +9258,8 @@
       "Rettungsfloß (Rettungsinsel)",
       "Rettungskragen mit Tag- und Nachtsignal",
       "Erste-Hilfe-Ausrüstung mit Anleitung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7815,7 +9271,8 @@
     "short_answer": [
       "Runde, farbige Serviceplakette auf dem Rettungsfloß",
       "Zertifikat von der letzten Wartung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7827,7 +9284,8 @@
     "short_answer": [
       "Regelmäßige Wartung erforderlich",
       "Wartungsfälligkeit erkennbar an farbiger Serviceplakette"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7841,7 +9299,8 @@
       "Aus Draht, Gurt oder starker Leine",
       "Zwischen Cockpit und Vorschiff straff gespannt",
       "Dient zum Einpicken der Sicherheitsleine (Lifebelts)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7859,7 +9318,8 @@
       "Signalflaggen N und C",
       "Signallampe",
       "Seenotfunkboje"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7873,7 +9333,8 @@
       "Pütz zum Löschen von Bränden fester Stoffe",
       "Feuerlöschdecke",
       "Löschdurchlass für geschlossene Motorräume (Löschen mit CO2 ohne Sauerstoffzutritt)"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7890,7 +9351,8 @@
       "Feuerlöscher muss gebrauchsfertig und leicht erreichbar sein",
       "CO2-Löscher nicht im Schiffsinneren (Erstickungsgefahr bei Leckage)",
       "In der Nähe von Maschinenräumen, Kombüse, Koch- oder Heizstelle montieren"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7902,7 +9364,8 @@
     "short_answer": [
       "Einhaltung des vorgeschriebenen Prüftermins (Prüfplakette)",
       "Schutz vor Feuchtigkeit und Korrosion"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7918,7 +9381,8 @@
       "Feuer von unten und von vorn bekämpfen",
       "Löschdecke einsetzen",
       "Flüssigkeitsbrände nicht mit Wasser bekämpfen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7940,7 +9404,8 @@
       "Lenzeinrichtungen",
       "Feuerlöscher",
       "Boots- und Personalpapiere"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7962,7 +9427,8 @@
       "Einweisung in das Rundfunkgerät und die UKW-Seefunkanlage",
       "Verhalten bei \"Mensch-über-Bord\"",
       "Erkennen der Seekrankheit und entsprechendes Verhalten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -7981,7 +9447,8 @@
       "MOB-Taste vom satellitengestützten Navigationsgerät (z. B. GPS)",
       "Seenotsignalmittel",
       "Notrudereinrichtung"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8000,7 +9467,8 @@
       "Kontrolle der Schall- und Lichtsignaleinrichtung",
       "Kontrolle der Navigationslichter",
       "Bereitlegen der aktuellen Seekarten und nautischen Veröffentlichungen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8014,7 +9482,8 @@
       "Schnelle Reaktion bei Notfällen",
       "Vermeidung von Schäden und Gefahren",
       "Verbesserung der Sicherheit an Bord"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8025,7 +9494,8 @@
     "answer_images": [],
     "short_answer": [
       "Unsachgemäße Bedienung kann Wasser ins Bootsinnere bringen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8039,7 +9509,8 @@
       "Vermeidung von Missverständnissen und Fehlern",
       "Effiziente Durchführung des Ankermanövers",
       "Gewährleistung der Zusammenarbeit der Crew"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8056,7 +9527,8 @@
       "Leck mit Bordmitteln abdichten.",
       "Küste bzw. flaches Wasser ansteuern.",
       "Fahrzeug so trimmen, dass Leckstelle aus dem Wasser kommt bzw. möglichst wenig unter Wasser ist."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8074,7 +9546,8 @@
       "Rettungsfloß klarmachen",
       "Ruhiges Flachwasser anlaufen (wenn möglich)",
       "Schiff auf Grund setzen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8086,7 +9559,8 @@
     "short_answer": [
       "Beschädigung der Bordwand",
       "Sinkgefahr"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8102,7 +9576,8 @@
       "Rettungsweste und Sicherheitsgurt anlegen.",
       "So lange wie möglich an Bord bleiben.",
       "Wärmende Kleidung anziehen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8116,7 +9591,8 @@
       "Wärmende Kleidung anziehen.",
       "Reichlich warme Flüssigkeit trinken.",
       "Proviant, Wasser, Seenotsignalmittel und ggf. Seenotfunkbake, Radartransponder und UKW-Handsprechfunkgeräte ins Rettungsfloß bringen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8129,7 +9605,8 @@
       "Überlebensmöglichkeiten sind auf dem Schiff größer.",
       "Schiff ist besser zu orten.",
       "Einstieg in das Rettungsfloß und Aufenthalt können sehr schwierig sein."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8143,7 +9620,8 @@
       "Mit Kopf und beiden Armen in die Rettungsschlinge einsteigen.",
       "Arme nach unten drücken, Hände schließen.",
       "Windenseil muss frei hängen, nicht an Bord befestigen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8156,7 +9634,8 @@
       "Nach Feststellung des Notfalles auf Anordnung des Schiffsführers",
       "Bei unmittelbarer Gefahr für das Schiff oder die Besatzung",
       "Gefahr kann ohne fremde Hilfe nicht überwunden werden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8167,7 +9646,8 @@
     "answer_images": [],
     "short_answer": [
       "In Notfällen."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8182,7 +9662,8 @@
       "Flüssigkeitsverlust ausgleichen (Wasser)",
       "Crewmitglied anhalten, zur Küste oder zum Horizont zu schauen",
       "Mit Arbeiten beschäftigen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8195,7 +9676,8 @@
       "Zieht die Ankertrosse auf den Grund",
       "Verhindert zu steilen Winkel des Ankers",
       "Wirkt ruckdämpfend"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8207,7 +9689,8 @@
     "short_answer": [
       "Verhindert zu steilen Zug auf den Anker.",
       "Sorgt für bessere Haltewirkung."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8220,7 +9703,8 @@
       "Gut geeignet: Sand, Schlick, weicher Ton, Lehm",
       "Mäßig geeignet: harter Ton, Lehm",
       "Ungeeignet: steinige, verkrautete und stark schlammige Böden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8233,7 +9717,8 @@
       "Schutz vor Wind und Wellen bieten",
       "Ausreichend Platz zum Schwojen beachten",
       "Mögliche Winddrehungen einplanen"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8246,7 +9731,8 @@
       "Steinige Böden",
       "Verkrautete Böden",
       "Stark schlammige Böden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8258,7 +9744,8 @@
     "short_answer": [
       "Mit einem Reitgewicht erhöhen",
       "Anker besser am Boden halten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8270,7 +9757,8 @@
     "short_answer": [
       "Mehr Trosse oder Kette stecken",
       "Reitgewicht verwenden"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8283,7 +9771,8 @@
       "Stockanker verwenden",
       "Höheres Gewicht",
       "Besseres Eingraben im verkrauten Grund"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8295,7 +9784,8 @@
     "short_answer": [
       "Zeigt die Lage des Ankers an.",
       "Trippleine unterstützt das Bergen eines unklaren Ankers."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8309,7 +9799,8 @@
       "Einrucken des Ankers prüfen",
       "Wiederholte Peilungen und Schätzungen des Abstands zu anderen Schiffen oder Landmarken",
       "Ankeralarmfunktion bei vorhandenem GPS einschalten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8323,7 +9814,8 @@
       "Stockanker (einklappbarer Stock)",
       "Draggen (klappbare Flunken)",
       "Pflugscharanker"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8337,7 +9829,8 @@
       "CQR-Anker",
       "Danforth-Anker",
       "D'Hone-Anker"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8353,7 +9846,8 @@
       "Kann nicht an Steinen durchscheuern",
       "Erhöht die Haltekraft des Ankers",
       "Kettenvorlauf von 3 bis 5 m zwischen Anker und Leine"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8365,7 +9859,8 @@
     "short_answer": [
       "Knoten reduzieren die Bruchlast einer Leine um bis zu 50 %.",
       "Damit die Kette im Notfall schnell gekappt werden kann."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8379,7 +9874,8 @@
       "Grund ist sandig, Anker hält gut",
       "Dunkler Grund weist auf Bewuchs hin",
       "Anker hält schlecht im bewachsenen Bereich"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8392,7 +9888,8 @@
       "Leine könnte mit Anker vertörnen.",
       "Verhindert Eingraben des Ankers.",
       "Anker hält nicht."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8406,7 +9903,8 @@
       "Ermitteln der Wind- und/oder Stromrichtung und -stärke",
       "Klarmachen des Ankergeschirrs und des Ankersignals",
       "Mit langsamster Fahrt - Kurs gegen Strom bzw. Wind - Ankerplatz ansteuern"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8422,7 +9920,8 @@
       "Kette/Leine in Abhängigkeit vom Wetter/Strom bis auf das 3- bzw. 5fache der Wassertiefe stecken",
       "Ankerball/Ankerlicht setzen",
       "Ankerposition feststellen, dokumentieren und ausreichend kontrollieren"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8436,7 +9935,8 @@
       "U. U. eingeschränkte Sicht des anderen Fahrzeugs, insbesondere nach voraus",
       "Möglichkeit des Übersehenwerdens (Radarschatten)",
       "Beeinträchtigung durch Bugwellen des großen Schiffes"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8447,7 +9947,8 @@
     "answer_images": [],
     "short_answer": [
       "Sog und Hecksee gefährden das eigene Boot."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8460,7 +9961,8 @@
       "Heck schwenkt bei Kursänderung deutlich aus.",
       "Bei Kursänderung nach Steuerbord: Heck schwenkt nach Backbord.",
       "Bei Kursänderung nach Backbord: Heck schwenkt nach Steuerbord."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8479,7 +9981,8 @@
       "Beispiel: 300 m Containerschiff, voll abgeladen, 24 kn:",
       "Stoppstrecke: ca. 2 sm",
       "Stoppzeit: ca. 12 Minuten"
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8493,7 +9996,8 @@
       "Heck schlägt zur entgegengesetzten Richtung aus.",
       "Schiff verlässt alte Kurslinie erst nach mehreren Schiffslängen.",
       "Bei 300 m langen Containerschiffen: 1,5 bis 2,5 Schiffslängen (ca. 500 bis 600 m)."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8504,7 +10008,8 @@
     "answer_images": [],
     "short_answer": [
       "Sichtbeschränkung nach voraus: maximal 2 Schiffslängen oder 500 m."
-    ]
+    ],
+    "exam_sheets": []
   },
   {
     "topic": "seemannschaft_ii",
@@ -8516,6 +10021,7 @@
     "short_answer": [
       "Hoch und fest angebrachter passiver Radarreflektor",
       "Besser: aktiver Radarreflektor"
-    ]
+    ],
+    "exam_sheets": []
   }
 ]
