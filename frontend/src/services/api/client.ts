@@ -7,18 +7,16 @@ const API_BASE_URL =
 
 export const apiClient = createClient<paths>({
   baseUrl: API_BASE_URL,
-  fetch: async (input, init) => {
-    const headers = new Headers(init?.headers);
+  fetch: async (request: Request) => {
+    const headers = new Headers(request.headers);
     const token = loadAccessToken();
 
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
 
-    const response = await fetch(input, {
-      ...init,
-      headers,
-    });
+    const authorizedRequest = new Request(request, { headers });
+    const response = await fetch(authorizedRequest);
 
     if (typeof window !== "undefined" && response.status === 401) {
       clearAuthSession();

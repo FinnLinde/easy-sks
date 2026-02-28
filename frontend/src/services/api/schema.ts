@@ -72,6 +72,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/me/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update current user's profile fields */
+        patch: operations["patch_me_profile"];
+        trace?: never;
+    };
     "/study/due": {
         parameters: {
             query?: never;
@@ -168,6 +185,9 @@ export interface components {
         MeResponse: {
             user_id: string;
             email?: string | null;
+            full_name?: string | null;
+            mobile_number?: string | null;
+            profile_complete: boolean;
             roles: string[];
             plan: string;
             entitlements: string[];
@@ -176,6 +196,13 @@ export interface components {
             renews_at?: string | null;
             /** Format: date-time */
             cancels_at?: string | null;
+        };
+        ProfileUpdateRequest: {
+            full_name: string;
+            mobile_number: string;
+        };
+        ErrorResponse: {
+            detail: string;
         };
         CardContentResponse: {
             text: string;
@@ -316,6 +343,48 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["MeResponse"];
+                };
+            };
+        };
+    };
+    patch_me_profile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProfileUpdateRequest"];
+            };
+        };
+        responses: {
+            /** @description Updated account summary */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MeResponse"];
+                };
+            };
+            /** @description Invalid profile data */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Mobile number already in use */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };

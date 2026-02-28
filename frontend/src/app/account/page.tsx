@@ -1,13 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Calendar, Crown, Mail, RefreshCw, ShieldCheck, User, Wallet } from "lucide-react";
+import {
+  Calendar,
+  CheckCircle2,
+  Crown,
+  Mail,
+  Phone,
+  RefreshCw,
+  ShieldCheck,
+  User,
+  Wallet,
+} from "lucide-react";
 import { AuthGuard } from "@/components/auth/auth-guard";
 import { useAuth } from "@/auth/auth-provider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ProfileForm } from "@/components/profile/profile-form";
 import { getMe, type MeSummary } from "@/services/user/user-service";
 
 function BillingStatusBadge({ status }: { status: string | null | undefined }) {
@@ -60,7 +71,7 @@ export default function AccountPage() {
         <div className="w-full max-w-3xl space-y-6">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Account</h1>
-            <p className="mt-1 text-sm text-muted-foreground">Kontoinformationen, Plan und Billing-Status.</p>
+            <p className="mt-1 text-sm text-muted-foreground">Kontoinformationen, Profil, Plan und Billing-Status.</p>
           </div>
 
           {loading ? (
@@ -94,13 +105,45 @@ export default function AccountPage() {
                     <span className="font-medium">{summary.email ?? "-"}</span>
                   </div>
                   <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
+                    <span className="flex items-center gap-2 text-muted-foreground"><User className="size-4" /> Voller Name</span>
+                    <span className="font-medium">{summary.full_name ?? "-"}</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
+                    <span className="flex items-center gap-2 text-muted-foreground"><Phone className="size-4" /> Mobilnummer</span>
+                    <span className="font-medium">{summary.mobile_number ?? "-"}</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
                     <span className="flex items-center gap-2 text-muted-foreground"><ShieldCheck className="size-4" /> User ID</span>
                     <span className="font-mono text-xs md:text-sm">{summary.user_id}</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
+                    <span className="flex items-center gap-2 text-muted-foreground"><CheckCircle2 className="size-4" /> Profilstatus</span>
+                    {summary.profile_complete ? (
+                      <Badge className="bg-emerald-600">Vollständig</Badge>
+                    ) : (
+                      <Badge variant="secondary">Unvollständig</Badge>
+                    )}
                   </div>
                   <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
                     <span className="flex items-center gap-2 text-muted-foreground"><Calendar className="size-4" /> Auth Status</span>
                     <Badge variant="secondary">{authStatus}</Badge>
                   </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-white/10 bg-card/70">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <User className="size-4" />
+                    Profil bearbeiten
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ProfileForm
+                    initialFullName={summary.full_name}
+                    initialMobileNumber={summary.mobile_number}
+                    onSaved={(updated) => setSummary(updated)}
+                  />
                 </CardContent>
               </Card>
 
