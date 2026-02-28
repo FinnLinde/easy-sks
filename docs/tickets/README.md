@@ -31,6 +31,8 @@ Diese Tickets dienen als Spezifikation und Arbeitsgrundlage fuer die technische 
 17. `ESKS-017` Mobile Bottom Navigation
 18. `ESKS-018` Dashboard Insights API
 19. `ESKS-019` Account Plan Status und Billing Surface
+20. `ESKS-020` Registrierung und Profil-Hardening (Name + Mobilnummer)
+21. `ESKS-021` Pruefungsaufgaben-Import und Antwort-Linking
 
 ## Aktueller Stand (2026-02-27)
 
