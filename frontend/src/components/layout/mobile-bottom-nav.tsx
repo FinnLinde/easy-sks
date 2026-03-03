@@ -6,7 +6,7 @@ import { useAuth } from "@/auth/auth-provider";
 import { cn } from "@/lib/utils";
 import { navItems } from "./nav-config";
 
-const MOBILE_CORE_ROUTES = new Set(["/", "/study", "/account"]);
+const MOBILE_CORE_ROUTES = new Set(["/", "/study", "/exams", "/account"]);
 
 export function MobileBottomNav() {
   const pathname = usePathname();

@@ -6,6 +6,7 @@ import type { Rating } from "@/services/study/study-service";
 interface RatingButtonsProps {
   onRate: (rating: Rating) => void;
   disabled?: boolean;
+  suggestedRating?: Rating;
 }
 
 const RATINGS: {
@@ -21,7 +22,7 @@ const RATINGS: {
   { rating: 4, label: "Leicht", hint: "~ 1 Woche", variant: "default", className: "border-sky-400/30" },
 ];
 
-export function RatingButtons({ onRate, disabled }: RatingButtonsProps) {
+export function RatingButtons({ onRate, disabled, suggestedRating }: RatingButtonsProps) {
   return (
     <div className="w-full max-w-3xl">
       <p className="mb-3 text-center text-sm text-muted-foreground">Wie gut konntest du die Antwort abrufen?</p>
@@ -31,12 +32,17 @@ export function RatingButtons({ onRate, disabled }: RatingButtonsProps) {
           key={rating}
           variant={variant}
           size="lg"
-          className={`h-auto flex-col gap-1 py-3 ${className ?? ""}`}
+          className={`h-auto flex-col gap-1 py-3 ${className ?? ""} ${
+            suggestedRating === rating ? "ring-2 ring-sky-400/60 ring-offset-1 ring-offset-transparent" : ""
+          }`}
           onClick={() => onRate(rating)}
           disabled={disabled}
         >
           <span className="font-semibold">{label}</span>
-          <span className="text-[11px] text-muted-foreground">{hint}</span>
+          <span className="text-[11px] text-muted-foreground">
+            {hint}
+            {suggestedRating === rating ? " · KI-Vorschlag" : ""}
+          </span>
         </Button>
       ))}
       </div>

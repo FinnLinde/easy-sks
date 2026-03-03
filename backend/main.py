@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from dotenv import load_dotenv
+
+load_dotenv(".env.local")
+
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -15,8 +19,14 @@ from dependencies import (
     get_card_repository,
     get_current_app_user,
     get_db_session,
+    get_exam_service,
     get_study_service,
     get_user_profile_service,
+)
+from exam.controller.exam_controller import (
+    get_current_app_user as _exam_app_user_placeholder,
+    get_exam_service as _exam_svc_placeholder,
+    router as exam_router,
 )
 from study.controller.study_controller import (
     get_current_app_user as _app_user_placeholder,
@@ -78,9 +88,17 @@ async def _wired_user_profile_service(
     return await get_user_profile_service(session)
 
 
+async def _wired_exam_service(
+    session: AsyncSession = Depends(get_db_session),
+):
+    return await get_exam_service(session)
+
+
 app.dependency_overrides[_study_svc_placeholder] = _wired_study_service
 app.dependency_overrides[_card_repo_placeholder] = _wired_card_repository
 app.dependency_overrides[_app_user_placeholder] = _wired_current_app_user
+app.dependency_overrides[_exam_svc_placeholder] = _wired_exam_service
+app.dependency_overrides[_exam_app_user_placeholder] = _wired_current_app_user
 app.dependency_overrides[_user_app_user_placeholder] = _wired_current_app_user
 app.dependency_overrides[_user_profile_service_placeholder] = (
     _wired_user_profile_service
@@ -93,6 +111,7 @@ authenticated_router = APIRouter(dependencies=[Depends(get_current_user)])
 authenticated_router.include_router(study_router)
 authenticated_router.include_router(card_router)
 authenticated_router.include_router(user_router)
+authenticated_router.include_router(exam_router)
 
 app.include_router(authenticated_router)
 

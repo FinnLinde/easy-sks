@@ -188,6 +188,37 @@ paths:
         "404":
           description: Card or scheduling info not found
 
+  /study/evaluate-answer:
+    post:
+      summary: Evaluate a free-text answer for one study card
+      operationId: evaluate_answer
+      tags: [Study]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EvaluateAnswerRequest"
+      responses:
+        "200":
+          description: Structured answer evaluation payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EvaluateAnswerResponse"
+        "404":
+          description: Card or scheduling info not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "503":
+          description: Evaluator not configured
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   /cards/{card_id}:
     get:
       summary: Get a card by ID
@@ -208,6 +239,182 @@ paths:
                 $ref: "#/components/schemas/CardResponse"
         "404":
           description: Card not found
+
+  /exams:
+    get:
+      summary: List available official exam sheets
+      operationId: list_exams
+      tags: [Exams]
+      responses:
+        "200":
+          description: Available exam templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExamTemplateResponse"
+
+  /exam-sessions:
+    get:
+      summary: List completed exam sessions for current user
+      operationId: list_exam_history
+      tags: [Exams]
+      responses:
+        "200":
+          description: Completed exam sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExamSessionHistoryResponse"
+    post:
+      summary: Start a new exam session
+      operationId: start_exam_session
+      tags: [Exams]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartExamSessionRequest"
+      responses:
+        "200":
+          description: Started exam session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSessionResponse"
+        "400":
+          description: Invalid sheet or unavailable questions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /exam-sessions/{session_id}:
+    get:
+      summary: Fetch exam session details
+      operationId: get_exam_session
+      tags: [Exams]
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Exam session details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSessionResponse"
+        "404":
+          description: Session not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /exam-sessions/{session_id}/answers/{card_id}:
+    put:
+      summary: Save or update one answer during an active exam session
+      operationId: save_exam_answer
+      tags: [Exams]
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: card_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaveExamAnswerRequest"
+      responses:
+        "200":
+          description: Persisted answer row
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaveExamAnswerResponse"
+        "400":
+          description: Session not editable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Session or card not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /exam-sessions/{session_id}/submit:
+    post:
+      summary: Submit and evaluate an exam session
+      operationId: submit_exam_session
+      tags: [Exams]
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Evaluated exam result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamResultResponse"
+        "404":
+          description: Session not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /exam-sessions/{session_id}/result:
+    get:
+      summary: Fetch the evaluated exam result
+      operationId: get_exam_result
+      tags: [Exams]
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Evaluated exam result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamResultResponse"
+        "400":
+          description: Result not available yet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Session not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
 components:
   schemas:
@@ -388,3 +595,279 @@ components:
           enum: [1, 2, 3, 4]
           description: "1=Again, 2=Hard, 3=Good, 4=Easy"
       required: [card_id, rating]
+
+    EvaluateAnswerRequest:
+      type: object
+      properties:
+        card_id:
+          type: string
+        user_answer:
+          type: string
+      required: [card_id, user_answer]
+
+    EvaluateAnswerResponse:
+      type: object
+      properties:
+        card_id:
+          type: string
+        awarded_points:
+          type: number
+        max_points:
+          type: number
+        verdict:
+          type: string
+          enum: [full, partial, incorrect]
+        reasoning_summary:
+          type: string
+        mistakes:
+          type: array
+          items:
+            type: string
+        missing_points:
+          type: array
+          items:
+            type: string
+        improved_answer_suggestion:
+          type: string
+        suggested_rating:
+          type: integer
+          enum: [1, 2, 3, 4]
+      required:
+        - card_id
+        - awarded_points
+        - max_points
+        - verdict
+        - reasoning_summary
+        - mistakes
+        - missing_points
+        - improved_answer_suggestion
+        - suggested_rating
+
+    ExamTemplateResponse:
+      type: object
+      properties:
+        sheet_number:
+          type: integer
+        display_name:
+          type: string
+        question_count:
+          type: integer
+        time_limit_minutes:
+          type: integer
+      required: [sheet_number, display_name, question_count, time_limit_minutes]
+
+    StartExamSessionRequest:
+      type: object
+      properties:
+        sheet_number:
+          type: integer
+          minimum: 1
+          maximum: 15
+        time_limit_minutes:
+          type: integer
+          minimum: 1
+          maximum: 240
+      required: [sheet_number]
+
+    ExamQuestionResponse:
+      type: object
+      properties:
+        question_number:
+          type: integer
+        card_id:
+          type: string
+        question_text:
+          type: string
+        question_images:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardImageResponse"
+        student_answer:
+          type: string
+        answered_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - question_number
+        - card_id
+        - question_text
+        - question_images
+        - student_answer
+
+    ExamSessionResponse:
+      type: object
+      properties:
+        session_id:
+          type: string
+        sheet_number:
+          type: integer
+        status:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        submitted_at:
+          type: string
+          format: date-time
+          nullable: true
+        deadline_at:
+          type: string
+          format: date-time
+        time_limit_minutes:
+          type: integer
+        time_remaining_seconds:
+          type: integer
+        time_over:
+          type: boolean
+        question_count:
+          type: integer
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExamQuestionResponse"
+      required:
+        - session_id
+        - sheet_number
+        - status
+        - started_at
+        - deadline_at
+        - time_limit_minutes
+        - time_remaining_seconds
+        - time_over
+        - question_count
+        - questions
+
+    SaveExamAnswerRequest:
+      type: object
+      properties:
+        student_answer:
+          type: string
+      required: [student_answer]
+
+    SaveExamAnswerResponse:
+      type: object
+      properties:
+        session_id:
+          type: string
+        card_id:
+          type: string
+        question_number:
+          type: integer
+        student_answer:
+          type: string
+        answered_at:
+          type: string
+          format: date-time
+          nullable: true
+      required: [session_id, card_id, question_number, student_answer]
+
+    ExamQuestionResultResponse:
+      type: object
+      properties:
+        question_number:
+          type: integer
+        card_id:
+          type: string
+        question_text:
+          type: string
+        reference_short_answer:
+          type: array
+          items:
+            type: string
+        student_answer:
+          type: string
+        score:
+          type: number
+        is_correct:
+          type: boolean
+        feedback:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+      required:
+        - question_number
+        - card_id
+        - question_text
+        - reference_short_answer
+        - student_answer
+        - score
+        - is_correct
+        - feedback
+        - errors
+
+    ExamResultResponse:
+      type: object
+      properties:
+        session_id:
+          type: string
+        sheet_number:
+          type: integer
+        status:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        submitted_at:
+          type: string
+          format: date-time
+          nullable: true
+        time_limit_minutes:
+          type: integer
+        time_over:
+          type: boolean
+        total_score:
+          type: number
+        max_score:
+          type: number
+        passed:
+          type: boolean
+        pass_score_threshold:
+          type: number
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExamQuestionResultResponse"
+      required:
+        - session_id
+        - sheet_number
+        - status
+        - started_at
+        - time_limit_minutes
+        - time_over
+        - total_score
+        - max_score
+        - passed
+        - pass_score_threshold
+        - questions
+
+    ExamSessionHistoryResponse:
+      type: object
+      properties:
+        session_id:
+          type: string
+        sheet_number:
+          type: integer
+        status:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        submitted_at:
+          type: string
+          format: date-time
+          nullable: true
+        total_score:
+          type: number
+          nullable: true
+        max_score:
+          type: number
+          nullable: true
+        passed:
+          type: boolean
+          nullable: true
+        time_over:
+          type: boolean
+      required: [session_id, sheet_number, status, started_at, time_over]

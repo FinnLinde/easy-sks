@@ -215,7 +215,7 @@ export function DashboardOverview() {
       ) : null}
 
       <p className="text-xs text-muted-foreground">
-        Verfuegbare Karten gesamt: {stats.availableCards}
+        Verfügbare Karten gesamt: {stats.availableCards}
       </p>
     </div>
   );

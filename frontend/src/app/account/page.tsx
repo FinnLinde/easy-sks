@@ -186,11 +186,11 @@ export default function AccountPage() {
                     <BillingStatusBadge status={summary.billing_status} />
                   </div>
                   <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
-                    <span className="text-muted-foreground">Verlaengert am</span>
+                    <span className="text-muted-foreground">Verlängert am</span>
                     <span>{summary.renews_at ?? "-"}</span>
                   </div>
                   <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
-                    <span className="text-muted-foreground">Gekuendigt am</span>
+                    <span className="text-muted-foreground">Gekündigt am</span>
                     <span>{summary.cancels_at ?? "-"}</span>
                   </div>
                 </CardContent>
@@ -199,7 +199,7 @@ export default function AccountPage() {
           ) : (
             <Card className="border-white/10 bg-card/70">
               <CardContent className="p-6 text-sm text-muted-foreground">
-                Keine Kontodaten verfuegbar.
+                Keine Kontodaten verfügbar.
               </CardContent>
             </Card>
           )}

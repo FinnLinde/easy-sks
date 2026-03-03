@@ -2,6 +2,7 @@ import { apiClient } from "@/services/api/client";
 import type { components } from "@/services/api/schema";
 
 export type StudyCard = components["schemas"]["StudyCardResponse"];
+export type StudyAnswerEvaluation = components["schemas"]["EvaluateAnswerResponse"];
 export type TopicValue =
   | "navigation"
   | "schifffahrtsrecht"
@@ -38,5 +39,19 @@ export async function reviewCard(
     body: { card_id: cardId, rating },
   });
   if (error || !data) throw new Error("Failed to review card");
+  return data;
+}
+
+export async function evaluateStudyAnswer(
+  cardId: string,
+  userAnswer: string
+): Promise<StudyAnswerEvaluation> {
+  const { data, error } = await apiClient.POST("/study/evaluate-answer", {
+    body: {
+      card_id: cardId,
+      user_answer: userAnswer,
+    },
+  });
+  if (error || !data) throw new Error("Failed to evaluate study answer");
   return data;
 }

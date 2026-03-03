@@ -67,6 +67,23 @@ class ReviewIn(BaseModel):
     rating: int  # 1=Again, 2=Hard, 3=Good, 4=Easy
 
 
+class EvaluateAnswerIn(BaseModel):
+    card_id: str
+    user_answer: str
+
+
+class EvaluateAnswerOut(BaseModel):
+    card_id: str
+    awarded_points: float
+    max_points: float
+    verdict: str
+    reasoning_summary: str
+    mistakes: list[str]
+    missing_points: list[str]
+    improved_answer_suggestion: str
+    suggested_rating: int
+
+
 class DashboardSummaryOut(BaseModel):
     due_now: int
     reviewed_today: int
@@ -216,6 +233,36 @@ async def review_card(
         raise HTTPException(status_code=404, detail=str(exc))
 
     return _study_card_to_out(result)
+
+
+@router.post("/study/evaluate-answer", response_model=EvaluateAnswerOut)
+async def evaluate_answer(
+    body: EvaluateAnswerIn,
+    study_service: StudyService = Depends(get_study_service),
+    user: AppUser = Depends(get_current_app_user),
+) -> EvaluateAnswerOut:
+    try:
+        evaluation = await study_service.evaluate_answer(
+            user_id=user.id,
+            card_id=body.card_id,
+            user_answer=body.user_answer,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except RuntimeError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
+    return EvaluateAnswerOut(
+        card_id=evaluation.card_id,
+        awarded_points=evaluation.awarded_points,
+        max_points=evaluation.max_points,
+        verdict=evaluation.verdict.value,
+        reasoning_summary=evaluation.reasoning_summary,
+        mistakes=evaluation.mistakes,
+        missing_points=evaluation.missing_points,
+        improved_answer_suggestion=evaluation.improved_answer_suggestion,
+        suggested_rating=evaluation.suggested_rating,
+    )
 
 
 @router.get("/dashboard/summary", response_model=DashboardSummaryOut)

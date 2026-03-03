@@ -12,6 +12,8 @@ from scheduling.model.review_log import ReviewLog
 from scheduling.service.scheduling_service import SchedulingService
 
 from study.model.sks_topic import SksTopic
+from study.model.answer_evaluation import StudyAnswerVerdict
+from study.service.answer_evaluator_port import StudyAnswerEvaluationPayload
 from study.service.study_service import StudyService
 
 
@@ -70,6 +72,21 @@ class FakeSchedulingRepository:
 class FailingReviewLogRepository(FakeSchedulingRepository):
     async def save_review_log(self, log: ReviewLog) -> None:
         raise RuntimeError("simulated review log failure")
+
+
+class FakeAnswerEvaluator:
+    def __init__(self, payload: StudyAnswerEvaluationPayload | None = None) -> None:
+        self._payload = payload or StudyAnswerEvaluationPayload(
+            awarded_points=1.0,
+            max_points=1.0,
+            reasoning_summary="Looks good",
+            mistakes=[],
+            missing_points=[],
+            improved_answer_suggestion="",
+        )
+
+    async def evaluate(self, request):  # noqa: ANN001
+        return self._payload
 
 
 # -- Helpers ---------------------------------------------------------------
@@ -534,3 +551,68 @@ class TestDashboardSummary:
         assert summary.due_now == 2
         assert await sched_repo.get_by_user_and_card_id("test-user", "new-1") is None
         assert await sched_repo.get_by_user_and_card_id("test-user", "new-2") is None
+
+
+class TestEvaluateAnswer:
+    @pytest.mark.asyncio
+    async def test_returns_structured_evaluation_with_suggested_rating(self):
+        card = _make_card("c1", ["navigation"])
+        info = _make_due_info("c1")
+        evaluator = FakeAnswerEvaluator(
+            StudyAnswerEvaluationPayload(
+                awarded_points=0.5,
+                max_points=1.0,
+                reasoning_summary="Teilweise korrekt",
+                mistakes=["Windrichtung fehlt"],
+                missing_points=["Bezug auf Strom beachten"],
+                improved_answer_suggestion="Nenne Windrichtung und Strom.",
+            )
+        )
+
+        service = StudyService(
+            card_repo=FakeCardRepository([card]),
+            scheduling_repo=FakeSchedulingRepository([info]),
+            scheduling_service=SchedulingService(),
+            answer_evaluator=evaluator,
+        )
+
+        result = await service.evaluate_answer(
+            user_id="test-user",
+            card_id="c1",
+            user_answer="Meine Antwort",
+        )
+
+        assert result.card_id == "c1"
+        assert result.awarded_points == 0.5
+        assert result.max_points == 1.0
+        assert result.verdict == StudyAnswerVerdict.PARTIAL
+        assert result.suggested_rating == 2
+        assert "Teilweise korrekt" in result.reasoning_summary
+
+    @pytest.mark.asyncio
+    async def test_raises_for_missing_scheduling_info(self):
+        card = _make_card("c1", ["navigation"])
+
+        service = StudyService(
+            card_repo=FakeCardRepository([card]),
+            scheduling_repo=FakeSchedulingRepository([]),
+            scheduling_service=SchedulingService(),
+            answer_evaluator=FakeAnswerEvaluator(),
+        )
+
+        with pytest.raises(ValueError, match="No scheduling info"):
+            await service.evaluate_answer("test-user", "c1", "antwort")
+
+    @pytest.mark.asyncio
+    async def test_raises_when_evaluator_is_not_configured(self):
+        card = _make_card("c1", ["navigation"])
+        info = _make_due_info("c1")
+
+        service = StudyService(
+            card_repo=FakeCardRepository([card]),
+            scheduling_repo=FakeSchedulingRepository([info]),
+            scheduling_service=SchedulingService(),
+        )
+
+        with pytest.raises(RuntimeError, match="not configured"):
+            await service.evaluate_answer("test-user", "c1", "antwort")

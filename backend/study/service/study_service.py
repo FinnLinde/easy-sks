@@ -14,8 +14,13 @@ from scheduling.model.review_log import ReviewLog
 from scheduling.service.scheduling_service import SchedulingService
 
 from study.model.dashboard_summary import DashboardSummary
+from study.model.answer_evaluation import StudyAnswerEvaluation, StudyAnswerVerdict
 from study.model.sks_topic import SksTopic
 from study.model.study_card import StudyCard
+from study.service.answer_evaluator_port import (
+    StudyAnswerEvaluationRequest,
+    StudyAnswerEvaluatorPort,
+)
 from study.service.card_repository_port import CardRepositoryPort
 from study.service.scheduling_repository_port import SchedulingRepositoryPort
 
@@ -30,11 +35,13 @@ class StudyService:
         card_repo: CardRepositoryPort,
         scheduling_repo: SchedulingRepositoryPort,
         scheduling_service: SchedulingService,
+        answer_evaluator: StudyAnswerEvaluatorPort | None = None,
         new_card_limit_per_queue: int = DEFAULT_NEW_CARD_LIMIT_PER_QUEUE,
     ) -> None:
         self._card_repo = card_repo
         self._scheduling_repo = scheduling_repo
         self._scheduling_service = scheduling_service
+        self._answer_evaluator = answer_evaluator
         self._new_card_limit_per_queue = max(0, new_card_limit_per_queue)
 
     async def get_due_cards(
@@ -211,6 +218,53 @@ class StudyService:
 
         return StudyCard(card=card, scheduling_info=updated_info)
 
+    async def evaluate_answer(
+        self,
+        user_id: str,
+        card_id: str,
+        user_answer: str,
+    ) -> StudyAnswerEvaluation:
+        """Evaluate a free-text answer against the card reference answer."""
+        if self._answer_evaluator is None:
+            raise RuntimeError("Study answer evaluator is not configured")
+
+        scheduling_info = await self._scheduling_repo.get_by_user_and_card_id(
+            user_id=user_id,
+            card_id=card_id,
+        )
+        if scheduling_info is None:
+            raise ValueError(f"No scheduling info found for card {card_id!r}")
+
+        card = await self._card_repo.get_by_id(card_id)
+        if card is None:
+            raise ValueError(f"Card {card_id!r} not found")
+
+        payload = await self._answer_evaluator.evaluate(
+            StudyAnswerEvaluationRequest(
+                question_text=card.front.text,
+                short_answer=card.short_answer,
+                reference_answer=card.answer.text,
+                user_answer=user_answer,
+                max_points=1.0,
+            )
+        )
+
+        awarded_points = max(0.0, min(payload.max_points, payload.awarded_points))
+        verdict = _verdict_for_ratio(awarded_points, payload.max_points)
+        suggested_rating = _suggested_rating_for_ratio(awarded_points, payload.max_points)
+
+        return StudyAnswerEvaluation(
+            card_id=card_id,
+            awarded_points=round(awarded_points * 2) / 2,
+            max_points=payload.max_points,
+            verdict=verdict,
+            reasoning_summary=payload.reasoning_summary,
+            mistakes=payload.mistakes,
+            missing_points=payload.missing_points,
+            improved_answer_suggestion=payload.improved_answer_suggestion,
+            suggested_rating=suggested_rating,
+        )
+
     async def get_dashboard_summary(self, user_id: str) -> DashboardSummary:
         """Aggregate dashboard KPI values for the current user."""
         due_cards = await self._build_due_queue(
@@ -274,3 +328,29 @@ def _calculate_streak_days(review_logs: list[ReviewLog]) -> int:
         cursor -= timedelta(days=1)
 
     return streak
+
+
+def _verdict_for_ratio(
+    awarded_points: float,
+    max_points: float,
+) -> StudyAnswerVerdict:
+    ratio = awarded_points / max_points if max_points > 0 else 0.0
+    if ratio >= 0.9:
+        return StudyAnswerVerdict.FULL
+    if ratio >= 0.45:
+        return StudyAnswerVerdict.PARTIAL
+    return StudyAnswerVerdict.INCORRECT
+
+
+def _suggested_rating_for_ratio(
+    awarded_points: float,
+    max_points: float,
+) -> int:
+    ratio = awarded_points / max_points if max_points > 0 else 0.0
+    if ratio >= 0.9:
+        return 4
+    if ratio >= 0.65:
+        return 3
+    if ratio >= 0.35:
+        return 2
+    return 1

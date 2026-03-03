@@ -157,6 +157,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/study/evaluate-answer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Evaluate a free-text answer for one study card */
+        post: operations["evaluate_answer"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/cards/{card_id}": {
         parameters: {
             query?: never;
@@ -166,6 +183,109 @@ export interface paths {
         };
         /** Get a card by ID */
         get: operations["get_card"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/exams": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List available official exam sheets */
+        get: operations["list_exams"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/exam-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List completed exam sessions for current user */
+        get: operations["list_exam_history"];
+        put?: never;
+        /** Start a new exam session */
+        post: operations["start_exam_session"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/exam-sessions/{session_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Fetch exam session details */
+        get: operations["get_exam_session"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/exam-sessions/{session_id}/answers/{card_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Save or update one answer during an active exam session */
+        put: operations["save_exam_answer"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/exam-sessions/{session_id}/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Submit and evaluate an exam session */
+        post: operations["submit_exam_session"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/exam-sessions/{session_id}/result": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Fetch the evaluated exam result */
+        get: operations["get_exam_result"];
         put?: never;
         post?: never;
         delete?: never;
@@ -219,6 +339,7 @@ export interface components {
             answer: components["schemas"]["CardContentResponse"];
             short_answer: string[];
             tags: string[];
+            exam_sheets: number[];
         };
         SchedulingInfoResponse: {
             /** @enum {string} */
@@ -253,6 +374,109 @@ export interface components {
              * @enum {integer}
              */
             rating: 1 | 2 | 3 | 4;
+        };
+        EvaluateAnswerRequest: {
+            card_id: string;
+            user_answer: string;
+        };
+        EvaluateAnswerResponse: {
+            card_id: string;
+            awarded_points: number;
+            max_points: number;
+            /** @enum {string} */
+            verdict: "full" | "partial" | "incorrect";
+            reasoning_summary: string;
+            mistakes: string[];
+            missing_points: string[];
+            improved_answer_suggestion: string;
+            /** @enum {integer} */
+            suggested_rating: 1 | 2 | 3 | 4;
+        };
+        ExamTemplateResponse: {
+            sheet_number: number;
+            display_name: string;
+            question_count: number;
+            time_limit_minutes: number;
+        };
+        StartExamSessionRequest: {
+            sheet_number: number;
+            time_limit_minutes?: number;
+        };
+        ExamQuestionResponse: {
+            question_number: number;
+            card_id: string;
+            question_text: string;
+            question_images: components["schemas"]["CardImageResponse"][];
+            student_answer: string;
+            /** Format: date-time */
+            answered_at?: string | null;
+        };
+        ExamSessionResponse: {
+            session_id: string;
+            sheet_number: number;
+            status: string;
+            /** Format: date-time */
+            started_at: string;
+            /** Format: date-time */
+            submitted_at?: string | null;
+            /** Format: date-time */
+            deadline_at: string;
+            time_limit_minutes: number;
+            time_remaining_seconds: number;
+            time_over: boolean;
+            question_count: number;
+            questions: components["schemas"]["ExamQuestionResponse"][];
+        };
+        SaveExamAnswerRequest: {
+            student_answer: string;
+        };
+        SaveExamAnswerResponse: {
+            session_id: string;
+            card_id: string;
+            question_number: number;
+            student_answer: string;
+            /** Format: date-time */
+            answered_at?: string | null;
+        };
+        ExamQuestionResultResponse: {
+            question_number: number;
+            card_id: string;
+            question_text: string;
+            reference_short_answer: string[];
+            student_answer: string;
+            score: number;
+            is_correct: boolean;
+            feedback: string;
+            errors: string[];
+        };
+        ExamResultResponse: {
+            session_id: string;
+            sheet_number: number;
+            status: string;
+            /** Format: date-time */
+            started_at: string;
+            /** Format: date-time */
+            submitted_at?: string | null;
+            time_limit_minutes: number;
+            time_over: boolean;
+            total_score: number;
+            max_score: number;
+            passed: boolean;
+            pass_score_threshold: number;
+            questions: components["schemas"]["ExamQuestionResultResponse"][];
+        };
+        ExamSessionHistoryResponse: {
+            session_id: string;
+            sheet_number: number;
+            status: string;
+            /** Format: date-time */
+            started_at: string;
+            /** Format: date-time */
+            submitted_at?: string | null;
+            total_score?: number | null;
+            max_score?: number | null;
+            passed?: boolean | null;
+            time_over: boolean;
         };
     };
     responses: never;
@@ -484,6 +708,48 @@ export interface operations {
             };
         };
     };
+    evaluate_answer: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EvaluateAnswerRequest"];
+            };
+        };
+        responses: {
+            /** @description Structured answer evaluation payload */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EvaluateAnswerResponse"];
+                };
+            };
+            /** @description Card or scheduling info not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Evaluator not configured */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     get_card: {
         parameters: {
             query?: never;
@@ -510,6 +776,226 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    list_exams: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Available exam templates */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExamTemplateResponse"][];
+                };
+            };
+        };
+    };
+    list_exam_history: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Completed exam sessions */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExamSessionHistoryResponse"][];
+                };
+            };
+        };
+    };
+    start_exam_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StartExamSessionRequest"];
+            };
+        };
+        responses: {
+            /** @description Started exam session */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExamSessionResponse"];
+                };
+            };
+            /** @description Invalid sheet or unavailable questions */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    get_exam_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Exam session details */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExamSessionResponse"];
+                };
+            };
+            /** @description Session not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    save_exam_answer: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+                card_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SaveExamAnswerRequest"];
+            };
+        };
+        responses: {
+            /** @description Persisted answer row */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SaveExamAnswerResponse"];
+                };
+            };
+            /** @description Session not editable */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Session or card not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    submit_exam_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Evaluated exam result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExamResultResponse"];
+                };
+            };
+            /** @description Session not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    get_exam_result: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Evaluated exam result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExamResultResponse"];
+                };
+            };
+            /** @description Result not available yet */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Session not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };

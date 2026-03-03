@@ -9,6 +9,8 @@ Usage:
     python -m scripts.import_exam_assignments                 # dry-run (default)
     python -m scripts.import_exam_assignments --apply         # write to DB + catalog
     python -m scripts.import_exam_assignments --apply --skip-db  # catalog only
+    python -m scripts.import_exam_assignments --apply-db-from-catalog
+        # update DB exam_sheets from local scripts/sks_catalog.json (no network)
 """
 
 from __future__ import annotations
@@ -352,6 +354,39 @@ async def apply_to_database(results: list[MatchResult]) -> int:
     return updated
 
 
+async def apply_catalog_to_database(catalog_path: Path = CATALOG_FILE) -> int:
+    """Write exam_sheets from local catalog JSON into cards table."""
+    with open(catalog_path, encoding="utf-8") as f:
+        catalog: list[dict] = json.load(f)
+
+    lookup: dict[str, list[int]] = {}
+    for entry in catalog:
+        topic = entry.get("topic")
+        question_number = entry.get("question_number")
+        if topic is None or question_number is None:
+            continue
+        card_id = build_card_id(str(topic), int(question_number))
+        exam_sheets = [
+            int(sheet)
+            for sheet in (entry.get("exam_sheets") or [])
+            if isinstance(sheet, int) or str(sheet).isdigit()
+        ]
+        lookup[card_id] = sorted(exam_sheets)
+
+    async with async_session_factory() as session:
+        updated = 0
+        for card_id, exam_sheets in lookup.items():
+            row = await session.get(CardRow, card_id)
+            if row is None:
+                continue
+            current = list(row.exam_sheets) if row.exam_sheets else []
+            if current != exam_sheets:
+                row.exam_sheets = exam_sheets
+                updated += 1
+        await session.commit()
+    return updated
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -377,7 +412,19 @@ def main() -> None:
         default=None,
         help="Use a local JS file instead of fetching from URL",
     )
+    parser.add_argument(
+        "--apply-db-from-catalog",
+        action="store_true",
+        help="Update DB exam_sheets from local scripts/sks_catalog.json (no fetch)",
+    )
     args = parser.parse_args()
+
+    if args.apply_db_from_catalog:
+        print(f"Applying exam_sheets from local catalog: {CATALOG_FILE}")
+        db_updated = asyncio.run(apply_catalog_to_database())
+        print(f"Database: {db_updated} rows updated")
+        print("\nDone.")
+        return
 
     # 1. Fetch / load JS source
     if args.source_file:
@@ -385,7 +432,16 @@ def main() -> None:
         js_content = args.source_file.read_text(encoding="latin-1")
     else:
         print(f"Fetching from {SOURCE_URL} ...")
-        js_content = fetch_js_source()
+        try:
+            js_content = fetch_js_source()
+        except requests.RequestException as exc:
+            print(f"ERROR: failed to fetch source: {exc}", file=sys.stderr)
+            print(
+                "Hint: run with --apply-db-from-catalog to update DB from local "
+                "scripts/sks_catalog.json without network access.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
 
     # 2. Parse
     entries = parse_fa_entries(js_content)

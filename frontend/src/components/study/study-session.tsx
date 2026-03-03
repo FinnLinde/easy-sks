@@ -11,10 +11,12 @@ import { WelcomeOverlay } from "@/components/study/welcome-overlay";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
+  evaluateStudyAnswer,
   getDueCards,
   getPracticeCards,
   reviewCard,
   type Rating,
+  type StudyAnswerEvaluation,
   type StudyCard,
   type TopicValue,
 } from "@/services/study/study-service";
@@ -33,8 +35,13 @@ export function StudySession() {
   const [revealed, setRevealed] = useState(false);
   const [loading, setLoading] = useState(true);
   const [reviewing, setReviewing] = useState(false);
+  const [evaluatingAnswer, setEvaluatingAnswer] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [answerDraftByCardId, setAnswerDraftByCardId] = useState<Record<string, string>>({});
+  const [evaluationByCardId, setEvaluationByCardId] = useState<
+    Record<string, StudyAnswerEvaluation>
+  >({});
 
   const welcomeKey = useMemo(
     () => `easy-sks-study-welcome-seen:${claims?.subject ?? "anonymous"}`,
@@ -92,6 +99,8 @@ export function StudySession() {
     setCurrentIndex(0);
     setRevealed(false);
     setCardsCompleted(0);
+    setAnswerDraftByCardId({});
+    setEvaluationByCardId({});
     setPhase("active");
   };
 
@@ -126,11 +135,42 @@ export function StudySession() {
     setPhase("setup");
     setCurrentIndex(0);
     setRevealed(false);
+    setAnswerDraftByCardId({});
+    setEvaluationByCardId({});
     await fetchCards(topic);
   };
 
   const currentCard = cards[currentIndex];
+  const currentCardId = currentCard?.card.card_id;
+  const currentAnswerDraft = currentCardId ? (answerDraftByCardId[currentCardId] ?? "") : "";
+  const currentEvaluation = currentCardId ? evaluationByCardId[currentCardId] : undefined;
+  const suggestedRating = toRating(currentEvaluation?.suggested_rating);
   const progressPercent = cards.length > 0 ? ((currentIndex + 1) / cards.length) * 100 : 0;
+
+  const handleAnswerDraftChange = (value: string) => {
+    if (!currentCardId) return;
+    setAnswerDraftByCardId((previous) => ({
+      ...previous,
+      [currentCardId]: value,
+    }));
+  };
+
+  const handleEvaluateAnswer = async () => {
+    if (!currentCardId) return;
+    setEvaluatingAnswer(true);
+    setError(null);
+    try {
+      const evaluation = await evaluateStudyAnswer(currentCardId, currentAnswerDraft);
+      setEvaluationByCardId((previous) => ({
+        ...previous,
+        [currentCardId]: evaluation,
+      }));
+    } catch {
+      setError("KI-Bewertung konnte nicht geladen werden.");
+    } finally {
+      setEvaluatingAnswer(false);
+    }
+  };
 
   return (
     <>
@@ -197,8 +237,8 @@ export function StudySession() {
                 <h2 className="text-lg font-semibold">Session vorbereiten</h2>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {mode === "due"
-                    ? "Wiederholung priorisiert faellige Karten."
-                    : "Practice nutzt deine verfuegbaren Karten unabhaengig von Faelligkeit."}
+                    ? "Wiederholung priorisiert fällige Karten."
+                    : "Practice nutzt deine verfügbaren Karten unabhängig von Fälligkeit."}
                 </p>
 
                 <div className="mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-background/30 p-4">
@@ -209,8 +249,8 @@ export function StudySession() {
                 {!cards.length ? (
                   <p className="mt-4 text-sm text-muted-foreground">
                     {mode === "practice"
-                      ? "Keine Karten fuer diese Auswahl verfuegbar."
-                      : "Keine faelligen Karten fuer diese Auswahl verfuegbar."}
+                      ? "Keine Karten für diese Auswahl verfügbar."
+                      : "Keine fälligen Karten für diese Auswahl verfügbar."}
                   </p>
                 ) : null}
 
@@ -246,7 +286,62 @@ export function StudySession() {
             </div>
 
             <Flashcard studyCard={currentCard} revealed={revealed} onReveal={handleReveal} />
-            {revealed && <RatingButtons onRate={handleRate} disabled={reviewing} />}
+            <div className="w-full max-w-3xl space-y-3 rounded-2xl border border-white/10 bg-card/80 p-4">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  Eigene Antwort (optional)
+                </p>
+                <textarea
+                  value={currentAnswerDraft}
+                  onChange={(event) => handleAnswerDraftChange(event.target.value)}
+                  rows={5}
+                  className="mt-2 w-full resize-y rounded-lg border border-white/10 bg-background/40 p-3 text-sm outline-none transition-colors focus:border-sky-400/50"
+                  placeholder="Formuliere deine Antwort und prüfe sie mit KI."
+                />
+              </div>
+
+              <div className="flex justify-end">
+                <Button
+                  variant="outline"
+                  onClick={handleEvaluateAnswer}
+                  disabled={evaluatingAnswer || !currentCardId}
+                >
+                  {evaluatingAnswer ? "Bewerte..." : "Mit KI prüfen"}
+                </Button>
+              </div>
+
+              {currentEvaluation ? (
+                <div className="space-y-2 rounded-lg border border-sky-400/25 bg-sky-500/10 p-3 text-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="font-medium">
+                      KI-Status: {verdictLabel(currentEvaluation.verdict)}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Punkte: {currentEvaluation.awarded_points}/{currentEvaluation.max_points}
+                    </span>
+                  </div>
+                  <p>{currentEvaluation.reasoning_summary}</p>
+                  {currentEvaluation.missing_points.length > 0 && (
+                    <p className="text-xs text-muted-foreground">
+                      Fehlende Punkte: {currentEvaluation.missing_points.join(", ")}
+                    </p>
+                  )}
+                  {currentEvaluation.improved_answer_suggestion && (
+                    <p className="text-xs text-muted-foreground">
+                      Vorschlag: {currentEvaluation.improved_answer_suggestion}
+                    </p>
+                  )}
+                </div>
+              ) : null}
+            </div>
+
+            {revealed && (
+              <RatingButtons
+                onRate={handleRate}
+                disabled={reviewing}
+                suggestedRating={suggestedRating}
+              />
+            )}
           </>
         )}
 
@@ -258,4 +353,18 @@ export function StudySession() {
       {showWelcome && <WelcomeOverlay onDismiss={dismissWelcome} />}
     </>
   );
+}
+
+function toRating(value: number | undefined): Rating | undefined {
+  if (value === 1 || value === 2 || value === 3 || value === 4) {
+    return value;
+  }
+  return undefined;
+}
+
+function verdictLabel(verdict: string): string {
+  if (verdict === "full") return "Richtig";
+  if (verdict === "partial") return "Teilweise richtig";
+  if (verdict === "incorrect") return "Falsch";
+  return verdict;
 }

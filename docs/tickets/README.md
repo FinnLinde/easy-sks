@@ -34,13 +34,15 @@ Diese Tickets dienen als Spezifikation und Arbeitsgrundlage fuer die technische 
 20. `ESKS-020` Registrierung und Profil-Hardening (Name + Mobilnummer)
 21. `ESKS-021` Pruefungsaufgaben-Import und Antwort-Linking
 22. `ESKS-022` Cognito-first Mobilnummer-Verifikation und Eindeutigkeit
+23. `ESKS-023` Pruefungs-Uebungsmodus mit Sofort-Feedback
+24. `ESKS-024` KI-Antwortvalidierung im Lern-/Practice-Modus
 
-## Aktueller Stand (2026-02-27)
+## Aktueller Stand (2026-02-28)
 
 - `done`: ESKS-001, ESKS-002, ESKS-003, ESKS-014, ESKS-015
-- `review`: ESKS-012, ESKS-013, ESKS-016, ESKS-017, ESKS-018, ESKS-019
-- `blocked`: ESKS-004, ESKS-008
-- `todo`: ESKS-005, ESKS-006, ESKS-007, ESKS-009, ESKS-010, ESKS-011, ESKS-022
+- `review`: ESKS-008, ESKS-012, ESKS-013, ESKS-016, ESKS-017, ESKS-018, ESKS-019, ESKS-024
+- `blocked`: ESKS-004
+- `todo`: ESKS-005, ESKS-006, ESKS-007, ESKS-009, ESKS-010, ESKS-011, ESKS-022, ESKS-023
 
 ## Hinweise fuer Agenten
 

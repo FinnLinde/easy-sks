@@ -6,14 +6,22 @@ Provides async session, repository, and service instances via Depends().
 from __future__ import annotations
 
 from collections.abc import AsyncGenerator
+from functools import lru_cache
+import os
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from auth.model.authenticated_user import AuthenticatedUser
 from card.db.card_repository import CardRepository
 from database import async_session_factory
+from exam.db.exam_repository import ExamRepository
+from exam.service.exam_ai_config import ExamAiConfig
+from exam.service.exam_service import ExamService
+from exam.service.heuristic_exam_evaluator import HeuristicExamEvaluator
+from exam.service.openai_exam_evaluator import OpenAiExamEvaluator
 from scheduling.db.scheduling_repository import SchedulingRepository
 from scheduling.service.scheduling_service import SchedulingService
+from study.service.exam_evaluator_adapter import ExamBackedStudyAnswerEvaluator
 from study.service.study_service import StudyService
 from user.db.user_repository import UserRepository
 from user.model.app_user import AppUser
@@ -42,6 +50,31 @@ async def get_study_service(
         card_repo=CardRepository(session),
         scheduling_repo=SchedulingRepository(session),
         scheduling_service=SchedulingService(),
+        answer_evaluator=ExamBackedStudyAnswerEvaluator(_build_exam_evaluator()),
+    )
+
+
+@lru_cache
+def _build_exam_evaluator():
+    config = ExamAiConfig()
+    api_key = config.openai_api_key or os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return HeuristicExamEvaluator()
+    return OpenAiExamEvaluator(
+        api_key=api_key,
+        model=config.openai_model,
+        timeout_seconds=config.openai_timeout_seconds,
+    )
+
+
+async def get_exam_service(
+    session: AsyncSession = None,  # type: ignore[assignment]
+) -> ExamService:
+    """Build an ExamService wired to real repository and evaluator adapters."""
+    return ExamService(
+        exam_repo=ExamRepository(session),
+        card_repo=CardRepository(session),
+        evaluator=_build_exam_evaluator(),
     )
 
 

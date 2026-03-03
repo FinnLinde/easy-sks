@@ -17,10 +17,10 @@ export function WelcomeOverlay({
             <div>
               <h2 className="text-2xl font-semibold tracking-tight">Willkommen im Lernbereich</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Kurze Sessions, klare Priorisierung und regelmaessige Wiederholung.
+                Kurze Sessions, klare Priorisierung und regelmäßige Wiederholung.
               </p>
             </div>
-            <Button variant="ghost" size="icon" onClick={onDismiss} aria-label="Overlay schliessen">
+            <Button variant="ghost" size="icon" onClick={onDismiss} aria-label="Overlay schließen">
               <X className="size-4" />
             </Button>
           </div>
@@ -29,17 +29,17 @@ export function WelcomeOverlay({
             <div className="rounded-xl border border-sky-500/20 bg-sky-500/10 p-4">
               <BookOpen className="mb-2 size-4 text-sky-300" />
               <p className="text-sm font-medium">Setup first</p>
-              <p className="mt-1 text-xs text-muted-foreground">Waehle Modus und Thema vor Sessionstart.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Wähle Modus und Thema vor Sessionstart.</p>
             </div>
             <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4">
               <Target className="mb-2 size-4 text-emerald-300" />
               <p className="text-sm font-medium">Priorisiert lernen</p>
-              <p className="mt-1 text-xs text-muted-foreground">Wiederholung zeigt zuerst faellige Karten.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Wiederholung zeigt zuerst fällige Karten.</p>
             </div>
             <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
               <Calendar className="mb-2 size-4 text-amber-300" />
               <p className="text-sm font-medium">Konstanz</p>
-              <p className="mt-1 text-xs text-muted-foreground">Taegliche Sessions halten den Lernfluss stabil.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Tägliche Sessions halten den Lernfluss stabil.</p>
             </div>
           </div>
 

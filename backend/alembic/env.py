@@ -13,6 +13,7 @@ from alembic import context
 # side-effect of registering with Base.metadata.
 from database import Base  # noqa: F401
 import card.db.card_table  # noqa: F401
+import exam.db.exam_tables  # noqa: F401
 import scheduling.db.scheduling_table  # noqa: F401
 import scheduling.db.review_log_table  # noqa: F401
 import user.db.user_table  # noqa: F401

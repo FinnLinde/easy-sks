@@ -299,6 +299,58 @@ class TestReviewEndpoint:
 
 
 @pytest.mark.asyncio
+class TestEvaluateAnswerEndpoint:
+    async def test_returns_structured_answer_evaluation(self, client, db_session):
+        now = datetime.now(timezone.utc)
+        await _add_user(db_session, "test-user")
+        db_session.add(CardRow(
+            card_id="api-eval-1",
+            front_text="Was ist bei Nordwind wichtig?",
+            front_images=[],
+            answer_text="Bei Nordwind ist der Seegang zu beachten.",
+            answer_images=[],
+            short_answer=["Nordwind beachten"],
+            tags=["navigation"],
+        ))
+        db_session.add(CardSchedulingInfoRow(
+            user_id="test-user",
+            card_id="api-eval-1",
+            state=0,
+            stability=0.0,
+            difficulty=0.0,
+            elapsed_days=0,
+            scheduled_days=0,
+            reps=0,
+            lapses=0,
+            due=now - timedelta(minutes=5),
+            last_review=None,
+        ))
+        await db_session.flush()
+
+        resp = await client.post("/study/evaluate-answer", json={
+            "card_id": "api-eval-1",
+            "user_answer": "Nordwind beachten und Seegang einplanen.",
+        })
+        assert resp.status_code == 200
+
+        data = resp.json()
+        assert data["card_id"] == "api-eval-1"
+        assert data["max_points"] == 1.0
+        assert data["verdict"] in {"full", "partial", "incorrect"}
+        assert 1 <= data["suggested_rating"] <= 4
+        assert isinstance(data["reasoning_summary"], str)
+        assert isinstance(data["mistakes"], list)
+        assert isinstance(data["missing_points"], list)
+
+    async def test_returns_404_for_unknown_or_unscheduled_card(self, client):
+        resp = await client.post("/study/evaluate-answer", json={
+            "card_id": "missing-card",
+            "user_answer": "Antwort",
+        })
+        assert resp.status_code == 404
+
+
+@pytest.mark.asyncio
 class TestPracticeCardsEndpoint:
     async def test_returns_future_cards_when_no_due_cards_exist(self, client, db_session):
         now = datetime.now(timezone.utc)
