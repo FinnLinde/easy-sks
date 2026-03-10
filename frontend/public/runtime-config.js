@@ -1,0 +1,1 @@
+window.__EASY_SKS_RUNTIME_CONFIG__ = window.__EASY_SKS_RUNTIME_CONFIG__ || {};

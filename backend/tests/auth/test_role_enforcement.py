@@ -18,6 +18,7 @@ from main import app
 _PUBLIC_PATHS: set[str] = {
     "/",
     "/health",
+    "/billing/webhook/stripe",
     "/openapi.json",
     "/docs",
     "/docs/oauth2-redirect",

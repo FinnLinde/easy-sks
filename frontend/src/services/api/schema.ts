@@ -89,6 +89,74 @@ export interface paths {
         patch: operations["patch_me_profile"];
         trace?: never;
     };
+    "/billing/checkout-session": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Stripe checkout session for premium plan */
+        post: operations["create_checkout_session"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/billing/customer-portal-session": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Stripe customer portal session */
+        post: operations["create_customer_portal_session"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/billing/webhook/stripe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Stripe webhook receiver */
+        post: operations["stripe_webhook"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/billing/subscription": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read current subscription snapshot for the authenticated user */
+        get: operations["get_subscription"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/study/due": {
         parameters: {
             query?: never;
@@ -294,6 +362,109 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/navigation-exams": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List available navigation exam sheets */
+        get: operations["list_navigation_exams"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/navigation-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List completed navigation sessions for current user */
+        get: operations["list_navigation_history"];
+        put?: never;
+        /** Start a new navigation session */
+        post: operations["start_navigation_session"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/navigation-sessions/{session_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Fetch navigation session details */
+        get: operations["get_navigation_session"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/navigation-sessions/{session_id}/answers/{task_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Save or update one answer during an active navigation session */
+        put: operations["save_navigation_answer"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/navigation-sessions/{session_id}/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Submit and evaluate a navigation session */
+        post: operations["submit_navigation_session"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/navigation-sessions/{session_id}/result": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Fetch the evaluated navigation result */
+        get: operations["get_navigation_result"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -323,6 +494,25 @@ export interface components {
         };
         ErrorResponse: {
             detail: string;
+        };
+        CheckoutSessionResponse: {
+            checkout_url: string;
+        };
+        CustomerPortalSessionResponse: {
+            portal_url: string;
+        };
+        StripeWebhookReceiptResponse: {
+            received: boolean;
+            event_type: string;
+        };
+        BillingSubscriptionResponse: {
+            provider: string;
+            status?: string | null;
+            /** @enum {string} */
+            plan: "freemium" | "premium";
+            /** Format: date-time */
+            current_period_end?: string | null;
+            price_id?: string | null;
         };
         CardContentResponse: {
             text: string;
@@ -478,6 +668,100 @@ export interface components {
             passed?: boolean | null;
             time_over: boolean;
         };
+        NavigationTemplateResponse: {
+            sheet_number: number;
+            display_name: string;
+            task_count: number;
+            total_points: number;
+            time_limit_minutes: number;
+        };
+        StartNavigationSessionRequest: {
+            sheet_number: number;
+            time_limit_minutes?: number;
+        };
+        SubQuestionResponse: {
+            text: string;
+            points: number;
+        };
+        NavigationQuestionResponse: {
+            task_number: number;
+            task_id: string;
+            points: number;
+            context: string;
+            sub_questions: components["schemas"]["SubQuestionResponse"][];
+            student_answer: string;
+            /** Format: date-time */
+            answered_at?: string | null;
+        };
+        NavigationSessionResponse: {
+            session_id: string;
+            sheet_number: number;
+            status: string;
+            /** Format: date-time */
+            started_at: string;
+            /** Format: date-time */
+            submitted_at?: string | null;
+            /** Format: date-time */
+            deadline_at: string;
+            time_limit_minutes: number;
+            time_remaining_seconds: number;
+            time_over: boolean;
+            task_count: number;
+            questions: components["schemas"]["NavigationQuestionResponse"][];
+        };
+        SaveNavigationAnswerRequest: {
+            student_answer: string;
+        };
+        SaveNavigationAnswerResponse: {
+            session_id: string;
+            task_id: string;
+            task_number: number;
+            student_answer: string;
+            /** Format: date-time */
+            answered_at?: string | null;
+        };
+        NavigationQuestionResultResponse: {
+            task_number: number;
+            task_id: string;
+            context: string;
+            sub_questions: string[];
+            key_answers: string[];
+            solution_text: string;
+            student_answer: string;
+            score: number;
+            max_score: number;
+            is_correct: boolean;
+            feedback: string;
+        };
+        NavigationResultResponse: {
+            session_id: string;
+            sheet_number: number;
+            status: string;
+            /** Format: date-time */
+            started_at: string;
+            /** Format: date-time */
+            submitted_at?: string | null;
+            time_limit_minutes: number;
+            time_over: boolean;
+            total_score: number;
+            max_score: number;
+            passed: boolean;
+            pass_score_threshold: number;
+            questions: components["schemas"]["NavigationQuestionResultResponse"][];
+        };
+        NavigationSessionHistoryResponse: {
+            session_id: string;
+            sheet_number: number;
+            status: string;
+            /** Format: date-time */
+            started_at: string;
+            /** Format: date-time */
+            submitted_at?: string | null;
+            total_score?: number | null;
+            max_score?: number | null;
+            passed?: boolean | null;
+            time_over: boolean;
+        };
     };
     responses: never;
     parameters: never;
@@ -609,6 +893,137 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    create_checkout_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Checkout session created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckoutSessionResponse"];
+                };
+            };
+            /** @description Stripe checkout is not configured */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    create_customer_portal_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Customer portal session created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CustomerPortalSessionResponse"];
+                };
+            };
+            /** @description No Stripe customer available for this user */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Stripe customer portal is not configured */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    stripe_webhook: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    [key: string]: unknown;
+                };
+            };
+        };
+        responses: {
+            /** @description Webhook accepted and processed */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StripeWebhookReceiptResponse"];
+                };
+            };
+            /** @description Invalid Stripe signature */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Stripe webhook is not configured */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    get_subscription: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Current subscription state */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BillingSubscriptionResponse"];
                 };
             };
         };
@@ -977,6 +1392,226 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ExamResultResponse"];
+                };
+            };
+            /** @description Result not available yet */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Session not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    list_navigation_exams: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Available navigation templates */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NavigationTemplateResponse"][];
+                };
+            };
+        };
+    };
+    list_navigation_history: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Completed navigation sessions */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NavigationSessionHistoryResponse"][];
+                };
+            };
+        };
+    };
+    start_navigation_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StartNavigationSessionRequest"];
+            };
+        };
+        responses: {
+            /** @description Started navigation session */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NavigationSessionResponse"];
+                };
+            };
+            /** @description Invalid sheet */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    get_navigation_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Navigation session details */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NavigationSessionResponse"];
+                };
+            };
+            /** @description Session not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    save_navigation_answer: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+                task_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SaveNavigationAnswerRequest"];
+            };
+        };
+        responses: {
+            /** @description Persisted answer row */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SaveNavigationAnswerResponse"];
+                };
+            };
+            /** @description Session not editable */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Session or task not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    submit_navigation_session: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Evaluated navigation result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NavigationResultResponse"];
+                };
+            };
+            /** @description Session not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    get_navigation_result: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Evaluated navigation result */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NavigationResultResponse"];
                 };
             };
             /** @description Result not available yet */

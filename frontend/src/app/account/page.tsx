@@ -19,6 +19,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProfileForm } from "@/components/profile/profile-form";
+import {
+  createCheckoutSession,
+  createCustomerPortalSession,
+} from "@/services/billing/billing-service";
 import { getMe, type MeSummary } from "@/services/user/user-service";
 
 function BillingStatusBadge({ status }: { status: string | null | undefined }) {
@@ -46,6 +50,8 @@ export default function AccountPage() {
   const { status: authStatus } = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+  const [actionLoading, setActionLoading] = useState<"checkout" | "portal" | null>(null);
   const [summary, setSummary] = useState<MeSummary | null>(null);
 
   async function loadSummary() {
@@ -64,6 +70,30 @@ export default function AccountPage() {
   useEffect(() => {
     void loadSummary();
   }, []);
+
+  async function handleCheckout() {
+    setActionError(null);
+    setActionLoading("checkout");
+    try {
+      const url = await createCheckoutSession();
+      window.location.assign(url);
+    } catch {
+      setActionError("Checkout konnte nicht gestartet werden.");
+      setActionLoading(null);
+    }
+  }
+
+  async function handleCustomerPortal() {
+    setActionError(null);
+    setActionLoading("portal");
+    try {
+      const url = await createCustomerPortalSession();
+      window.location.assign(url);
+    } catch {
+      setActionError("Abo-Verwaltung konnte nicht geöffnet werden.");
+      setActionLoading(null);
+    }
+  }
 
   return (
     <div className="flex min-h-full w-full justify-center px-4 py-6 md:px-6 md:py-8">
@@ -193,6 +223,28 @@ export default function AccountPage() {
                     <span className="text-muted-foreground">Gekündigt am</span>
                     <span>{summary.cancels_at ?? "-"}</span>
                   </div>
+                  <div className="flex flex-wrap gap-2">
+                    {summary.plan !== "premium" ? (
+                      <Button
+                        onClick={() => void handleCheckout()}
+                        disabled={actionLoading !== null}
+                        className="gap-2"
+                      >
+                        {actionLoading === "checkout" ? "Weiterleitung..." : "Premium upgraden"}
+                      </Button>
+                    ) : null}
+                    <Button
+                      variant="outline"
+                      onClick={() => void handleCustomerPortal()}
+                      disabled={actionLoading !== null || !summary.billing_status}
+                      className="gap-2"
+                    >
+                      {actionLoading === "portal" ? "Weiterleitung..." : "Abo verwalten"}
+                    </Button>
+                  </div>
+                  {actionError ? (
+                    <p className="text-sm text-destructive">{actionError}</p>
+                  ) : null}
                 </CardContent>
               </Card>
             </>

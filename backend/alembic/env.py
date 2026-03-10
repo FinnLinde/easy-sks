@@ -2,6 +2,7 @@
 
 import asyncio
 from logging.config import fileConfig
+import os
 
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
@@ -12,13 +13,19 @@ from alembic import context
 # to autogenerate.  The individual table modules are imported for their
 # side-effect of registering with Base.metadata.
 from database import Base  # noqa: F401
+import billing.db.billing_tables  # noqa: F401
 import card.db.card_table  # noqa: F401
 import exam.db.exam_tables  # noqa: F401
+import navigation.db.navigation_tables  # noqa: F401
 import scheduling.db.scheduling_table  # noqa: F401
 import scheduling.db.review_log_table  # noqa: F401
 import user.db.user_table  # noqa: F401
 
 config = context.config
+
+database_url = os.getenv("DATABASE_URL")
+if database_url:
+    config.set_main_option("sqlalchemy.url", database_url)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)

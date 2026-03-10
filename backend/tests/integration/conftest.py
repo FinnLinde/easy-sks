@@ -53,8 +53,10 @@ def _create_tables(postgres_url: str):
         eng = create_async_engine(postgres_url, echo=False)
 
         # Import table modules so Base.metadata knows about them
+        import billing.db.billing_tables  # noqa: F401
         import card.db.card_table  # noqa: F401
         import exam.db.exam_tables  # noqa: F401
+        import navigation.db.navigation_tables  # noqa: F401
         import scheduling.db.review_log_table  # noqa: F401
         import scheduling.db.scheduling_table  # noqa: F401
         import user.db.user_table  # noqa: F401

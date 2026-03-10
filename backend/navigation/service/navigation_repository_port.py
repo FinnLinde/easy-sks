@@ -1,0 +1,39 @@
+from __future__ import annotations
+
+from typing import Protocol
+
+from navigation.model.navigation_answer import NavigationAnswer
+from navigation.model.navigation_session import NavigationSession
+from navigation.model.navigation_task import NavigationTask
+
+
+class NavigationRepositoryPort(Protocol):
+    """Port for navigation persistence operations."""
+
+    async def list_tasks_for_sheet(self, sheet_number: int) -> list[NavigationTask]: ...
+
+    async def get_task(self, task_id: str) -> NavigationTask | None: ...
+
+    async def get_distinct_sheet_numbers(self) -> list[int]: ...
+
+    async def count_tasks_per_sheet(self) -> dict[int, int]: ...
+
+    async def create_session(
+        self, session: NavigationSession, answers: list[NavigationAnswer]
+    ) -> None: ...
+
+    async def get_session(self, user_id: str, session_id: str) -> NavigationSession | None: ...
+
+    async def save_session(self, session: NavigationSession) -> None: ...
+
+    async def list_answers(self, session_id: str) -> list[NavigationAnswer]: ...
+
+    async def get_answer(
+        self, user_id: str, session_id: str, task_id: str
+    ) -> NavigationAnswer | None: ...
+
+    async def save_answer(self, answer: NavigationAnswer) -> None: ...
+
+    async def list_completed_sessions_for_user(
+        self, user_id: str
+    ) -> list[NavigationSession]: ...

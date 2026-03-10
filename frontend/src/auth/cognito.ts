@@ -1,5 +1,6 @@
 import { consumePkceRequest, savePkceRequest } from "@/auth/storage";
 import type { AuthSession } from "@/auth/types";
+import { getRuntimeConfig } from "@/config/runtime-config";
 
 type CognitoConfig = {
   domain: string;
@@ -30,8 +31,9 @@ function normalizeDomain(domain: string): string {
 
 function getConfig(): CognitoConfig {
   const origin = requireBrowserOrigin();
-  const domain = process.env.NEXT_PUBLIC_COGNITO_DOMAIN;
-  const clientId = process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID;
+  const runtimeConfig = getRuntimeConfig();
+  const domain = runtimeConfig.cognitoDomain;
+  const clientId = runtimeConfig.cognitoClientId;
 
   if (!domain || !clientId) {
     throw new Error(
@@ -43,9 +45,9 @@ function getConfig(): CognitoConfig {
     domain: normalizeDomain(domain),
     clientId,
     redirectUri:
-      process.env.NEXT_PUBLIC_COGNITO_REDIRECT_URI ?? `${origin}/auth/callback`,
-    logoutUri: process.env.NEXT_PUBLIC_COGNITO_LOGOUT_URI ?? origin,
-    scopes: process.env.NEXT_PUBLIC_COGNITO_SCOPES ?? "openid email profile",
+      runtimeConfig.cognitoRedirectUri ?? `${origin}/auth/callback`,
+    logoutUri: runtimeConfig.cognitoLogoutUri ?? origin,
+    scopes: runtimeConfig.cognitoScopes ?? "openid email profile",
   };
 }
 

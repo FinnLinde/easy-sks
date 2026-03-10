@@ -1,0 +1,12 @@
+[Interface]
+Address = __WIREGUARD_SERVER_IP__/24
+ListenPort = __WIREGUARD_PORT__
+PrivateKey = __WIREGUARD_SERVER_PRIVATE_KEY__
+SaveConfig = true
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -A POSTROUTING -s __WIREGUARD_ALLOWED_CIDR__ -o __PUBLIC_INTERFACE__ -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D POSTROUTING -s __WIREGUARD_ALLOWED_CIDR__ -o __PUBLIC_INTERFACE__ -j MASQUERADE
+
+# Add one [Peer] block per client.
+# Client configs should use:
+# AllowedIPs = 0.0.0.0/0, ::/0
+# to force full-tunnel VPN access with no split-tunnel.

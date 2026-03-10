@@ -1,11 +1,12 @@
 import type { LucideIcon } from "lucide-react";
-import { BookOpen, ClipboardCheck, LayoutDashboard, User } from "lucide-react";
+import { BookOpen, ClipboardCheck, Compass, LayoutDashboard, User } from "lucide-react";
 import type { AuthRole } from "@/auth/authorization";
 
 export const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard, requiredRole: "freemium" },
   { href: "/study", label: "Lernen", icon: BookOpen, requiredRole: "freemium" },
   { href: "/exams", label: "Prüfung", icon: ClipboardCheck, requiredRole: "freemium" },
+  { href: "/navigation", label: "Navigation", icon: Compass, requiredRole: "freemium" },
   { href: "/account", label: "Account", icon: User, requiredRole: "freemium" },
 ] as const satisfies readonly {
   href: string;

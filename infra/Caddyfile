@@ -1,0 +1,29 @@
+__DEV_APP_DOMAIN__ {
+    @notVpn not remote_ip __WIREGUARD_ALLOWED_CIDR__
+    respond @notVpn "Forbidden" 403
+    reverse_proxy 127.0.0.1:__DEV_FRONTEND_PORT__
+}
+
+__DEV_API_DOMAIN__ {
+    @stripeWebhook path /billing/webhook/stripe
+    handle @stripeWebhook {
+        reverse_proxy 127.0.0.1:__DEV_BACKEND_PORT__
+    }
+
+    @notVpn not remote_ip __WIREGUARD_ALLOWED_CIDR__
+    handle @notVpn {
+        respond "Forbidden" 403
+    }
+
+    handle {
+        reverse_proxy 127.0.0.1:__DEV_BACKEND_PORT__
+    }
+}
+
+__PROD_APP_DOMAIN__ {
+    reverse_proxy 127.0.0.1:__PROD_FRONTEND_PORT__
+}
+
+__PROD_API_DOMAIN__ {
+    reverse_proxy 127.0.0.1:__PROD_BACKEND_PORT__
+}

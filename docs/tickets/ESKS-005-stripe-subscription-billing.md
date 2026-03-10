@@ -1,6 +1,6 @@
 # ESKS-005 - Abo-Zahlung (Stripe) und Premium-Freischaltung
 
-- Status: `todo`
+- Status: `review`
 - Prioritaet: `P1`
 - Bereich: `cross-cutting`
 - Owner: `unassigned`
@@ -78,11 +78,11 @@ Nutzer koennen ein Premium-Abo abschliessen, verwalten und verlieren/erhalten Pr
 
 ## Akzeptanzkriterien
 
-- [ ] Nutzer kann aus der App eine Stripe Checkout Session starten.
-- [ ] Erfolgreicher Abschluss aktiviert Premium im System.
-- [ ] Webhooks aktualisieren Subscription-Status idempotent.
-- [ ] Nutzer kann Customer Portal oeffnen.
-- [ ] Premium-Zugriff wird nach Statusaenderung korrekt gewaehrt/entzogen.
+- [x] Nutzer kann aus der App eine Stripe Checkout Session starten.
+- [x] Erfolgreicher Abschluss aktiviert Premium im System.
+- [x] Webhooks aktualisieren Subscription-Status idempotent.
+- [x] Nutzer kann Customer Portal oeffnen.
+- [x] Premium-Zugriff wird nach Statusaenderung korrekt gewaehrt/entzogen.
 
 ## Testplan
 
@@ -102,18 +102,18 @@ Nutzer koennen ein Premium-Abo abschliessen, verwalten und verlieren/erhalten Pr
 
 ## Progress-Checklist
 
-- [ ] Billing-Datenmodell definieren
-- [ ] Migrationen erstellen
-- [ ] Stripe SDK integrieren
-- [ ] Checkout-Endpoint implementieren
-- [ ] Customer-Portal-Endpoint implementieren
-- [ ] Webhook-Endpoint + Verifikation implementieren
-- [ ] Entitlement-Sync anbinden
-- [ ] Frontend Upgrade-/Manage-UI bauen
+- [x] Billing-Datenmodell definieren
+- [x] Migrationen erstellen
+- [x] Stripe SDK integrieren
+- [ ] Stripe-Account anlegen und Test-/Live-Konfigurationswerte bereitstellen (`sk_*`, `whsec_*`, `price_*`, Redirect-URLs)
+- [x] Checkout-Endpoint implementieren
+- [x] Customer-Portal-Endpoint implementieren
+- [x] Webhook-Endpoint + Verifikation implementieren
+- [x] Entitlement-Sync anbinden
+- [x] Frontend Upgrade-/Manage-UI bauen
 - [ ] Stripe Testmode E2E pruefen
 
 ## Offene Fragen
 
-- Soll Premium-Status primaer aus lokaler Subscription-Tabelle oder aus Cognito-Gruppen gelesen werden?
-- Wie wird mit `past_due` umgegangen (Grace Period ja/nein)?
-
+- Premium-Status wird primaer aus lokaler `subscriptions`-Tabelle gelesen.
+- `past_due` wird im MVP als `freemium` behandelt (keine Grace Period).

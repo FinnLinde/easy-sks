@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import { AuthProvider } from "@/auth/auth-provider";
 import { AppShell } from "@/components/layout/app-shell";
 import "./globals.css";
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="de" className="dark">
       <body className={`${geistSans.className} antialiased`}>
+        <Script src="/runtime-config.js" strategy="beforeInteractive" />
         <AuthProvider>
           <AppShell>{children}</AppShell>
         </AuthProvider>

@@ -1,0 +1,111 @@
+name: Deploy Prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      git_ref:
+        description: "Git ref to build and deploy for production"
+        required: false
+        default: "main"
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.git_ref }}
+
+      - name: Resolve image tag
+        id: image_tag
+        run: echo "value=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/easy-sks-backend:${{ steps.image_tag.outputs.value }}
+            ghcr.io/${{ github.repository_owner }}/easy-sks-backend:prod
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/easy-sks-frontend:${{ steps.image_tag.outputs.value }}
+            ghcr.io/${{ github.repository_owner }}/easy-sks-frontend:prod
+
+      - name: Ensure remote directories exist
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            mkdir -p /opt/easy-sks/shared/compose
+            mkdir -p /opt/easy-sks/prod
+
+      - name: Upload compose files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "docker-compose.base.yml,docker-compose.prod.yml"
+          target: /opt/easy-sks/shared/compose
+
+      - name: Upload deploy helper
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "infra/deploy-stack.sh"
+          target: /opt/easy-sks/shared/compose
+          strip_components: 1
+
+      - name: Deploy prod stack
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cat <<'EOF' > /opt/easy-sks/prod/.env
+            ${{ secrets.PROD_ENV_FILE }}
+            EOF
+            chmod 600 /opt/easy-sks/prod/.env
+            echo "${{ secrets.GHCR_READ_TOKEN }}" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
+            export BACKEND_IMAGE="ghcr.io/${{ github.repository_owner }}/easy-sks-backend:${{ steps.image_tag.outputs.value }}"
+            export FRONTEND_IMAGE="ghcr.io/${{ github.repository_owner }}/easy-sks-frontend:${{ steps.image_tag.outputs.value }}"
+            chmod +x /opt/easy-sks/shared/compose/deploy-stack.sh
+            /opt/easy-sks/shared/compose/deploy-stack.sh prod

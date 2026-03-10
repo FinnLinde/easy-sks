@@ -1,0 +1,75 @@
+name: Deploy Dev
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Images"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: >-
+      ${{
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main'
+      }}
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Ensure remote directories exist
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            mkdir -p /opt/easy-sks/shared/compose
+            mkdir -p /opt/easy-sks/dev
+
+      - name: Upload compose files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "docker-compose.base.yml,docker-compose.dev.yml"
+          target: /opt/easy-sks/shared/compose
+
+      - name: Upload deploy helper
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "infra/deploy-stack.sh"
+          target: /opt/easy-sks/shared/compose
+          strip_components: 1
+
+      - name: Deploy dev stack
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cat <<'EOF' > /opt/easy-sks/dev/.env
+            ${{ secrets.DEV_ENV_FILE }}
+            EOF
+            chmod 600 /opt/easy-sks/dev/.env
+            echo "${{ secrets.GHCR_READ_TOKEN }}" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
+            export BACKEND_IMAGE="ghcr.io/${{ github.repository_owner }}/easy-sks-backend:${{ github.event.workflow_run.head_sha }}"
+            export FRONTEND_IMAGE="ghcr.io/${{ github.repository_owner }}/easy-sks-frontend:${{ github.event.workflow_run.head_sha }}"
+            chmod +x /opt/easy-sks/shared/compose/deploy-stack.sh
+            /opt/easy-sks/shared/compose/deploy-stack.sh dev

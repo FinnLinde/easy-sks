@@ -12,6 +12,10 @@ import os
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from auth.model.authenticated_user import AuthenticatedUser
+from billing.db.billing_repository import BillingRepository
+from billing.service.billing_service import BillingService
+from billing.service.stripe_config import StripeConfig
+from billing.service.stripe_sdk_gateway import StripeSdkGateway
 from card.db.card_repository import CardRepository
 from database import async_session_factory
 from exam.db.exam_repository import ExamRepository
@@ -19,6 +23,10 @@ from exam.service.exam_ai_config import ExamAiConfig
 from exam.service.exam_service import ExamService
 from exam.service.heuristic_exam_evaluator import HeuristicExamEvaluator
 from exam.service.openai_exam_evaluator import OpenAiExamEvaluator
+from navigation.db.navigation_repository import NavigationRepository
+from navigation.service.heuristic_navigation_evaluator import HeuristicNavigationEvaluator
+from navigation.service.navigation_service import NavigationService
+from navigation.service.openai_navigation_evaluator import OpenAiNavigationEvaluator
 from scheduling.db.scheduling_repository import SchedulingRepository
 from scheduling.service.scheduling_service import SchedulingService
 from study.service.exam_evaluator_adapter import ExamBackedStudyAnswerEvaluator
@@ -75,6 +83,51 @@ async def get_exam_service(
         exam_repo=ExamRepository(session),
         card_repo=CardRepository(session),
         evaluator=_build_exam_evaluator(),
+    )
+
+
+@lru_cache
+def _get_stripe_config() -> StripeConfig:
+    return StripeConfig()
+
+
+@lru_cache
+def _build_stripe_gateway() -> StripeSdkGateway:
+    config = _get_stripe_config()
+    return StripeSdkGateway(api_key=config.secret_key)
+
+
+async def get_billing_service(
+    session: AsyncSession = None,  # type: ignore[assignment]
+) -> BillingService:
+    """Build a BillingService with DB persistence and lazy Stripe gateway."""
+    return BillingService(
+        repository=BillingRepository(session),
+        stripe_config=_get_stripe_config(),
+        stripe_gateway_factory=_build_stripe_gateway,
+    )
+
+
+@lru_cache
+def _build_navigation_evaluator():
+    config = ExamAiConfig()
+    api_key = config.openai_api_key or os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return HeuristicNavigationEvaluator()
+    return OpenAiNavigationEvaluator(
+        api_key=api_key,
+        model=config.openai_model,
+        timeout_seconds=config.openai_timeout_seconds,
+    )
+
+
+async def get_navigation_service(
+    session: AsyncSession = None,  # type: ignore[assignment]
+) -> NavigationService:
+    """Build a NavigationService wired to real repository and evaluator adapters."""
+    return NavigationService(
+        repository=NavigationRepository(session),
+        evaluator=_build_navigation_evaluator(),
     )
 
 

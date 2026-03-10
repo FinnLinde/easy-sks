@@ -1,9 +1,9 @@
 import createClient from "openapi-fetch";
+import { getRuntimeConfig } from "@/config/runtime-config";
 import type { paths } from "./schema";
 import { clearAuthSession, loadAccessToken } from "@/auth/storage";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const API_BASE_URL = getRuntimeConfig().apiUrl ?? "http://localhost:8000";
 
 export const apiClient = createClient<paths>({
   baseUrl: API_BASE_URL,

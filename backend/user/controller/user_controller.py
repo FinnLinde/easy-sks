@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from auth.model.authenticated_user import AuthenticatedUser
 from auth.model.role import Role
 from auth.service.auth_dependencies import get_current_user, require_role
+from billing.service.billing_service import BillingService
 from user.model.app_user import AppUser
 from user.model.profile_validation import ProfileValidationError
 from user.service.user_profile_service import MobileNumberInUseError, UserProfileService
@@ -44,13 +45,17 @@ def get_user_profile_service() -> UserProfileService:
     raise NotImplementedError("Must be overridden via app.dependency_overrides")
 
 
-def _build_me_out(app_user: AppUser, auth_user: AuthenticatedUser) -> MeOut:
-    roles = [r.value for r in auth_user.roles]
-    plan = "premium" if auth_user.has_role(Role.PREMIUM) else "freemium"
+def get_billing_service() -> BillingService:
+    raise NotImplementedError("Must be overridden via app.dependency_overrides")
 
-    entitlements = ["study_access"]
-    if plan == "premium":
-        entitlements.append("premium_access")
+
+async def _build_me_out(
+    app_user: AppUser,
+    auth_user: AuthenticatedUser,
+    billing_service: BillingService,
+) -> MeOut:
+    roles = [r.value for r in auth_user.roles]
+    snapshot = await billing_service.get_entitlement_snapshot(app_user.id)
 
     return MeOut(
         user_id=app_user.id,
@@ -59,11 +64,11 @@ def _build_me_out(app_user: AppUser, auth_user: AuthenticatedUser) -> MeOut:
         mobile_number=app_user.mobile_number,
         profile_complete=app_user.profile_complete,
         roles=roles,
-        plan=plan,
-        entitlements=entitlements,
-        billing_status=None,
-        renews_at=None,
-        cancels_at=None,
+        plan=snapshot.plan,
+        entitlements=snapshot.entitlements,
+        billing_status=snapshot.billing_status,
+        renews_at=snapshot.renews_at.isoformat() if snapshot.renews_at else None,
+        cancels_at=snapshot.cancels_at.isoformat() if snapshot.cancels_at else None,
     )
 
 
@@ -71,8 +76,13 @@ def _build_me_out(app_user: AppUser, auth_user: AuthenticatedUser) -> MeOut:
 async def get_me(
     app_user: AppUser = Depends(get_current_app_user),
     auth_user: AuthenticatedUser = Depends(get_current_user),
+    billing_service: BillingService = Depends(get_billing_service),
 ) -> MeOut:
-    return _build_me_out(app_user=app_user, auth_user=auth_user)
+    return await _build_me_out(
+        app_user=app_user,
+        auth_user=auth_user,
+        billing_service=billing_service,
+    )
 
 
 @router.patch(
@@ -85,6 +95,7 @@ async def patch_me_profile(
     app_user: AppUser = Depends(get_current_app_user),
     auth_user: AuthenticatedUser = Depends(get_current_user),
     profile_service: UserProfileService = Depends(get_user_profile_service),
+    billing_service: BillingService = Depends(get_billing_service),
 ) -> MeOut:
     try:
         updated_user = await profile_service.update_profile(
@@ -103,4 +114,8 @@ async def patch_me_profile(
             detail="mobile_number_in_use",
         )
 
-    return _build_me_out(app_user=updated_user, auth_user=auth_user)
+    return await _build_me_out(
+        app_user=updated_user,
+        auth_user=auth_user,
+        billing_service=billing_service,
+    )

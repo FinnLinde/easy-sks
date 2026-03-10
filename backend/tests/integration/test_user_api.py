@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import pytest
 
+from billing.db.billing_tables import SubscriptionRow
 from user.db.user_table import UserRow
 
 
@@ -36,6 +37,29 @@ class TestMeEndpoint:
         assert data["billing_status"] is None
         assert data["renews_at"] is None
         assert data["cancels_at"] is None
+
+    async def test_uses_local_subscription_state_for_plan(self, client, db_session):
+        resp = await client.get("/me")
+        assert resp.status_code == 200
+
+        db_session.add(
+            SubscriptionRow(
+                user_id="test-user",
+                provider="stripe",
+                provider_subscription_id="sub_123",
+                status="active",
+                current_period_end=None,
+                price_id="price_premium",
+            )
+        )
+        await db_session.flush()
+
+        updated = await client.get("/me")
+        assert updated.status_code == 200
+        data = updated.json()
+        assert data["plan"] == "premium"
+        assert data["entitlements"] == ["study_access", "premium_access"]
+        assert data["billing_status"] == "active"
 
 
 @pytest.mark.asyncio

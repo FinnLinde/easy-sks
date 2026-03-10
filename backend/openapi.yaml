@@ -100,6 +100,95 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /billing/checkout-session:
+    post:
+      summary: Create Stripe checkout session for premium plan
+      operationId: create_checkout_session
+      tags: [Billing]
+      responses:
+        "200":
+          description: Checkout session created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CheckoutSessionResponse"
+        "503":
+          description: Stripe checkout is not configured
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /billing/customer-portal-session:
+    post:
+      summary: Create Stripe customer portal session
+      operationId: create_customer_portal_session
+      tags: [Billing]
+      responses:
+        "200":
+          description: Customer portal session created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerPortalSessionResponse"
+        "404":
+          description: No Stripe customer available for this user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "503":
+          description: Stripe customer portal is not configured
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /billing/webhook/stripe:
+    post:
+      summary: Stripe webhook receiver
+      operationId: stripe_webhook
+      tags: [Billing]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Webhook accepted and processed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StripeWebhookReceiptResponse"
+        "400":
+          description: Invalid Stripe signature
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "503":
+          description: Stripe webhook is not configured
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /billing/subscription:
+    get:
+      summary: Read current subscription snapshot for the authenticated user
+      operationId: get_subscription
+      tags: [Billing]
+      responses:
+        "200":
+          description: Current subscription state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BillingSubscriptionResponse"
+
   /study/due:
     get:
       summary: Get cards due for review
@@ -481,6 +570,49 @@ components:
         detail:
           type: string
       required: [detail]
+
+    CheckoutSessionResponse:
+      type: object
+      properties:
+        checkout_url:
+          type: string
+      required: [checkout_url]
+
+    CustomerPortalSessionResponse:
+      type: object
+      properties:
+        portal_url:
+          type: string
+      required: [portal_url]
+
+    StripeWebhookReceiptResponse:
+      type: object
+      properties:
+        received:
+          type: boolean
+        event_type:
+          type: string
+      required: [received, event_type]
+
+    BillingSubscriptionResponse:
+      type: object
+      properties:
+        provider:
+          type: string
+        status:
+          type: string
+          nullable: true
+        plan:
+          type: string
+          enum: [freemium, premium]
+        current_period_end:
+          type: string
+          format: date-time
+          nullable: true
+        price_id:
+          type: string
+          nullable: true
+      required: [provider, plan]
 
     CardContentResponse:
       type: object

@@ -1,0 +1,13 @@
+services:
+  db:
+    restart: unless-stopped
+
+  backend:
+    restart: unless-stopped
+    environment:
+      APP_ENV: prod
+
+  frontend:
+    restart: unless-stopped
+    environment:
+      APP_ENV: prod

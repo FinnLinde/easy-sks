@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { AlertTriangle, Loader2, Sailboat } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/auth/auth-provider";
 
-export default function AuthCallbackPage() {
+function AuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { completeLogin } = useAuth();
@@ -83,5 +83,13 @@ export default function AuthCallbackPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function AuthCallbackPage() {
+  return (
+    <Suspense fallback={null}>
+      <AuthCallbackContent />
+    </Suspense>
   );
 }
