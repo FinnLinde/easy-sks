@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import Link from "next/link";
 import { Loader2, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -154,9 +155,21 @@ export function ProfileForm({
         {fieldErrors.mobileNumber ? (
           <p className="text-xs text-destructive">{fieldErrors.mobileNumber}</p>
         ) : (
-          <p className="text-xs text-muted-foreground">
-            Format: international mit `+` und Landesvorwahl.
-          </p>
+          <div className="space-y-1 text-xs text-muted-foreground">
+            <p>Format: international mit `+` und Landesvorwahl.</p>
+            <p>
+              Aktuell wird die Mobilnummer fuer Profilvollstaendigkeit und zur
+              Erkennung doppelter Accounts gespeichert. Eine SMS-Verifikation ist
+              noch nicht aktiv. Details:{" "}
+              <Link
+                href="/legal/privacy-policy"
+                className="text-sky-300 underline underline-offset-4"
+              >
+                Datenschutzerklaerung
+              </Link>
+              .
+            </p>
+          </div>
         )}
       </div>
 

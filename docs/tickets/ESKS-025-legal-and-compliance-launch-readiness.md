@@ -1,6 +1,6 @@
 # ESKS-025 - Legal und Compliance Launch Readiness (DE/EU)
 
-- Status: `todo`
+- Status: `in_progress`
 - Prioritaet: `P1`
 - Bereich: `cross-cutting`
 - Owner: `unassigned`
@@ -140,13 +140,31 @@ EasySKS soll vor einem bezahlten Launch in Deutschland/EU ueber die notwendigen 
 ## Progress-Checklist
 
 - [ ] Dateninventar und Datenfluesse final konsolidieren
-- [ ] Rechtliche Basisdokumente als Entwurf erstellen
-- [ ] Subprozessoren / Drittanbieter und Transfers dokumentieren
-- [ ] Billing-Disclosure im Produkt definieren
+- [x] Rechtliche Basisdokumente als Entwurf erstellen
+- [x] Subprozessoren / Drittanbieter und Transfers dokumentieren
+- [x] Billing-Disclosure im Produkt definieren
 - [ ] Entscheidung zu `mobile_number` treffen und Folgeumfang festlegen
-- [ ] Retention-/Deletion-/Export-Runbook erstellen
-- [ ] Security-Follow-up fuer Session-/Token-Haertung als konkretes Folge-Ticket oder Teilplan erfassen
+- [x] Retention-/Deletion-/Export-Runbook erstellen
+- [x] Security-Follow-up fuer Session-/Token-Haertung als konkretes Folge-Ticket oder Teilplan erfassen
 - [ ] Juristischen Review organisieren
+
+## Aktueller Stand
+
+Erste praktische MVP-Scheibe umgesetzt:
+
+- Entwurfsdokumente unter `docs/legal/` fuer Impressum, Datenschutz, Terms/Subscription, Widerruf/Refund, Subprozessoren, Retention und DSAR-Runbook angelegt.
+- Oeffentliche Frontend-Seiten unter `/legal` sowie sichtbare Legal-Links im App-Shell/Footer eingebaut.
+- Billing-Hinweise vor dem Premium-Upgrade im Account-Bereich ergaenzt.
+- Mobilnummer-Zweck im Profiltext transparent gemacht, inklusive Hinweis, dass noch keine SMS-/OTP-Verifikation live ist.
+- Dokumentation an den tatsaechlich im Repo sichtbaren Datenfluesen und Drittanbietern ausgerichtet.
+
+Noch offen bzw. bewusst nicht abgeschlossen:
+
+- finale Unternehmens-, Kontakt-, Steuer- und Registerangaben
+- finale Preis-, Intervall-, Widerrufs- und Refund-Texte
+- finale Produktentscheidung zu `mobile_number`
+- juristische Review/Freigabe
+- vollstaendige operative Konsolidierung von Dateninventar, Fristen und Loesch-/Exportprozess bis in den Live-Betrieb
 
 ## Offene Fragen
 

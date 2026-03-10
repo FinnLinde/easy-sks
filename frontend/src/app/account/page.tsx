@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   Calendar,
@@ -222,6 +223,50 @@ export default function AccountPage() {
                   <div className="flex items-center justify-between rounded-md border border-white/10 bg-background/30 px-3 py-2">
                     <span className="text-muted-foreground">Gekündigt am</span>
                     <span>{summary.cancels_at ?? "-"}</span>
+                  </div>
+                  <div className="rounded-xl border border-sky-300/20 bg-sky-500/5 p-4 text-sm">
+                    <p className="font-medium text-foreground">
+                      Wichtige Hinweise vor dem Upgrade
+                    </p>
+                    <ul className="mt-2 list-disc space-y-2 pl-5 text-muted-foreground">
+                      <li>
+                        Das Premium-Abo wird ueber Stripe Checkout abgeschlossen.
+                      </li>
+                      <li>
+                        Preis und Abrechnungsintervall werden dir vor dem Kauf im
+                        Stripe Checkout angezeigt. Ein finaler oeffentlicher
+                        Preistext ist im Repo derzeit noch nicht hinterlegt.
+                      </li>
+                      <li>
+                        Das Abo verlaengert sich automatisch, bis du es im
+                        Kundenportal kuendigst.
+                      </li>
+                      <li>
+                        Hinweise zu Datenschutz, Abo-Bedingungen und digitalen
+                        Leistungen findest du unter{" "}
+                        <Link
+                          href="/legal/privacy-policy"
+                          className="text-sky-300 underline underline-offset-4"
+                        >
+                          Datenschutz
+                        </Link>
+                        ,{" "}
+                        <Link
+                          href="/legal/terms-and-subscription"
+                          className="text-sky-300 underline underline-offset-4"
+                        >
+                          Abo-AGB
+                        </Link>{" "}
+                        und{" "}
+                        <Link
+                          href="/legal/withdrawal-and-refund"
+                          className="text-sky-300 underline underline-offset-4"
+                        >
+                          Widerruf & Refund
+                        </Link>
+                        .
+                      </li>
+                    </ul>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {summary.plan !== "premium" ? (
