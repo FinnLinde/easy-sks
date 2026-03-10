@@ -1,2 +1,3 @@
 .vscode
 infrastructure/backend.tf
+backend/scripts/exam_import_report.json
