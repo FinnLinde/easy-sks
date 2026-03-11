@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useAuth } from "@/auth/auth-provider";
+import { SpeechAnswerInput } from "@/components/speech/speech-answer-input";
 import { Flashcard } from "@/components/study/flashcard";
 import { RatingButtons } from "@/components/study/rating-buttons";
 import { SessionComplete } from "@/components/study/session-complete";
@@ -287,18 +288,15 @@ export function StudySession() {
 
             <Flashcard studyCard={currentCard} revealed={revealed} onReveal={handleReveal} />
             <div className="w-full max-w-3xl space-y-3 rounded-2xl border border-white/10 bg-card/80 p-4">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  Eigene Antwort (optional)
-                </p>
-                <textarea
-                  value={currentAnswerDraft}
-                  onChange={(event) => handleAnswerDraftChange(event.target.value)}
-                  rows={5}
-                  className="mt-2 w-full resize-y rounded-lg border border-white/10 bg-background/40 p-3 text-sm outline-none transition-colors focus:border-sky-400/50"
-                  placeholder="Formuliere deine Antwort und prüfe sie mit KI."
-                />
-              </div>
+              <SpeechAnswerInput
+                value={currentAnswerDraft}
+                onChange={handleAnswerDraftChange}
+                label="Eigene Antwort (optional)"
+                labelClassName="text-xs font-medium uppercase tracking-wide"
+                rows={5}
+                textareaClassName="border-white/10 bg-background/40 focus:border-sky-400/50"
+                placeholder="Formuliere deine Antwort und prüfe sie mit KI."
+              />
 
               <div className="flex justify-end">
                 <Button

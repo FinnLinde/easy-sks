@@ -26,6 +26,7 @@ from card.controller.card_controller import (
     router as card_router,
 )
 from dependencies import (
+    get_audio_transcription_service,
     get_billing_service,
     get_card_repository,
     get_current_app_user,
@@ -49,6 +50,10 @@ from study.controller.study_controller import (
     get_current_app_user as _app_user_placeholder,
     get_study_service as _study_svc_placeholder,
     router as study_router,
+)
+from transcription.controller.transcription_controller import (
+    get_audio_transcription_service as _transcription_svc_placeholder,
+    router as transcription_router,
 )
 from user.controller.user_controller import (
     get_billing_service as _user_billing_service_placeholder,
@@ -130,6 +135,10 @@ async def _wired_billing_service(
     return await get_billing_service(session)
 
 
+async def _wired_audio_transcription_service():
+    return await get_audio_transcription_service()
+
+
 app.dependency_overrides[_study_svc_placeholder] = _wired_study_service
 app.dependency_overrides[_card_repo_placeholder] = _wired_card_repository
 app.dependency_overrides[_app_user_placeholder] = _wired_current_app_user
@@ -144,6 +153,9 @@ app.dependency_overrides[_billing_svc_placeholder] = _wired_billing_service
 app.dependency_overrides[_billing_app_user_placeholder] = _wired_current_app_user
 app.dependency_overrides[_nav_svc_placeholder] = _wired_navigation_service
 app.dependency_overrides[_nav_app_user_placeholder] = _wired_current_app_user
+app.dependency_overrides[_transcription_svc_placeholder] = (
+    _wired_audio_transcription_service
+)
 
 # -- Routers ---------------------------------------------------------------
 
@@ -154,6 +166,7 @@ authenticated_router.include_router(card_router)
 authenticated_router.include_router(user_router)
 authenticated_router.include_router(exam_router)
 authenticated_router.include_router(navigation_router)
+authenticated_router.include_router(transcription_router)
 
 app.include_router(authenticated_router)
 app.include_router(billing_router)

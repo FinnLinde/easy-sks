@@ -31,6 +31,9 @@ from scheduling.db.scheduling_repository import SchedulingRepository
 from scheduling.service.scheduling_service import SchedulingService
 from study.service.exam_evaluator_adapter import ExamBackedStudyAnswerEvaluator
 from study.service.study_service import StudyService
+from transcription.service.audio_transcription_service import AudioTranscriptionService
+from transcription.service.openai_audio_transcriber import OpenAiAudioTranscriber
+from transcription.service.transcription_config import TranscriptionConfig
 from user.db.user_repository import UserRepository
 from user.model.app_user import AppUser
 from user.service.user_profile_service import UserProfileService
@@ -129,6 +132,29 @@ async def get_navigation_service(
         repository=NavigationRepository(session),
         evaluator=_build_navigation_evaluator(),
     )
+
+
+@lru_cache
+def _build_audio_transcription_service() -> AudioTranscriptionService:
+    config = TranscriptionConfig()
+    api_key = config.openai_api_key
+    transcriber = None
+    if api_key:
+        transcriber = OpenAiAudioTranscriber(
+            api_key=api_key,
+            model=config.openai_model,
+            timeout_seconds=config.openai_timeout_seconds,
+        )
+    return AudioTranscriptionService(
+        transcriber=transcriber,
+        default_language=config.default_language,
+        max_file_bytes=config.max_file_bytes,
+    )
+
+
+async def get_audio_transcription_service() -> AudioTranscriptionService:
+    """Build an AudioTranscriptionService backed by OpenAI when configured."""
+    return _build_audio_transcription_service()
 
 
 async def get_card_repository(

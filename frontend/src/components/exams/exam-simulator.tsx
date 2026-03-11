@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AlertTriangle, CheckCircle2, Clock3, FileText, Loader2, XCircle } from "lucide-react";
+import { SpeechAnswerInput } from "@/components/speech/speech-answer-input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -425,18 +426,15 @@ export function ExamSimulator() {
                 {currentQuestion.question_text}
               </div>
 
-              <label className="flex flex-col gap-2">
-                <span className="text-sm text-muted-foreground">Deine Antwort</span>
-                <textarea
-                  value={answersByCard[currentQuestion.card_id] ?? ""}
-                  onChange={(event) =>
-                    handleQuestionChange(currentQuestion.card_id, event.target.value)
-                  }
-                  className="min-h-44 w-full rounded-lg border border-white/15 bg-background/50 p-3 text-sm outline-none transition-colors focus:border-sky-400"
-                  placeholder="Schreibe hier deine Antwort..."
-                  disabled={submitting}
-                />
-              </label>
+              <SpeechAnswerInput
+                value={answersByCard[currentQuestion.card_id] ?? ""}
+                onChange={(value) => handleQuestionChange(currentQuestion.card_id, value)}
+                label="Deine Antwort"
+                rows={9}
+                textareaClassName="min-h-44"
+                placeholder="Schreibe hier deine Antwort..."
+                disabled={submitting}
+              />
 
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="text-xs text-muted-foreground">
