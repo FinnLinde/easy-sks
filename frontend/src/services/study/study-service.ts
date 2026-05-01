@@ -1,0 +1,57 @@
+import { apiClient } from "@/services/api/client";
+import type { components } from "@/services/api/schema";
+
+export type StudyCard = components["schemas"]["StudyCardOut"];
+export type StudyAnswerEvaluation = components["schemas"]["EvaluateAnswerOut"];
+export type TopicValue =
+  | "navigation"
+  | "schifffahrtsrecht"
+  | "wetterkunde"
+  | "seemannschaft_i"
+  | "seemannschaft_ii";
+export type Rating = 1 | 2 | 3 | 4;
+
+export async function getDueCards(
+  topic?: TopicValue
+): Promise<StudyCard[]> {
+  const { data, error } = await apiClient.GET("/study/due", {
+    params: { query: topic ? { topic } : {} },
+  });
+  if (error || !data) throw new Error("Failed to fetch due cards");
+  return data;
+}
+
+export async function getPracticeCards(
+  topic?: TopicValue
+): Promise<StudyCard[]> {
+  const { data, error } = await apiClient.GET("/study/practice", {
+    params: { query: topic ? { topic } : {} },
+  });
+  if (error || !data) throw new Error("Failed to fetch practice cards");
+  return data;
+}
+
+export async function reviewCard(
+  cardId: string,
+  rating: Rating
+): Promise<StudyCard> {
+  const { data, error } = await apiClient.POST("/study/review", {
+    body: { card_id: cardId, rating },
+  });
+  if (error || !data) throw new Error("Failed to review card");
+  return data;
+}
+
+export async function evaluateStudyAnswer(
+  cardId: string,
+  userAnswer: string
+): Promise<StudyAnswerEvaluation> {
+  const { data, error } = await apiClient.POST("/study/evaluate-answer", {
+    body: {
+      card_id: cardId,
+      user_answer: userAnswer,
+    },
+  });
+  if (error || !data) throw new Error("Failed to evaluate study answer");
+  return data;
+}

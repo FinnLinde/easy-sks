@@ -1,0 +1,1605 @@
+openapi: 3.1.0
+info:
+  title: Easy SKS API
+  description: Open-source flashcard study app for the Sportkuestenschifferschein
+    (SKS)
+  version: 1.0.0
+paths:
+  /topics:
+    get:
+      tags:
+      - Study
+      summary: List Topics
+      operationId: list_topics_topics_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TopicOut'
+                type: array
+                title: Response List Topics Topics Get
+  /study/due:
+    get:
+      tags:
+      - Study
+      summary: Get Due Cards
+      operationId: get_due_cards_study_due_get
+      parameters:
+      - name: topic
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Topic
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudyCardOut'
+                title: Response Get Due Cards Study Due Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /study/practice:
+    get:
+      tags:
+      - Study
+      summary: Get Practice Cards
+      operationId: get_practice_cards_study_practice_get
+      parameters:
+      - name: topic
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Topic
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudyCardOut'
+                title: Response Get Practice Cards Study Practice Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /study/review:
+    post:
+      tags:
+      - Study
+      summary: Review Card
+      operationId: review_card_study_review_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyCardOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /study/evaluate-answer:
+    post:
+      tags:
+      - Study
+      summary: Evaluate Answer
+      operationId: evaluate_answer_study_evaluate_answer_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluateAnswerIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluateAnswerOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /dashboard/summary:
+    get:
+      tags:
+      - Study
+      summary: Get Dashboard Summary
+      operationId: get_dashboard_summary_dashboard_summary_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSummaryOut'
+  /cards/{card_id}:
+    get:
+      tags:
+      - Cards
+      summary: Get Card
+      operationId: get_card_cards__card_id__get
+      parameters:
+      - name: card_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Card Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card__controller__card_controller__CardOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /exams:
+    get:
+      tags:
+      - Exams
+      summary: List Exams
+      operationId: list_exams_exams_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExamTemplateOut'
+                type: array
+                title: Response List Exams Exams Get
+  /exam-sessions:
+    get:
+      tags:
+      - Exams
+      summary: List Exam History
+      operationId: list_exam_history_exam_sessions_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExamSessionHistoryOut'
+                type: array
+                title: Response List Exam History Exam Sessions Get
+    post:
+      tags:
+      - Exams
+      summary: Start Exam Session
+      operationId: start_exam_session_exam_sessions_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartExamSessionIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamSessionOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /exam-sessions/{session_id}:
+    get:
+      tags:
+      - Exams
+      summary: Get Exam Session
+      operationId: get_exam_session_exam_sessions__session_id__get
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamSessionOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /exam-sessions/{session_id}/answers/{card_id}:
+    put:
+      tags:
+      - Exams
+      summary: Save Exam Answer
+      operationId: save_exam_answer_exam_sessions__session_id__answers__card_id__put
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      - name: card_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Card Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveAnswerIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveAnswerOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /exam-sessions/{session_id}/submit:
+    post:
+      tags:
+      - Exams
+      summary: Submit Exam Session
+      operationId: submit_exam_session_exam_sessions__session_id__submit_post
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamResultOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /exam-sessions/{session_id}/result:
+    get:
+      tags:
+      - Exams
+      summary: Get Exam Result
+      operationId: get_exam_result_exam_sessions__session_id__result_get
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamResultOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /navigation-exams:
+    get:
+      tags:
+      - Navigation
+      summary: List Navigation Exams
+      operationId: list_navigation_exams_navigation_exams_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NavigationTemplateOut'
+                type: array
+                title: Response List Navigation Exams Navigation Exams Get
+  /navigation-sessions:
+    get:
+      tags:
+      - Navigation
+      summary: List Navigation History
+      operationId: list_navigation_history_navigation_sessions_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NavigationSessionHistoryOut'
+                type: array
+                title: Response List Navigation History Navigation Sessions Get
+    post:
+      tags:
+      - Navigation
+      summary: Start Navigation Session
+      operationId: start_navigation_session_navigation_sessions_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartNavigationSessionIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationSessionOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /navigation-sessions/{session_id}:
+    get:
+      tags:
+      - Navigation
+      summary: Get Navigation Session
+      operationId: get_navigation_session_navigation_sessions__session_id__get
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationSessionOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /navigation-sessions/{session_id}/answers/{task_id}:
+    put:
+      tags:
+      - Navigation
+      summary: Save Navigation Answer
+      operationId: save_navigation_answer_navigation_sessions__session_id__answers__task_id__put
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Task Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveNavigationAnswerIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveNavigationAnswerOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /navigation-sessions/{session_id}/submit:
+    post:
+      tags:
+      - Navigation
+      summary: Submit Navigation Session
+      operationId: submit_navigation_session_navigation_sessions__session_id__submit_post
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationResultOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /navigation-sessions/{session_id}/result:
+    get:
+      tags:
+      - Navigation
+      summary: Get Navigation Result
+      operationId: get_navigation_result_navigation_sessions__session_id__result_get
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationResultOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /ai/transcribe-audio:
+    post:
+      tags:
+      - AI
+      summary: Transcribe Audio
+      operationId: transcribe_audio_ai_transcribe_audio_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_transcribe_audio_ai_transcribe_audio_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioTranscriptionOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /settings:
+    get:
+      tags:
+      - Settings
+      summary: Get Settings
+      operationId: get_settings_settings_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsOut'
+    put:
+      tags:
+      - Settings
+      summary: Update Settings
+      operationId: update_settings_settings_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettingsIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettingsOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /:
+    get:
+      tags:
+      - General
+      summary: Root
+      operationId: root__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /health:
+    get:
+      tags:
+      - General
+      summary: Health Check
+      operationId: health_check_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+components:
+  schemas:
+    AudioTranscriptionOut:
+      properties:
+        transcript:
+          type: string
+          title: Transcript
+      type: object
+      required:
+      - transcript
+      title: AudioTranscriptionOut
+    Body_transcribe_audio_ai_transcribe_audio_post:
+      properties:
+        audio:
+          type: string
+          format: binary
+          title: Audio
+        language:
+          type: string
+          title: Language
+          default: de
+      type: object
+      required:
+      - audio
+      title: Body_transcribe_audio_ai_transcribe_audio_post
+    CardContentOut:
+      properties:
+        text:
+          type: string
+          title: Text
+        images:
+          items:
+            $ref: '#/components/schemas/CardImageOut'
+          type: array
+          title: Images
+      type: object
+      required:
+      - text
+      - images
+      title: CardContentOut
+    CardImageOut:
+      properties:
+        image_id:
+          type: string
+          title: Image Id
+        storage_key:
+          type: string
+          title: Storage Key
+        alt_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alt Text
+      type: object
+      required:
+      - image_id
+      - storage_key
+      title: CardImageOut
+    DashboardSummaryOut:
+      properties:
+        due_now:
+          type: integer
+          title: Due Now
+        reviewed_today:
+          type: integer
+          title: Reviewed Today
+        streak_days:
+          type: integer
+          title: Streak Days
+        due_by_topic:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Due By Topic
+        recommended_topic:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Recommended Topic
+        available_cards:
+          type: integer
+          title: Available Cards
+      type: object
+      required:
+      - due_now
+      - reviewed_today
+      - streak_days
+      - due_by_topic
+      - available_cards
+      title: DashboardSummaryOut
+    EvaluateAnswerIn:
+      properties:
+        card_id:
+          type: string
+          title: Card Id
+        user_answer:
+          type: string
+          title: User Answer
+      type: object
+      required:
+      - card_id
+      - user_answer
+      title: EvaluateAnswerIn
+    EvaluateAnswerOut:
+      properties:
+        card_id:
+          type: string
+          title: Card Id
+        awarded_points:
+          type: number
+          title: Awarded Points
+        max_points:
+          type: number
+          title: Max Points
+        verdict:
+          type: string
+          title: Verdict
+        reasoning_summary:
+          type: string
+          title: Reasoning Summary
+        mistakes:
+          items:
+            type: string
+          type: array
+          title: Mistakes
+        missing_points:
+          items:
+            type: string
+          type: array
+          title: Missing Points
+        improved_answer_suggestion:
+          type: string
+          title: Improved Answer Suggestion
+        suggested_rating:
+          type: integer
+          title: Suggested Rating
+      type: object
+      required:
+      - card_id
+      - awarded_points
+      - max_points
+      - verdict
+      - reasoning_summary
+      - mistakes
+      - missing_points
+      - improved_answer_suggestion
+      - suggested_rating
+      title: EvaluateAnswerOut
+    ExamQuestionOut:
+      properties:
+        question_number:
+          type: integer
+          title: Question Number
+        card_id:
+          type: string
+          title: Card Id
+        question_text:
+          type: string
+          title: Question Text
+        question_images:
+          items:
+            $ref: '#/components/schemas/CardImageOut'
+          type: array
+          title: Question Images
+        student_answer:
+          type: string
+          title: Student Answer
+        answered_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Answered At
+      type: object
+      required:
+      - question_number
+      - card_id
+      - question_text
+      - question_images
+      - student_answer
+      title: ExamQuestionOut
+    ExamQuestionResultOut:
+      properties:
+        question_number:
+          type: integer
+          title: Question Number
+        card_id:
+          type: string
+          title: Card Id
+        question_text:
+          type: string
+          title: Question Text
+        reference_short_answer:
+          items:
+            type: string
+          type: array
+          title: Reference Short Answer
+        student_answer:
+          type: string
+          title: Student Answer
+        score:
+          type: number
+          title: Score
+        is_correct:
+          type: boolean
+          title: Is Correct
+        feedback:
+          type: string
+          title: Feedback
+        errors:
+          items:
+            type: string
+          type: array
+          title: Errors
+      type: object
+      required:
+      - question_number
+      - card_id
+      - question_text
+      - reference_short_answer
+      - student_answer
+      - score
+      - is_correct
+      - feedback
+      - errors
+      title: ExamQuestionResultOut
+    ExamResultOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        status:
+          type: string
+          title: Status
+        started_at:
+          type: string
+          title: Started At
+        submitted_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitted At
+        time_limit_minutes:
+          type: integer
+          title: Time Limit Minutes
+        time_over:
+          type: boolean
+          title: Time Over
+        total_score:
+          type: number
+          title: Total Score
+        max_score:
+          type: number
+          title: Max Score
+        passed:
+          type: boolean
+          title: Passed
+        pass_score_threshold:
+          type: number
+          title: Pass Score Threshold
+        questions:
+          items:
+            $ref: '#/components/schemas/ExamQuestionResultOut'
+          type: array
+          title: Questions
+      type: object
+      required:
+      - session_id
+      - sheet_number
+      - status
+      - started_at
+      - time_limit_minutes
+      - time_over
+      - total_score
+      - max_score
+      - passed
+      - pass_score_threshold
+      - questions
+      title: ExamResultOut
+    ExamSessionHistoryOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        status:
+          type: string
+          title: Status
+        started_at:
+          type: string
+          title: Started At
+        submitted_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitted At
+        total_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Score
+        max_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Score
+        passed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Passed
+        time_over:
+          type: boolean
+          title: Time Over
+      type: object
+      required:
+      - session_id
+      - sheet_number
+      - status
+      - started_at
+      - time_over
+      title: ExamSessionHistoryOut
+    ExamSessionOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        status:
+          type: string
+          title: Status
+        started_at:
+          type: string
+          title: Started At
+        submitted_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitted At
+        deadline_at:
+          type: string
+          title: Deadline At
+        time_limit_minutes:
+          type: integer
+          title: Time Limit Minutes
+        time_remaining_seconds:
+          type: integer
+          title: Time Remaining Seconds
+        time_over:
+          type: boolean
+          title: Time Over
+        question_count:
+          type: integer
+          title: Question Count
+        questions:
+          items:
+            $ref: '#/components/schemas/ExamQuestionOut'
+          type: array
+          title: Questions
+      type: object
+      required:
+      - session_id
+      - sheet_number
+      - status
+      - started_at
+      - deadline_at
+      - time_limit_minutes
+      - time_remaining_seconds
+      - time_over
+      - question_count
+      - questions
+      title: ExamSessionOut
+    ExamTemplateOut:
+      properties:
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        display_name:
+          type: string
+          title: Display Name
+        question_count:
+          type: integer
+          title: Question Count
+        time_limit_minutes:
+          type: integer
+          title: Time Limit Minutes
+      type: object
+      required:
+      - sheet_number
+      - display_name
+      - question_count
+      - time_limit_minutes
+      title: ExamTemplateOut
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    NavigationQuestionOut:
+      properties:
+        task_number:
+          type: integer
+          title: Task Number
+        task_id:
+          type: string
+          title: Task Id
+        points:
+          type: integer
+          title: Points
+        context:
+          type: string
+          title: Context
+        sub_questions:
+          items:
+            $ref: '#/components/schemas/SubQuestionOut'
+          type: array
+          title: Sub Questions
+        student_answer:
+          type: string
+          title: Student Answer
+        answered_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Answered At
+      type: object
+      required:
+      - task_number
+      - task_id
+      - points
+      - context
+      - sub_questions
+      - student_answer
+      title: NavigationQuestionOut
+    NavigationQuestionResultOut:
+      properties:
+        task_number:
+          type: integer
+          title: Task Number
+        task_id:
+          type: string
+          title: Task Id
+        context:
+          type: string
+          title: Context
+        sub_questions:
+          items:
+            type: string
+          type: array
+          title: Sub Questions
+        key_answers:
+          items:
+            type: string
+          type: array
+          title: Key Answers
+        solution_text:
+          type: string
+          title: Solution Text
+        student_answer:
+          type: string
+          title: Student Answer
+        score:
+          type: number
+          title: Score
+        max_score:
+          type: number
+          title: Max Score
+        is_correct:
+          type: boolean
+          title: Is Correct
+        feedback:
+          type: string
+          title: Feedback
+      type: object
+      required:
+      - task_number
+      - task_id
+      - context
+      - sub_questions
+      - key_answers
+      - solution_text
+      - student_answer
+      - score
+      - max_score
+      - is_correct
+      - feedback
+      title: NavigationQuestionResultOut
+    NavigationResultOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        status:
+          type: string
+          title: Status
+        started_at:
+          type: string
+          title: Started At
+        submitted_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitted At
+        time_limit_minutes:
+          type: integer
+          title: Time Limit Minutes
+        time_over:
+          type: boolean
+          title: Time Over
+        total_score:
+          type: number
+          title: Total Score
+        max_score:
+          type: number
+          title: Max Score
+        passed:
+          type: boolean
+          title: Passed
+        pass_score_threshold:
+          type: number
+          title: Pass Score Threshold
+        questions:
+          items:
+            $ref: '#/components/schemas/NavigationQuestionResultOut'
+          type: array
+          title: Questions
+      type: object
+      required:
+      - session_id
+      - sheet_number
+      - status
+      - started_at
+      - time_limit_minutes
+      - time_over
+      - total_score
+      - max_score
+      - passed
+      - pass_score_threshold
+      - questions
+      title: NavigationResultOut
+    NavigationSessionHistoryOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        status:
+          type: string
+          title: Status
+        started_at:
+          type: string
+          title: Started At
+        submitted_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitted At
+        total_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Score
+        max_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Score
+        passed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Passed
+        time_over:
+          type: boolean
+          title: Time Over
+      type: object
+      required:
+      - session_id
+      - sheet_number
+      - status
+      - started_at
+      - time_over
+      title: NavigationSessionHistoryOut
+    NavigationSessionOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        status:
+          type: string
+          title: Status
+        started_at:
+          type: string
+          title: Started At
+        submitted_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitted At
+        deadline_at:
+          type: string
+          title: Deadline At
+        time_limit_minutes:
+          type: integer
+          title: Time Limit Minutes
+        time_remaining_seconds:
+          type: integer
+          title: Time Remaining Seconds
+        time_over:
+          type: boolean
+          title: Time Over
+        task_count:
+          type: integer
+          title: Task Count
+        questions:
+          items:
+            $ref: '#/components/schemas/NavigationQuestionOut'
+          type: array
+          title: Questions
+      type: object
+      required:
+      - session_id
+      - sheet_number
+      - status
+      - started_at
+      - deadline_at
+      - time_limit_minutes
+      - time_remaining_seconds
+      - time_over
+      - task_count
+      - questions
+      title: NavigationSessionOut
+    NavigationTemplateOut:
+      properties:
+        sheet_number:
+          type: integer
+          title: Sheet Number
+        display_name:
+          type: string
+          title: Display Name
+        task_count:
+          type: integer
+          title: Task Count
+        total_points:
+          type: integer
+          title: Total Points
+        time_limit_minutes:
+          type: integer
+          title: Time Limit Minutes
+      type: object
+      required:
+      - sheet_number
+      - display_name
+      - task_count
+      - total_points
+      - time_limit_minutes
+      title: NavigationTemplateOut
+    ReviewIn:
+      properties:
+        card_id:
+          type: string
+          title: Card Id
+        rating:
+          type: integer
+          title: Rating
+      type: object
+      required:
+      - card_id
+      - rating
+      title: ReviewIn
+    SaveAnswerIn:
+      properties:
+        student_answer:
+          type: string
+          title: Student Answer
+          default: ''
+      type: object
+      title: SaveAnswerIn
+    SaveAnswerOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        card_id:
+          type: string
+          title: Card Id
+        question_number:
+          type: integer
+          title: Question Number
+        student_answer:
+          type: string
+          title: Student Answer
+        answered_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Answered At
+      type: object
+      required:
+      - session_id
+      - card_id
+      - question_number
+      - student_answer
+      title: SaveAnswerOut
+    SaveNavigationAnswerIn:
+      properties:
+        student_answer:
+          type: string
+          title: Student Answer
+          default: ''
+      type: object
+      title: SaveNavigationAnswerIn
+    SaveNavigationAnswerOut:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+        task_id:
+          type: string
+          title: Task Id
+        task_number:
+          type: integer
+          title: Task Number
+        student_answer:
+          type: string
+          title: Student Answer
+        answered_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Answered At
+      type: object
+      required:
+      - session_id
+      - task_id
+      - task_number
+      - student_answer
+      title: SaveNavigationAnswerOut
+    SchedulingInfoOut:
+      properties:
+        state:
+          type: string
+          title: State
+        stability:
+          type: number
+          title: Stability
+        difficulty:
+          type: number
+          title: Difficulty
+        reps:
+          type: integer
+          title: Reps
+        lapses:
+          type: integer
+          title: Lapses
+        due:
+          type: string
+          title: Due
+        last_review:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Review
+      type: object
+      required:
+      - state
+      - stability
+      - difficulty
+      - reps
+      - lapses
+      - due
+      title: SchedulingInfoOut
+    SettingsIn:
+      properties:
+        ai_enabled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ai Enabled
+        openai_api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Openai Api Key
+        openai_chat_model:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Openai Chat Model
+        openai_transcription_model:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Openai Transcription Model
+      type: object
+      title: SettingsIn
+      description: 'Request body for `PUT /settings`.
+
+
+        `openai_api_key` semantics: omit to leave unchanged; pass `null` or `""`
+
+        to clear the stored key; pass a string to replace it.'
+    SettingsOut:
+      properties:
+        ai_enabled:
+          type: boolean
+          title: Ai Enabled
+        openai_api_key_set:
+          type: boolean
+          title: Openai Api Key Set
+        openai_chat_model:
+          type: string
+          title: Openai Chat Model
+        openai_transcription_model:
+          type: string
+          title: Openai Transcription Model
+      type: object
+      required:
+      - ai_enabled
+      - openai_api_key_set
+      - openai_chat_model
+      - openai_transcription_model
+      title: SettingsOut
+    StartExamSessionIn:
+      properties:
+        sheet_number:
+          type: integer
+          maximum: 15.0
+          minimum: 1.0
+          title: Sheet Number
+        time_limit_minutes:
+          anyOf:
+          - type: integer
+            maximum: 240.0
+            minimum: 1.0
+          - type: 'null'
+          title: Time Limit Minutes
+      type: object
+      required:
+      - sheet_number
+      title: StartExamSessionIn
+    StartNavigationSessionIn:
+      properties:
+        sheet_number:
+          type: integer
+          maximum: 10.0
+          minimum: 1.0
+          title: Sheet Number
+        time_limit_minutes:
+          anyOf:
+          - type: integer
+            maximum: 240.0
+            minimum: 1.0
+          - type: 'null'
+          title: Time Limit Minutes
+      type: object
+      required:
+      - sheet_number
+      title: StartNavigationSessionIn
+    StudyCardOut:
+      properties:
+        card:
+          $ref: '#/components/schemas/study__controller__study_controller__CardOut'
+        scheduling_info:
+          $ref: '#/components/schemas/SchedulingInfoOut'
+      type: object
+      required:
+      - card
+      - scheduling_info
+      title: StudyCardOut
+    SubQuestionOut:
+      properties:
+        text:
+          type: string
+          title: Text
+        points:
+          type: integer
+          title: Points
+      type: object
+      required:
+      - text
+      - points
+      title: SubQuestionOut
+    TopicOut:
+      properties:
+        value:
+          type: string
+          title: Value
+        label:
+          type: string
+          title: Label
+      type: object
+      required:
+      - value
+      - label
+      title: TopicOut
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    card__controller__card_controller__CardOut:
+      properties:
+        card_id:
+          type: string
+          title: Card Id
+        front:
+          $ref: '#/components/schemas/CardContentOut'
+        answer:
+          $ref: '#/components/schemas/CardContentOut'
+        short_answer:
+          items:
+            type: string
+          type: array
+          title: Short Answer
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        exam_sheets:
+          items:
+            type: integer
+          type: array
+          title: Exam Sheets
+      type: object
+      required:
+      - card_id
+      - front
+      - answer
+      - short_answer
+      - tags
+      - exam_sheets
+      title: CardOut
+    study__controller__study_controller__CardOut:
+      properties:
+        card_id:
+          type: string
+          title: Card Id
+        front:
+          $ref: '#/components/schemas/CardContentOut'
+        answer:
+          $ref: '#/components/schemas/CardContentOut'
+        short_answer:
+          items:
+            type: string
+          type: array
+          title: Short Answer
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        exam_sheets:
+          items:
+            type: integer
+          type: array
+          title: Exam Sheets
+      type: object
+      required:
+      - card_id
+      - front
+      - answer
+      - short_answer
+      - tags
+      - exam_sheets
+      title: CardOut
