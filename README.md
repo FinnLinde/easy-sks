@@ -128,6 +128,14 @@ is the source of truth for the API contract — after backend changes,
 regenerate it from the running app and run `npm run generate-api` in
 `frontend/` to refresh the typed client.
 
+## Disclaimer
+
+Easy SKS is an unofficial study aid. The card catalogue is community-sourced
+and the AI/heuristic grading may be wrong. Always verify against the
+official SKS materials and your training instructor before relying on any
+answer for the actual certification exam. The software is provided as-is
+under the MIT License — no warranty, no liability.
+
 ## License
 
 [MIT](LICENSE) © Finn Linde
